@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MovementScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Parcial1.unity
+    guid: 4319b5f7fd13e47419a12f71f878444f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: a6f30d7325926ac479cb2662bcb7d087, type: 3}
   m_UseUCBPForAssetBundles: 0
