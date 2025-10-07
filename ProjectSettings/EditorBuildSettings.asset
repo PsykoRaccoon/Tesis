@@ -12,6 +12,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Parcial1.unity
     guid: 4319b5f7fd13e47419a12f71f878444f
   m_configObjects:
-    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 7008a89bcc2e2f44d9a9e3f3ec8caa7d, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: a6f30d7325926ac479cb2662bcb7d087, type: 3}
   m_UseUCBPForAssetBundles: 0
