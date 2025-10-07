@@ -110,6 +110,37 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &4728841886882704288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 581269769950347776}
+  m_Layer: 0
+  m_Name: SpawnPointHabilidad1
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &581269769950347776
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4728841886882704288}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.052}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4873618770324359649}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8484774874527596216
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,8 +155,9 @@ GameObject:
   - component: {fileID: 8540880103339541698}
   - component: {fileID: 1164624878830298098}
   - component: {fileID: 7773526303526396438}
+  - component: {fileID: 5752107588463831824}
   - component: {fileID: 7605709306787138081}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,6 +178,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5400802208393147523}
+  - {fileID: 581269769950347776}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4442765231524606914
@@ -268,6 +301,26 @@ MonoBehaviour:
   gravity: -9.8
   rotationSpeed: 5
   rotationSmoothTime: 0.5
+--- !u!114 &5752107588463831824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8484774874527596216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8440473f2e83b64418a22f04349b1c6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 581269769950347776}
+  projectilePrefab: {fileID: 7818575623352222607, guid: 3a10fcb40cac87b4599c461508eeb620, type: 3}
+  groundMarkerPrefab: {fileID: 9196375943270294652, guid: 4b344d3982ad4f948badc8e48892c7d7, type: 3}
+  aimDistance: 10
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
+  cooldownDuration: 2
 --- !u!114 &7605709306787138081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,6 +394,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f7d527cf-df67-4668-8550-d3efa7d978d6
     m_ActionName: 'Gameplay/Run[/XInputControllerWindows/leftStickPress]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5752107588463831824}
+        m_TargetAssemblyTypeName: AbilityController, Assembly-CSharp
+        m_MethodName: Habilidad1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 25b9fb01-2057-47a0-8766-8319249c5942
+    m_ActionName: 'Gameplay/Habilidad 1[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
