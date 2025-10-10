@@ -1,49 +1,60 @@
-Shader "LuisShadersUnlit/BolaDeFuego"
+Shader "LuisShadersUnlit/BolaDeFuego3D_Full_v2"
 {
     Properties
     {
-        _MainTex ("Main Texture", 2D) = "white" {}
-        _NoiseTex ("Noise Texture", 2D) = "white" {}
-        _AudioTex ("Audio Texture", 2D) = "white" {}
+        _MainTex ("Main Texture (stars/noise)", 2D) = "white" {}
+        _AudioTex ("Audio Texture (optional)", 2D) = "white" {}
+        _BaseColor ("Base Color", Color) = (0.80,0.65,0.30,1)
+        _HighlightColor ("Highlight Color", Color) = (0.80,0.35,0.10,1)
         _TimeScale ("Time Scale", Float) = 0.1
+        _NoiseScale ("Noise Scale", Float) = 8.0
+        _CoronaIntensity ("Corona Intensity", Float) = 0.9
+        _StarIntensity ("Star Intensity", Float) = 0.6
+        _BaseIntensity ("Base Intensity", Float) = 0.9
+        _UseAudio ("Use Audio (0/1)", Float) = 1
     }
     SubShader
     {
         Tags { "RenderType"="Opaque" }
         LOD 100
+        Cull Off
 
         Pass
         {
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-           
             #include "UnityCG.cginc"
+
+            sampler2D _MainTex;
+            sampler2D _AudioTex;
+            float4 _BaseColor;
+            float4 _HighlightColor;
+            float _TimeScale;
+            float _NoiseScale;
+            float _CoronaIntensity;
+            float _StarIntensity;
+            float _BaseIntensity;
+            float _UseAudio;
+
+            static const float PI = 3.14159265359;
 
             struct appdata
             {
                 float4 vertex : POSITION;
+                float3 normal : NORMAL;
                 float2 uv : TEXCOORD0;
             };
 
             struct v2f
             {
-                float2 uv : TEXCOORD0;
-                float4 vertex : SV_POSITION;
+                float4 pos : SV_POSITION;
+                float3 objPos : TEXCOORD0;
+                float3 normal : TEXCOORD1;
+                float2 uv : TEXCOORD2;
             };
-            
-            sampler2D _MainTex;
-            sampler2D _NoiseTex;
-            sampler2D _AudioTex;
-            float4 _MainTex_ST;
-            float _TimeScale;
-            //float4 _ScreenParams; // xy = resolution
 
-            //HELPERS
-            float fract(float x) { return x - floor(x); }
-            float3 fract(float3 x) { return x - floor(x); }
-            float mix(float a, float b, float t) { return lerp(a, b, t); }
-
+            // --- snoise (mantengo tu implementación, devuelve aprox [-1,1]) ---
             float snoise(float3 uv, float res)
             {
                 float3 s = float3(1.0, 100.0, 10000.0);
@@ -74,83 +85,74 @@ Shader "LuisShadersUnlit/BolaDeFuego"
             v2f vert (appdata v)
             {
                 v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                //o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                o.pos = UnityObjectToClipPos(v.vertex);
+                o.objPos = v.vertex.xyz; // posición en espacio-objeto (espera esfera centrada en 0)
+                o.normal = normalize(mul((float3x3)unity_ObjectToWorld, v.normal));
                 o.uv = v.uv;
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
-                //before
-                //fixed4 col = tex2D(_MainTex, i.uv);
-                //return col;
-                //after
-                float2 fragCoord = i.uv * _ScreenParams.xy;
-                float2 resolution = _ScreenParams.xy;
+                // tiempo
                 float time = _Time.y * _TimeScale;
 
-                // === Adaptación del mainImage ===
-                float freqs[4];
-                freqs[0] = tex2D(_AudioTex, float2(0.01, 0.25)).x;
-                freqs[1] = tex2D(_AudioTex, float2(0.07, 0.25)).x;
-                freqs[2] = tex2D(_AudioTex, float2(0.15, 0.25)).x;
-                freqs[3] = tex2D(_AudioTex, float2(0.30, 0.25)).x;
+                // dirección sobre la esfera (normalizamos el espacio-objeto)
+                float3 p = normalize(i.objPos);
 
-                float brightness = freqs[1] * 0.25 + freqs[2] * 0.25;
-                float radius = 0.24 + brightness * 0.2;
-                float invRadius = 1.0 / radius;
+                // mapeo esférico -> uv en [0,1]
+                float u = atan2(p.z, p.x) / (2.0 * PI) + 0.5;
+                float v = asin(p.y) / PI + 0.5;
+                float2 sphUV = float2(u, v);
 
-                float aspect = resolution.x / resolution.y;
-                float2 uv = fragCoord / resolution;
-                float2 p = uv - 0.5;
-                p.x *= aspect;
+                // brightness (opcional desde textura de audio)
+                float brightness = 0.5;
+                if (_UseAudio > 0.5)
+                {
+                    float fre1 = tex2D(_AudioTex, float2(0.07, 0.25)).x;
+                    float fre2 = tex2D(_AudioTex, float2(0.15, 0.25)).x;
+                    brightness = fre1 * 0.25 + fre2 * 0.25;
+                }
 
-                float fade = pow(length(2.0 * p), 0.5);
-                float fVal1 = 1.0 - fade;
-                float fVal2 = 1.0 - fade;
+                // coordenadas para ruido (controladas por _NoiseScale)
+                float3 coord = float3(u * _NoiseScale, v * _NoiseScale, time * 0.1);
 
-                float angle = atan2(p.x, p.y) / 6.2832;
-                float dist = length(p);
-                float3 coord = float3(angle, dist, time * 0.1);
-
-                float newTime1 = abs(snoise(coord + float3(0, -time * (0.35 + brightness * 0.001), time * 0.015), 15.0));
-                float newTime2 = abs(snoise(coord + float3(0, -time * (0.15 + brightness * 0.001), time * 0.015), 45.0));
-
+                // sumas de octavas (más moderadas)
+                float n1 = 0.0;
+                float n2 = 0.0;
                 for (int ii = 1; ii <= 7; ii++)
                 {
                     float power = pow(2.0, ii + 1.0);
-                    fVal1 += (0.5 / power) * snoise(coord + float3(0, -time, time * 0.2), (power * 10.0) * (newTime1 + 1.0));
-                    fVal2 += (0.5 / power) * snoise(coord + float3(0, -time, time * 0.2), (power * 25.0) * (newTime2 + 1.0));
+                    n1 += (0.5 / power) * snoise(coord + float3(0.0, -time, time * 0.2), power * 10.0 * (1.0 + 0.5 * brightness));
+                    n2 += (0.5 / power) * snoise(coord + float3(0.0, -time * 0.2, time * 0.2), power * 25.0 * (1.0 + 0.5 * brightness));
                 }
 
-                float corona = pow(fVal1 * max(1.1 - fade, 0.0), 2.0) * 50.0;
-                corona += pow(fVal2 * max(1.1 - fade, 0.0), 2.0) * 50.0;
-                corona *= 1.2 - newTime1;
+                // normalizamos ruido a [0,1] de forma controlada
+                float n1norm = saturate(n1 * 0.5 + 0.5);
+                float n2norm = saturate(n2 * 0.5 + 0.5);
 
-                float2 sp = -1.0 + 2.0 * uv;
-                sp.x *= aspect;
-                sp *= (2.0 - brightness);
-                float r = dot(sp, sp);
-                float f = (1.0 - sqrt(abs(1.0 - r))) / r + brightness * 0.5;
+                // corona (multiplicadores reducidos)
+                float corona = pow(n1norm, 2.0) * _CoronaIntensity;
+                corona += pow(n2norm, 1.6) * (_CoronaIntensity * 0.6);
+                corona *= saturate(0.9 + 0.2 * brightness); // pequeña dependencia al audio
 
-                float3 starSphere = 0;
-                if (dist < radius)
-                {
-                    corona *= pow(dist * invRadius, 24.0);
-                    float2 newUv = sp * f + float2(time, 0.0);
+                // detalle "stars"/texture
+                float2 starUV = frac(sphUV + float2(time * 0.05, 0.0));
+                float3 starSphere = tex2D(_MainTex, starUV).rgb * _StarIntensity;
 
-                    float3 texSample = tex2D(_MainTex, newUv).rgb;
-                    float uOff = (texSample.g * brightness * 4.5 + time);
-                    float2 starUV = newUv + float2(uOff, 0.0);
-                    starSphere = tex2D(_MainTex, starUV).rgb;
-                }
+                // composición de color
+                float3 baseCol = _BaseColor.rgb * _BaseIntensity;
+                float3 col = baseCol;
+                col += starSphere * 0.6;
+                col += corona * _BaseColor.rgb * 0.9;
+                col += _HighlightColor.rgb * (pow(n1norm, 1.5) * 0.45);
 
-                float3 orange = float3(0.8, 0.65, 0.3);
-                float3 orangeRed = float3(0.8, 0.35, 0.1);
-                float starGlow = saturate(1.0 - dist * (1.0 - brightness));
+                // Tonemapping simple (Reinhard) para evitar picos HDR brutales
+                col = col / (1.0 + col);
 
-                float3 col = f * (0.75 + brightness * 0.3) * orange + starSphere + corona * orange + starGlow * orangeRed;
+                // normalizamos para seguridad
+                col = saturate(col);
+
                 return float4(col, 1.0);
             }
             ENDCG
