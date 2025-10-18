@@ -135,7 +135,7 @@ Transform:
   m_GameObject: {fileID: 4728841886882704288}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.052}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -296,6 +296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 5
   runSpeed: 9
+  movementLocked: 0
   airControl: 0.98
   jumpHeight: 5
   gravity: -9.8
@@ -314,13 +315,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 581269769950347776}
-  projectilePrefab: {fileID: 7818575623352222607, guid: 3a10fcb40cac87b4599c461508eeb620, type: 3}
+  projectilePrefab: {fileID: 8235021441435618320, guid: 9ab3786fdfe89e344ab62ab752866e1a, type: 3}
   groundMarkerPrefab: {fileID: 9196375943270294652, guid: 4b344d3982ad4f948badc8e48892c7d7, type: 3}
   aimDistance: 10
   groundMask:
     serializedVersion: 2
     m_Bits: 8
   cooldownDuration: 2
+  playerController: {fileID: 7773526303526396438}
+  aimPivot: {fileID: 581269769950347776}
+  laserBeamPrefab: {fileID: 6881719634396037647, guid: 442888fa973251848bbd6a1b8d92ff14, type: 3}
+  verticalAimSpeed: 100
+  rotationSpeed: 5
+  rotationSmoothTime: 0.8
 --- !u!114 &7605709306787138081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,6 +417,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 25b9fb01-2057-47a0-8766-8319249c5942
     m_ActionName: 'Gameplay/Habilidad 1[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5752107588463831824}
+        m_TargetAssemblyTypeName: AbilityController, Assembly-CSharp
+        m_MethodName: Habilidad2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3f795c82-1400-449f-909e-77e20b594966
+    m_ActionName: 'Gameplay/Habilidad 2[/XInputControllerWindows/leftTrigger]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5752107588463831824}
+        m_TargetAssemblyTypeName: AbilityController, Assembly-CSharp
+        m_MethodName: AimVertical
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0f2180ae-8626-4f62-968b-25bee50c60c6
+    m_ActionName: 'Gameplay/AimVertical[/XInputControllerWindows/rightStick]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

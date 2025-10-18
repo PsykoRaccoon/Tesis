@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movimiento")]
     [SerializeField] public float walkSpeed;
     [SerializeField] public float runSpeed;
+    [SerializeField] public bool movementLocked;
     [SerializeField, Range(0f, 1f)] public float airControl; //momentum
     private float currentSpeed; 
 
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     private bool runToggle = false;
 
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -32,6 +34,15 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (movementLocked)
+        {
+            moveDirection = Vector3.zero;
+            currentSpeed = 0f;
+            velocity = new Vector3(0, Mathf.Clamp(velocity.y, -2f, float.MaxValue), 0);
+            controller.Move(velocity * Time.deltaTime);
+            return;
+        }
+
         Vector3 inputDir = new Vector3(moveInput.x, 0, moveInput.y).normalized;
 
         if (inputDir.magnitude > 0)
@@ -40,11 +51,7 @@ public class PlayerController : MonoBehaviour
             moveDirection = inputDir;
 
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-            transform.rotation = Quaternion.Slerp(
-                transform.rotation,
-                targetRotation,
-                rotationSpeed * Time.deltaTime / rotationSmoothTime
-            );
+            transform.rotation = Quaternion.Slerp(transform.rotation,targetRotation,rotationSpeed * Time.deltaTime / rotationSmoothTime);
         }
         else
         {
@@ -78,6 +85,11 @@ public class PlayerController : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
+        if (movementLocked)
+        {
+            return;
+        }
+
         if (context.performed && controller.isGrounded)  
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
