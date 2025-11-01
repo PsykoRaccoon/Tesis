@@ -1016,8 +1016,8 @@ MonoBehaviour:
   player1: {fileID: 0}
   player2: {fileID: 0}
   mainCamera: {fileID: 330585545}
-  player1Camera: {fileID: 2816370246420129417}
-  player2Camera: {fileID: 6393281115415328954}
+  player1Camera: {fileID: 6393281115415328954}
+  player2Camera: {fileID: 2816370246420129417}
   splitDistance: 30
   cameraHeight: 20
   cameraAngle: 40

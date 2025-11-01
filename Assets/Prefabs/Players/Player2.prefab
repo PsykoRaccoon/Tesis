@@ -141,6 +141,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4873618770324359649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8350893907857206265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4614458261325899634}
+  m_Layer: 6
+  m_Name: SpawePointHabilidad2
+  m_TagString: Untagged
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4614458261325899634
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8350893907857206265}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.352}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4873618770324359649}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8484774874527596216
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +186,9 @@ GameObject:
   - component: {fileID: 8540880103339541698}
   - component: {fileID: 1164624878830298098}
   - component: {fileID: 7773526303526396438}
-  - component: {fileID: 5752107588463831824}
+  - component: {fileID: -399215662684351616}
+  - component: {fileID: 3229954071289421130}
+  - component: {fileID: -8205543351194400632}
   - component: {fileID: 7605709306787138081}
   m_Layer: 6
   m_Name: Player2
@@ -179,6 +212,7 @@ Transform:
   m_Children:
   - {fileID: 5400802208393147523}
   - {fileID: 581269769950347776}
+  - {fileID: 4614458261325899634}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4442765231524606914
@@ -277,7 +311,7 @@ CharacterController:
   serializedVersion: 3
   m_Height: 2
   m_Radius: 0.5
-  m_SlopeLimit: 45
+  m_SlopeLimit: 50
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -302,7 +336,7 @@ MonoBehaviour:
   gravity: -9.8
   rotationSpeed: 5
   rotationSmoothTime: 0.5
---- !u!114 &5752107588463831824
+--- !u!114 &-399215662684351616
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -311,7 +345,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8484774874527596216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8440473f2e83b64418a22f04349b1c6f, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c0a3b0d22ef6a24a9bf73fde0836de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 581269769950347776}
@@ -328,6 +362,48 @@ MonoBehaviour:
   verticalAimSpeed: 100
   rotationSpeed: 5
   rotationSmoothTime: 0.8
+--- !u!114 &3229954071289421130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8484774874527596216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1614119043b66c0439e8295f9dfea1d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 4614458261325899634}
+  blockPrefab: {fileID: 7829821642714444320, guid: 85ade36de8a458d449c2cad4428e47af, type: 3}
+  rampPrefab: {fileID: 6972952682389166373, guid: 0c9773f0c0dce3a4b83fffc0a1e8c47d, type: 3}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
+  spawnDistance: 2
+  cooldownDuration: 1
+  blockLifetime: 6
+  blockRiseHeight: 2
+  appearDuration: 0.8
+  sinkDistance: 5
+  sinkDuration: 2
+  undergroundOffset: 4
+  rampRiseHeight: 2.5
+  rampAppearDuration: 0.6
+--- !u!114 &-8205543351194400632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8484774874527596216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a43a074042f774aafe5f451db5b9a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptHabilidadesFuego: {fileID: -399215662684351616}
+  scriptHabilidadesTierra: {fileID: 3229954071289421130}
 --- !u!114 &7605709306787138081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,8 +479,20 @@ MonoBehaviour:
     m_ActionName: 'Gameplay/Run[/XInputControllerWindows/leftStickPress]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5752107588463831824}
-        m_TargetAssemblyTypeName: AbilityController, Assembly-CSharp
+      - m_Target: {fileID: -399215662684351616}
+        m_TargetAssemblyTypeName: FireAbilities, Assembly-CSharp
+        m_MethodName: Habilidad1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3229954071289421130}
+        m_TargetAssemblyTypeName: EarthAbilities, Assembly-CSharp
         m_MethodName: Habilidad1
         m_Mode: 0
         m_Arguments:
@@ -419,8 +507,20 @@ MonoBehaviour:
     m_ActionName: 'Gameplay/Habilidad 1[/Keyboard/e]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5752107588463831824}
-        m_TargetAssemblyTypeName: AbilityController, Assembly-CSharp
+      - m_Target: {fileID: -399215662684351616}
+        m_TargetAssemblyTypeName: FireAbilities, Assembly-CSharp
+        m_MethodName: Habilidad2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3229954071289421130}
+        m_TargetAssemblyTypeName: EarthAbilities, Assembly-CSharp
         m_MethodName: Habilidad2
         m_Mode: 0
         m_Arguments:
@@ -435,8 +535,8 @@ MonoBehaviour:
     m_ActionName: 'Gameplay/Habilidad 2[/XInputControllerWindows/leftTrigger]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5752107588463831824}
-        m_TargetAssemblyTypeName: AbilityController, Assembly-CSharp
+      - m_Target: {fileID: -399215662684351616}
+        m_TargetAssemblyTypeName: FireAbilities, Assembly-CSharp
         m_MethodName: AimVertical
         m_Mode: 0
         m_Arguments:
@@ -449,6 +549,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0f2180ae-8626-4f62-968b-25bee50c60c6
     m_ActionName: 'Gameplay/AimVertical[/XInputControllerWindows/rightStick]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -8205543351194400632}
+        m_TargetAssemblyTypeName: PlayerAbilityManager, Assembly-CSharp
+        m_MethodName: SwitchAbility
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5305f896-49c8-4f22-b77f-b0fd4ffa7f50
+    m_ActionName: 'Gameplay/Switch[/XInputControllerWindows/leftShoulder,/SwitchProControllerHID/leftShoulder]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
