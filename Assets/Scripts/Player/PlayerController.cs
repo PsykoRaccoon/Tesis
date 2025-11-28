@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
 
     private bool runToggle = false;
 
+    public bool IsGrounded => controller != null && controller.isGrounded;
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -37,11 +39,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // Safety Check en lo que queda el otro personaje para no llenar la consola de errores :D
-        if (animator == null || controller == null)
-        {
-            return;
-        }
+        if (animator == null || controller == null) return;
 
         animator.SetBool("IsGrounded", controller.isGrounded);
 
@@ -49,7 +47,7 @@ public class PlayerController : MonoBehaviour
         {
             moveDirection = Vector3.zero;
             currentSpeed = 0f;
-            velocity = new Vector3(0, Mathf.Clamp(velocity.y, -2f, float.MaxValue), 0);
+            velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
             animator.SetFloat("Velocity", 0f, 0.1f, Time.deltaTime);
             return;
@@ -108,7 +106,6 @@ public class PlayerController : MonoBehaviour
         if (context.performed && controller.isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-
             animator.SetTrigger("Jump");
         }
     }

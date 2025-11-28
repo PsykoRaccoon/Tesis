@@ -6,7 +6,6 @@ public class FireAbilities : MonoBehaviour
 {
     public bool IsActive { get; set; } = true;
 
-
     [Header("Referencias bola de fuego")]
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject projectilePrefab;
@@ -48,26 +47,25 @@ public class FireAbilities : MonoBehaviour
         return isAiming || isUsingLaser || isOnCooldown;
     }
 
-
     private void Start()
     {
-        GameObject proj = Instantiate(projectilePrefab, spawnPoint.position, spawnPoint.rotation);
-        currentProjectile = proj.GetComponent<AbilityProjectile>();
-        proj.SetActive(false);
-
         currentMarker = Instantiate(groundMarkerPrefab, spawnPoint.position, Quaternion.identity);
         currentMarker.SetActive(false);
     }
 
     private void Update()
     {
-        if (!IsActive)
+        if (!IsActive) return;
+
+        if (!playerController.IsGrounded)
         {
+            if (isAiming) CancelAiming();
+            if (isUsingLaser) StopLaser();
             return;
         }
 
         // --- bola de fuego --- \\
-        if (isAiming)
+        if (isAiming && currentProjectile != null)
         {
             UpdateMarkerPosition();
             currentProjectile.FollowSpawn(spawnPoint);
@@ -80,15 +78,11 @@ public class FireAbilities : MonoBehaviour
         }
     }
 
-
     // ---------------------------------------------------------------------------- logica bola de fuego ---------------------------------------------------------------------- \\
 
     public void Habilidad1(InputAction.CallbackContext context) //bola de fuego
     {
-        if (!IsActive)
-        {
-            return;
-        }
+        if (!IsActive || !playerController.IsGrounded) return;
 
         if (!context.performed || isOnCooldown || isUsingLaser || projectileLaunched)
         {
@@ -107,13 +101,32 @@ public class FireAbilities : MonoBehaviour
 
     private void StartAiming()
     {
+        if (!playerController.IsGrounded) return;
+
         isAiming = true;
-        currentProjectile.gameObject.SetActive(true);
+
+        GameObject proj = Instantiate(projectilePrefab, spawnPoint.position, spawnPoint.rotation);
+        currentProjectile = proj.GetComponent<AbilityProjectile>();
+
         currentMarker.SetActive(true);
+    }
+
+    private void CancelAiming()
+    {
+        isAiming = false;
+        currentMarker.SetActive(false);
+
+        if (currentProjectile != null)
+        {
+            Destroy(currentProjectile.gameObject);
+            currentProjectile = null;
+        }
     }
 
     private void LaunchProjectile()
     {
+        if (currentProjectile == null) return;
+
         isAiming = false;
         projectileLaunched = true;
         currentMarker.SetActive(false);
@@ -138,6 +151,7 @@ public class FireAbilities : MonoBehaviour
     private void OnProjectileComplete()
     {
         projectileLaunched = false;
+        currentProjectile = null;
         StartCoroutine(CooldownRoutine());
     }
 
@@ -145,22 +159,16 @@ public class FireAbilities : MonoBehaviour
     {
         isOnCooldown = true;
         yield return new WaitForSeconds(cooldownDuration);
-
-        //currentProjectile.ResetToSpawn(spawnPoint); tal vez sea esto, idk, asi funciona bien xd
-        currentProjectile.gameObject.SetActive(false);
-
         isOnCooldown = false;
     }
 
     // ------------------------------------------------------------------------------- logica rayo laser ----------------------------------------------------------------------------------- \\
+
     public void Habilidad2(InputAction.CallbackContext context) //rayo laser
     {
-        if (!IsActive)
-        {
-            return;
-        } 
+        if (!IsActive) return;
 
-        if (context.performed && !isAiming)
+        if (context.performed && !isAiming && playerController.IsGrounded)
         {
             StartLaser();
         }
@@ -173,19 +181,14 @@ public class FireAbilities : MonoBehaviour
     private void StartLaser()
     {
         aimPivot.localRotation = Quaternion.Euler(0, 0, 0);
-        if (isUsingLaser)
-        {
-            return;
-        }
+        if (isUsingLaser) return;
 
         isUsingLaser = true;
-
         playerController.movementLocked = true;
 
         if (currentLaser == null)
         {
             currentLaser = Instantiate(laserBeamPrefab, spawnPoint.position, spawnPoint.rotation);
-
         }
         else
         {
@@ -195,13 +198,9 @@ public class FireAbilities : MonoBehaviour
 
     private void StopLaser()
     {
-        if (!isUsingLaser)
-        {
-            return;
-        }
+        if (!isUsingLaser) return;
 
         isUsingLaser = false;
-
         playerController.movementLocked = false;
 
         if (currentLaser != null)
@@ -212,11 +211,7 @@ public class FireAbilities : MonoBehaviour
 
     public void AimVertical(InputAction.CallbackContext context)
     {
-        if (!IsActive)
-        {
-            return;
-        }
-
+        if (!IsActive) return;
         aimInput = context.ReadValue<Vector2>();
     }
 
@@ -233,10 +228,8 @@ public class FireAbilities : MonoBehaviour
 
         float vertical = aimInput.y;
         float currentX = aimPivot.localEulerAngles.x;
-        if (currentX > 180)
-        {
-            currentX -= 360;
-        }
+        if (currentX > 180) currentX -= 360;
+
         currentX = Mathf.Clamp(currentX - vertical * verticalAimSpeed * Time.deltaTime, -45f, 45f);
         aimPivot.localRotation = Quaternion.Euler(currentX, 0, 0);
 

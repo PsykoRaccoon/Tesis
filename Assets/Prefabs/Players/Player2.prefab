@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1614119043b66c0439e8295f9dfea1d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 4526514092532145448}
   spawnPoint: {fileID: 5640289366060163338}
   blockPrefab: {fileID: 7829821642714444320, guid: 85ade36de8a458d449c2cad4428e47af, type: 3}
   rampPrefab: {fileID: 6972952682389166373, guid: 0c9773f0c0dce3a4b83fffc0a1e8c47d, type: 3}
@@ -194,12 +195,12 @@ MonoBehaviour:
   cooldownDuration: 1
   blockLifetime: 6
   blockRiseHeight: 2
-  appearDuration: 0.8
+  appearDuration: 2
   sinkDistance: 5
-  sinkDuration: 2
+  sinkDuration: 1.5
   undergroundOffset: 4
   rampRiseHeight: 2.5
-  rampAppearDuration: 0.6
+  rampAppearDuration: 1.5
 --- !u!114 &692983678676738313
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -125,7 +125,6 @@ public class AbilityController : MonoBehaviour
         isOnCooldown = true;
         yield return new WaitForSeconds(cooldownDuration);
 
-        //currentProjectile.ResetToSpawn(spawnPoint); tal vez sea esto, idk, asi funciona bien xd
         currentProjectile.gameObject.SetActive(false);
 
         isOnCooldown = false;
