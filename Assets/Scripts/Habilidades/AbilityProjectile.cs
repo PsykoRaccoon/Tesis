@@ -5,8 +5,8 @@ using System;
 public class AbilityProjectile : MonoBehaviour
 {
     [Header("Movimiento")]
-    [SerializeField] private float launchHeight;   
-    [SerializeField] private float launchDuration; 
+    [SerializeField] private float launchHeight;
+    [SerializeField] private float launchDuration;
 
     private Rigidbody rb;
     private Action onComplete;
@@ -16,10 +16,9 @@ public class AbilityProjectile : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = true;
-        rb.isKinematic = true; 
+        rb.isKinematic = true;
     }
 
-    
     public void FollowSpawn(Transform spawn)
     {
         if (isLaunched)
@@ -34,7 +33,7 @@ public class AbilityProjectile : MonoBehaviour
     public void Launch(Vector3 start, Vector3 target, Action onCompleteCallback)
     {
         transform.position = start;
-        rb.isKinematic = false; 
+        rb.isKinematic = false;
         rb.linearVelocity = CalculateLaunchVelocity(start, target, launchHeight, launchDuration);
         onComplete = onCompleteCallback;
         isLaunched = true;
@@ -47,21 +46,17 @@ public class AbilityProjectile : MonoBehaviour
         Vector3 horizontalVel = horizontal / duration;
 
         float displacementY = target.y - start.y;
-
-        float verticalVel = (2 * height / duration) + (displacementY / duration);
-
-        verticalVel = (displacementY + 0.5f * Mathf.Abs(Physics.gravity.y) * duration * duration) / duration;
+        float verticalVel = (displacementY + 0.5f * Mathf.Abs(Physics.gravity.y) * duration * duration) / duration;
 
         return horizontalVel + Vector3.up * verticalVel;
     }
-
 
     private void OnCollisionEnter(Collision collision)
     {
         if (!isLaunched)
         {
             return;
-        } 
+        }
         StopProjectile();
     }
 
@@ -69,15 +64,11 @@ public class AbilityProjectile : MonoBehaviour
     {
         isLaunched = false;
         rb.linearVelocity = Vector3.zero;
-        rb.isKinematic = true; 
+        rb.isKinematic = true;
+
         onComplete?.Invoke();
         onComplete = null;
-    }
 
-    public void ResetToSpawn(Transform spawn)
-    {
-        StopProjectile();
-        transform.position = spawn.position;
-        transform.rotation = spawn.rotation;
+        Destroy(gameObject);
     }
 }
