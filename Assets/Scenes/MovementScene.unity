@@ -239,7 +239,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -765,7 +765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9708657111b9834db811f43b60f7773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1Prefab: {fileID: 4792600289303525077, guid: 075e15d75916b4846a58f0da59ffdc97, type: 3}
+  player1Prefab: {fileID: 2926907562739512215, guid: 753d6d996c7c3254eb9dc7569a843be5, type: 3}
   player2Prefab: {fileID: 247969472883152301, guid: 97d9fbdb1a4898f47bc41e6175fd06c6, type: 3}
   player1Spawn: {fileID: 19792653}
   player2Spawn: {fileID: 258293965}
