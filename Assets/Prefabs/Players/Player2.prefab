@@ -47,9 +47,10 @@ GameObject:
   - component: {fileID: 5903640367901128020}
   - component: {fileID: 8594970689042345808}
   - component: {fileID: 692983678676738313}
-  - component: {fileID: 4495201562170747762}
-  - component: {fileID: 8379954222250575774}
   - component: {fileID: -8757419843244079018}
+  - component: {fileID: 3774918965371527075}
+  - component: {fileID: 8379954222250575774}
+  - component: {fileID: 4495201562170747762}
   m_Layer: 6
   m_Name: Player2
   m_TagString: Untagged
@@ -216,6 +217,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scriptHabilidadesFuego: {fileID: 5903640367901128020}
   scriptHabilidadesTierra: {fileID: 8594970689042345808}
+--- !u!114 &-8757419843244079018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247969472883152301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a09c89ee28d0343a5990d584fade2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 31279530038590118}
+--- !u!114 &3774918965371527075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247969472883152301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5edcb2f73ff201c41ae3817c17d8a990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 4526514092532145448}
+  spawnPoint: {fileID: 5640289366060163338}
+  specialBlockPrefab: {fileID: 442102887992651875, guid: 832e581d9d4a3284b9a46879ff223d6f, type: 3}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
+  spawnDistance: 5
+  cooldownDuration: 10
+  castTime: 1.5
+  riseHeight: 1.5
+  riseDuration: 1
+  undergroundOffset: 1
+--- !u!95 &8379954222250575774
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247969472883152301}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 175c17d9a01d3f5489da47f56c7f3c87, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &4495201562170747762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,46 +437,27 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5305f896-49c8-4f22-b77f-b0fd4ffa7f50
     m_ActionName: 'Gameplay/Switch[/XInputControllerWindows/leftShoulder,/SwitchProControllerHID/leftShoulder]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3774918965371527075}
+        m_TargetAssemblyTypeName: SpecialAbility, Assembly-CSharp
+        m_MethodName: HabilidadEspecial
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 46043fd0-5d9d-40c4-8ac7-9bb92db31056
+    m_ActionName: 'Gameplay/Especial[/XInputControllerWindows/leftShoulder,/SwitchProControllerHID/leftShoulder,/XInputControllerWindows/rightShoulder,/SwitchProControllerHID/rightShoulder]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!95 &8379954222250575774
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 247969472883152301}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 175c17d9a01d3f5489da47f56c7f3c87, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-8757419843244079018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 247969472883152301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46a09c89ee28d0343a5990d584fade2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 31279530038590118}
 --- !u!1 &264188917123206604
 GameObject:
   m_ObjectHideFlags: 0
