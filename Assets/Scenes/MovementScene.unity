@@ -766,7 +766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player1Prefab: {fileID: 2926907562739512215, guid: 753d6d996c7c3254eb9dc7569a843be5, type: 3}
-  player2Prefab: {fileID: 247969472883152301, guid: 97d9fbdb1a4898f47bc41e6175fd06c6, type: 3}
+  player2Prefab: {fileID: 4863200768201220073, guid: 3fcb0358d097bdc4ebeb4334fd6f574c, type: 3}
   player1Spawn: {fileID: 19792653}
   player2Spawn: {fileID: 258293965}
 --- !u!23 &198037229633423
