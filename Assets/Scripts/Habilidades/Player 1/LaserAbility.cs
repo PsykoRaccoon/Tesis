@@ -1,44 +1,59 @@
 using UnityEngine;
 
-public class LaserAbility : MonoBehaviour
+public class LaserDynamic : MonoBehaviour
 {
-    [Header("Configuracion")]
-    [SerializeField] private float maxDistance = 20f;
+    [Header("Config")]
+    [SerializeField] private float maxDistance;
     [SerializeField] private LayerMask hitLayers;
 
-    private BoxCollider boxCollider;
+    [Header("Refs")]
+    [SerializeField] private Transform visual;
+    [SerializeField] private BoxCollider boxCollider;
+
     private RaycastHit hitInfo;
 
-    private void Awake()
+    private void Update()
     {
-        boxCollider = GetComponent<BoxCollider>();
+        UpdateLaser();
     }
 
-    private void Update()
+    private void UpdateLaser()
     {
         Vector3 origin = transform.position;
         Vector3 direction = transform.forward;
 
+        float distance = maxDistance;
+
         if (Physics.Raycast(origin, direction, out hitInfo, maxDistance, hitLayers))
         {
-            UpdateCollider(hitInfo.distance);
-        }
-        else
-        {
-            UpdateCollider(maxDistance);
+            distance = hitInfo.distance;
         }
 
-        Debug.DrawRay(origin, direction * (hitInfo.collider ? hitInfo.distance : maxDistance), Color.red);
+        UpdateVisual(distance);
+        UpdateCollider(distance);
+
+        Debug.DrawRay(origin, direction * distance, Color.red);
+    }
+
+    private void UpdateVisual(float length)
+    {
+        visual.localScale = new Vector3(
+            visual.localScale.x,
+            visual.localScale.y,
+            length
+        );
+
+        visual.localPosition = new Vector3(0, 0, length / 2f);
     }
 
     private void UpdateCollider(float length)
     {
-        boxCollider.center = new Vector3(0, 0, length / 2f);
         boxCollider.size = new Vector3(0.5f, 0.5f, length);
+        boxCollider.center = new Vector3(0, 0, length / 2f);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        Debug.Log($"Impacto con {other.name}");
+        Debug.Log($"Golpeando {other.name}");
     }
 }

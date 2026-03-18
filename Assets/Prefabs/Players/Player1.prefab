@@ -249,8 +249,9 @@ GameObject:
   - component: {fileID: 914171714503522164}
   - component: {fileID: 7620977770829402819}
   - component: {fileID: 6188175758663439951}
-  - component: {fileID: 2221859479693103423}
   - component: {fileID: 1173803431392804712}
+  - component: {fileID: 2221859479693103423}
+  - component: {fileID: -1968671873016588006}
   - component: {fileID: 7250007677904339700}
   - component: {fileID: 5125217650994308990}
   m_Layer: 6
@@ -277,6 +278,7 @@ Transform:
   - {fileID: 3406277953050813565}
   - {fileID: 5520845302015833059}
   - {fileID: 8404916441260455401}
+  - {fileID: 590436862899712640}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &7620977770829402819
@@ -327,27 +329,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.75, z: 0}
---- !u!114 &2221859479693103423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2926907562739512215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a23fc9c16051061469ea5271e3471db7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 1173803431392804712}
-  walkSpeed: 3
-  runSpeed: 6
-  movementLocked: 0
-  airControl: 0.98
-  jumpHeight: 5
-  gravity: -9.8
-  rotationSpeed: 5
-  rotationSmoothTime: 0.5
 --- !u!95 &1173803431392804712
 Animator:
   serializedVersion: 7
@@ -370,6 +351,46 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2221859479693103423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2926907562739512215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a23fc9c16051061469ea5271e3471db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1173803431392804712}
+  walkSpeed: 3
+  runSpeed: 6
+  movementLocked: 0
+  airControl: 0.98
+  jumpHeight: 5
+  gravity: -9.8
+  rotationSpeed: 5
+  rotationSmoothTime: 0.5
+--- !u!114 &-1968671873016588006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2926907562739512215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ac6c63ae4ed1d44aab78dc0dbb03866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 2221859479693103423}
+  spawnPoint: {fileID: 590436862899712640}
+  aimPivot: {fileID: 590436862899712640}
+  laserBeamPrefab: {fileID: 581216120560205365, guid: 5021c88691d393f45b872477fe96d416, type: 3}
+  verticalAimSpeed: 100
+  rotationSpeed: 5
+  rotationSmoothTime: 0.8
 --- !u!114 &7250007677904339700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,9 +479,9 @@ MonoBehaviour:
     m_ActionName: 'Gameplay/Run[/XInputControllerWindows/leftStickPress]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: FireAbilities, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: -1968671873016588006}
+        m_TargetAssemblyTypeName: WaterAbilities, Assembly-CSharp
+        m_MethodName: Habilidad1
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -544,6 +565,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5305f896-49c8-4f22-b77f-b0fd4ffa7f50
     m_ActionName: 'Gameplay/Switch[/XInputControllerWindows/leftShoulder,/SwitchProControllerHID/leftShoulder]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 46043fd0-5d9d-40c4-8ac7-9bb92db31056
+    m_ActionName: 'Gameplay/Especial[/XInputControllerWindows/leftShoulder,/SwitchProControllerHID/leftShoulder,/XInputControllerWindows/rightShoulder,/SwitchProControllerHID/rightShoulder]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -1840,6 +1865,37 @@ Transform:
   - {fileID: 7752234571166211867}
   m_Father: {fileID: 1083084249893510872}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9047616510687526229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 590436862899712640}
+  m_Layer: 6
+  m_Name: Hab1
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &590436862899712640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9047616510687526229}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.951, z: 0.507}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 914171714503522164}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &9133227689627188760
 GameObject:
   m_ObjectHideFlags: 0
