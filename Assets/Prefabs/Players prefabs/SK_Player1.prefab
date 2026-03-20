@@ -1377,7 +1377,7 @@ MonoBehaviour:
   cooldownDuration: 2
   playerController: {fileID: 2472521253014834558}
   aimPivot: {fileID: 8078573466229670595}
-  laserBeamPrefab: {fileID: 3350807394283065663, guid: 3e70c867319b9db4099842dea0273aae, type: 3}
+  laserBeamPrefab: {fileID: 6881719634396037647, guid: 442888fa973251848bbd6a1b8d92ff14, type: 3}
   verticalAimSpeed: 100
   rotationSpeed: 5
   rotationSmoothTime: 0.8

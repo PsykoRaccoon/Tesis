@@ -1,59 +1,44 @@
 using UnityEngine;
 
-public class LaserDynamic : MonoBehaviour
+public class LaserAbility : MonoBehaviour
 {
     [Header("Config")]
     [SerializeField] private float maxDistance;
     [SerializeField] private LayerMask hitLayers;
 
-    [Header("Refs")]
-    [SerializeField] private Transform visual;
-    [SerializeField] private BoxCollider boxCollider;
-
+    private BoxCollider boxCollider;
     private RaycastHit hitInfo;
 
-    private void Update()
+    private void Awake()
     {
-        UpdateLaser();
+        boxCollider = GetComponent<BoxCollider>();
     }
 
-    private void UpdateLaser()
+    private void Update()
     {
         Vector3 origin = transform.position;
         Vector3 direction = transform.forward;
 
-        float distance = maxDistance;
-
         if (Physics.Raycast(origin, direction, out hitInfo, maxDistance, hitLayers))
         {
-            distance = hitInfo.distance;
+            UpdateCollider(hitInfo.distance);
+        }
+        else
+        {
+            UpdateCollider(maxDistance);
         }
 
-        UpdateVisual(distance);
-        UpdateCollider(distance);
-
-        Debug.DrawRay(origin, direction * distance, Color.red);
-    }
-
-    private void UpdateVisual(float length)
-    {
-        visual.localScale = new Vector3(
-            visual.localScale.x,
-            visual.localScale.y,
-            length
-        );
-
-        visual.localPosition = new Vector3(0, 0, length / 2f);
+        Debug.DrawRay(origin, direction * (hitInfo.collider ? hitInfo.distance : maxDistance), Color.red);
     }
 
     private void UpdateCollider(float length)
     {
-        boxCollider.size = new Vector3(0.5f, 0.5f, length);
         boxCollider.center = new Vector3(0, 0, length / 2f);
+        boxCollider.size = new Vector3(0.5f, 0.5f, length);
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Golpeando {other.name}");
+        Debug.Log($"Impacto con {other.name}");
     }
 }
