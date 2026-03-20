@@ -282,9 +282,12 @@ GameObject:
   - component: {fileID: 6188175758663439951}
   - component: {fileID: 1173803431392804712}
   - component: {fileID: 2221859479693103423}
+  - component: {fileID: 670460886053107894}
+  - component: {fileID: 44182061535533835}
+  - component: {fileID: -6016062794575561671}
   m_Layer: 0
   m_Name: Clon
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -401,6 +404,57 @@ MonoBehaviour:
   gravity: -9.8
   rotationSpeed: 5
   rotationSmoothTime: 0.5
+--- !u!114 &670460886053107894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2926907562739512215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87cc99c60b5cce14481c8c366bd5bc16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &44182061535533835
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2926907562739512215}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &-6016062794575561671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2926907562739512215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca10c2d2542a56c47b266c860ebaf421, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2980110959408990489
 GameObject:
   m_ObjectHideFlags: 0
