@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float jumpHeight;
     [SerializeField] private float gravity = -9.81f;
 
-    [Header("Rotación")]
+    [Header("Rotaciï¿½n")]
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float rotationSmoothTime;
 

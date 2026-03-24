@@ -5,7 +5,7 @@ public class DamageDealer : MonoBehaviour
     [Header("Damage Settings")]
     [SerializeField] private int damageAmount;
 
-    [Tooltip("Tags que este objeto puede dañar")]
+    [Tooltip("Tags que este objeto puede daÃ±ar")]
     [SerializeField] private string[] targetTags;
 
     private void OnTriggerEnter(Collider other)
