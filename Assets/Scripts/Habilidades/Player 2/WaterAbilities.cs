@@ -28,7 +28,12 @@ public class WaterAbilities : MonoBehaviour
 
     private GameObject currentLaser;
     private bool isUsingLaser = false;
-    private Vector2 aimInput;
+    public Vector2 aimInput;
+
+    public bool IsUsingLaser()
+    {
+        return isUsingLaser;
+    }
 
 
     public void Habilidad1(InputAction.CallbackContext context)
