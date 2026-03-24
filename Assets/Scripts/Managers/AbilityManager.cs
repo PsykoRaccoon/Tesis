@@ -27,7 +27,7 @@ public class PlayerAbilityManager : MonoBehaviour
 
         if (abilityAIsActive && fuego != null && fuego.IsUsingAbility())
         {
-            Debug.Log("No se puede cambiar: habilidad de fuego en uso.");
+            Debug.Log("No se puede cambiar: habilidad 1 en uso.");
             return;
         }
 
@@ -37,8 +37,12 @@ public class PlayerAbilityManager : MonoBehaviour
         tierra.IsActive = !abilityAIsActive;
 
         if (abilityAIsActive)
-            Debug.Log("Fire ON, Earth OFF");
+        {
+            Debug.Log("HAB 1 ON, HAB 2 OFF");
+        }
         else
-            Debug.Log("Fire OFF, Earth ON");
+        {
+            Debug.Log("HAB 2 ON, HAB 1");
+        }
     }
 }
