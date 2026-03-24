@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9099281955577165658}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Cape_Main4_END
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,6 +31,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7316667886774298752}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &879395351990583936
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8226519714378493930}
+  m_Layer: 0
+  m_Name: Hab2
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8226519714378493930
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879395351990583936}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.852, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 914171714503522164}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1034034905991670953
 GameObject:
   m_ObjectHideFlags: 0
@@ -40,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 869362360807313766}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: R_Extention2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7824943139354644708}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: L_Extention3_END
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7268653548015637582}
   - component: {fileID: 6787949771465220454}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: L_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7840796605796777415}
   - component: {fileID: 1353318166138886256}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: R_Elbow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +246,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4126059765926391628}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,20 +280,14 @@ GameObject:
   - component: {fileID: 914171714503522164}
   - component: {fileID: 7620977770829402819}
   - component: {fileID: 6188175758663439951}
-  - component: {fileID: 2221859479693103423}
-<<<<<<< Updated upstream:Assets/Prefabs/Players/Player1.prefab
   - component: {fileID: 1173803431392804712}
-=======
-  - component: {fileID: -1727490783938981699}
-  - component: {fileID: -1968671873016588006}
-  - component: {fileID: -6104119717937600844}
-  - component: {fileID: 7250007677904339700}
->>>>>>> Stashed changes:Assets/Prefabs/Players prefabs/Player1.prefab
-  - component: {fileID: 5125217650994308990}
-  - component: {fileID: 7250007677904339700}
-  m_Layer: 6
-  m_Name: Player1
-  m_TagString: Untagged
+  - component: {fileID: 2221859479693103423}
+  - component: {fileID: 670460886053107894}
+  - component: {fileID: 44182061535533835}
+  - component: {fileID: -6016062794575561671}
+  m_Layer: 0
+  m_Name: Clon
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -284,12 +309,8 @@ Transform:
   - {fileID: 3406277953050813565}
   - {fileID: 5520845302015833059}
   - {fileID: 8404916441260455401}
-<<<<<<< Updated upstream:Assets/Prefabs/Players/Player1.prefab
-=======
   - {fileID: 590436862899712640}
   - {fileID: 8226519714378493930}
-  - {fileID: 1050683525400788122}
->>>>>>> Stashed changes:Assets/Prefabs/Players prefabs/Player1.prefab
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &7620977770829402819
@@ -307,7 +328,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -325,10 +346,10 @@ CharacterController:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
@@ -340,27 +361,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.75, z: 0}
---- !u!114 &2221859479693103423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2926907562739512215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a23fc9c16051061469ea5271e3471db7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 1173803431392804712}
-  walkSpeed: 3
-  runSpeed: 6
-  movementLocked: 0
-  airControl: 0.98
-  jumpHeight: 5
-  gravity: -9.8
-  rotationSpeed: 5
-  rotationSmoothTime: 0.5
 --- !u!95 &1173803431392804712
 Animator:
   serializedVersion: 7
@@ -371,7 +371,7 @@ Animator:
   m_GameObject: {fileID: 2926907562739512215}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1ee78d6619590424ea4092d267f6f17b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5e3ad88bc7585784b8c900499e63449f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -383,8 +383,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
-<<<<<<< Updated upstream:Assets/Prefabs/Players/Player1.prefab
-=======
 --- !u!114 &2221859479693103423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,7 +404,7 @@ MonoBehaviour:
   gravity: -9.8
   rotationSpeed: 5
   rotationSmoothTime: 0.5
---- !u!114 &-1727490783938981699
+--- !u!114 &670460886053107894
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -415,59 +413,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 2926907562739512215}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 374731d8f736fc34e92a02e2c7d15c42, type: 3}
+  m_Script: {fileID: 11500000, guid: 87cc99c60b5cce14481c8c366bd5bc16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  water: {fileID: -1968671873016588006}
-  air: {fileID: -6104119717937600844}
---- !u!114 &-1968671873016588006
-MonoBehaviour:
+--- !u!54 &44182061535533835
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2926907562739512215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac6c63ae4ed1d44aab78dc0dbb03866, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 2221859479693103423}
-  spawnPoint: {fileID: 590436862899712640}
-  aimPivot: {fileID: 590436862899712640}
-  laserBeamPrefab: {fileID: 8712774677230443140, guid: 366ba7a770957394e985da0fa8131e17, type: 3}
-  verticalAimSpeed: 100
-  rotationSpeed: 5
-  rotationSmoothTime: 0.8
-  clonPrefab: {fileID: 2926907562739512215, guid: 1cec25f2ad1bbfb46a2daf2bcdc27a30, type: 3}
-  clonSpawnPoint: {fileID: 8226519714378493930}
-  cooldown: 5
---- !u!114 &-6104119717937600844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2926907562739512215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 186c785aff6aeff44bbd07a7737d4982, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 2221859479693103423}
-  originPoint: {fileID: 1050683525400788122}
-  animator: {fileID: 1173803431392804712}
-  animationTriggerName: Repulsion
-  boxSize: {x: 4, y: 4, z: 4}
-  force: 15
-  upwardModifier: 5
-  affectedLayers:
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 768
-  abilityDuration: 1
-  cooldown: 5
-  animationTime: 0.5
---- !u!114 &7250007677904339700
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &-6016062794575561671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -476,202 +452,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2926907562739512215}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46a09c89ee28d0343a5990d584fade2a, type: 3}
+  m_Script: {fileID: 11500000, guid: ca10c2d2542a56c47b266c860ebaf421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 914171714503522164}
->>>>>>> Stashed changes:Assets/Prefabs/Players prefabs/Player1.prefab
---- !u!114 &5125217650994308990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2926907562739512215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: a6f30d7325926ac479cb2662bcb7d087, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2221859479693103423}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: Move
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 3cb636c9-ac37-4685-8649-d42c7296cf01
-    m_ActionName: 'Gameplay/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2221859479693103423}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: Jump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 8c78278b-d530-4617-af42-ba22d046c475
-    m_ActionName: 'Gameplay/Jump[/Keyboard/space]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2221859479693103423}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: Run
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: f7d527cf-df67-4668-8550-d3efa7d978d6
-    m_ActionName: 'Gameplay/Run[/XInputControllerWindows/leftStickPress]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: FireAbilities, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: EarthAbilities, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: -6104119717937600844}
-        m_TargetAssemblyTypeName: AirAbilities, Assembly-CSharp
-        m_MethodName: Habilidad1
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 25b9fb01-2057-47a0-8766-8319249c5942
-    m_ActionName: 'Gameplay/Habilidad 1[/Keyboard/e]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: FireAbilities, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: EarthAbilities, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 3f795c82-1400-449f-909e-77e20b594966
-    m_ActionName: 'Gameplay/Habilidad 2[/XInputControllerWindows/leftTrigger]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -1968671873016588006}
-        m_TargetAssemblyTypeName: WaterAbilities, Assembly-CSharp
-        m_MethodName: AimVertical
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 0f2180ae-8626-4f62-968b-25bee50c60c6
-    m_ActionName: 'Gameplay/AimVertical[/XInputControllerWindows/rightStick]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -1727490783938981699}
-        m_TargetAssemblyTypeName: AbilityManagerP1, Assembly-CSharp
-        m_MethodName: SwitchAbility
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 5305f896-49c8-4f22-b77f-b0fd4ffa7f50
-    m_ActionName: 'Gameplay/Switch[/XInputControllerWindows/leftShoulder,/SwitchProControllerHID/leftShoulder]'
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Gameplay
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!114 &7250007677904339700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2926907562739512215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46a09c89ee28d0343a5990d584fade2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 914171714503522164}
 --- !u!1 &2980110959408990489
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,7 +465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3543628273849884919}
   - component: {fileID: 3076142392696946729}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: R_Knee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -737,7 +520,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3637257241824473424}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: R_Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -770,7 +553,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3395490311522883605}
   - component: {fileID: 8573549850681544501}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: R_Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -825,7 +608,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2601916508831068944}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -858,7 +641,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5520845302015833059}
   - component: {fileID: 927612623833926199}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -946,7 +729,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6300193682680618269}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: L_Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -979,7 +762,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8493729657666209870}
   - component: {fileID: 2573813252282651807}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: L_Knee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1035,7 +818,7 @@ GameObject:
   m_Component:
   - component: {fileID: 815365388699659132}
   - component: {fileID: 8963500866963868881}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: L_Elbow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1090,7 +873,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7316667886774298752}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Cape_Main3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1122,7 +905,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 812868925021765324}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: R_Extention
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1154,7 +937,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7752234571166211867}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Cape_Main2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1186,7 +969,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4985582660848709868}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: L_Shoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1218,7 +1001,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3406277953050813565}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1252,7 +1035,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7509944550626308641}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: R_Toe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1284,7 +1067,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5224063771864383265}
   - component: {fileID: 4978695877827636612}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: L_Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1339,7 +1122,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2129867446814881054}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: R_Extention3_END
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1370,7 +1153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5553646545872436411}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: R_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1402,7 +1185,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6645450181335147510}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: L_Extention2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1435,7 +1218,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1632513272552679313}
   - component: {fileID: 607833677382121595}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1546,7 +1329,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4288162474549721182}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1578,7 +1361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7312595308620969436}
   - component: {fileID: 7817543516946667727}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1637,7 +1420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3979515575823208800}
   - component: {fileID: 3961739968691882144}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: R_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1683,37 +1466,6 @@ CapsuleCollider:
   m_Height: 0.41369087
   m_Direction: 1
   m_Center: {x: 0.011121878, y: 0.14038849, z: 0.01832104}
---- !u!1 &6390634821640736814
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1050683525400788122}
-  m_Layer: 0
-  m_Name: Hab3
-  m_TagString: Untagged
-  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1050683525400788122
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6390634821640736814}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.9, z: 0.75}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 914171714503522164}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6396441630359652167
 GameObject:
   m_ObjectHideFlags: 0
@@ -1723,7 +1475,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1083084249893510872}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ROOT_Cape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1755,7 +1507,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2866808778994397880}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: L_Extention
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1788,7 +1540,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8404916441260455401}
   - component: {fileID: 4694743179102900268}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Hair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1876,7 +1628,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6673867177631454765}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: L_Toe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1907,7 +1659,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 962041898538469982}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: L_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1939,7 +1691,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6295990198261283783}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: R_Shoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1971,7 +1723,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9078125420132721729}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Cape_Main1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1994,8 +1746,6 @@ Transform:
   - {fileID: 7752234571166211867}
   m_Father: {fileID: 1083084249893510872}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream:Assets/Prefabs/Players/Player1.prefab
-=======
 --- !u!1 &9047616510687526229
 GameObject:
   m_ObjectHideFlags: 0
@@ -2005,7 +1755,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 590436862899712640}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Hab1
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -2021,13 +1771,12 @@ Transform:
   m_GameObject: {fileID: 9047616510687526229}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.9, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0.951, z: 0.507}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 914171714503522164}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
->>>>>>> Stashed changes:Assets/Prefabs/Players prefabs/Player1.prefab
 --- !u!1 &9133227689627188760
 GameObject:
   m_ObjectHideFlags: 0
@@ -2039,7 +1788,7 @@ GameObject:
   - component: {fileID: 8020290127583663186}
   - component: {fileID: 3602662081381633930}
   - component: {fileID: 1106917223542821784}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: CapeFinal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
