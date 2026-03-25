@@ -1403,12 +1403,12 @@ MonoBehaviour:
   spawnDistance: 2
   cooldownDuration: 1
   blockLifetime: 6
-  blockRiseHeight: 2
+  blockRiseHeight: 6
   appearDuration: 2
   sinkDistance: 5
   sinkDuration: 1.5
   undergroundOffset: 4
-  rampRiseHeight: 2.5
+  rampRiseHeight: 7
   rampAppearDuration: 1.5
 --- !u!114 &2059285980434394710
 MonoBehaviour:
@@ -1431,7 +1431,7 @@ MonoBehaviour:
   spawnDistance: 2
   cooldownDuration: 10
   castTime: 1.4
-  riseHeight: 1.5
+  riseHeight: 6
   riseDuration: 1.4
   undergroundOffset: 2
 --- !u!114 &1737577256172868118
