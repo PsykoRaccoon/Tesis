@@ -11,7 +11,7 @@ public class SpecialAbility : MonoBehaviour
     [SerializeField] private GameObject specialBlockPrefab;
     [SerializeField] private LayerMask groundMask;
 
-    [Header("Configuración")]
+    [Header("Config")]
     [SerializeField] private float spawnDistance;
     [SerializeField] private float cooldownDuration;
     [SerializeField] float castTime;
@@ -37,6 +37,7 @@ public class SpecialAbility : MonoBehaviour
             {
                 GameObject block = Instantiate(specialBlockPrefab, hit.point, Quaternion.identity);
                 StartCoroutine(RaiseFromGround(block.transform));
+                print("hab especial");
             }));
         }
     }

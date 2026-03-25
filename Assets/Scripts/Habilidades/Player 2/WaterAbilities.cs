@@ -17,6 +17,10 @@ public class WaterAbilities : MonoBehaviour
     [SerializeField] private float verticalAimSpeed;
     [SerializeField] private float rotationSpeed;
     [SerializeField, Range(0.05f, 1f)] private float rotationSmoothTime;
+    [SerializeField] private float delay;
+    [SerializeField] private Animator animator;
+
+private Coroutine laserRoutine;
 
     [Header("Clon Config")]
     [SerializeField] private GameObject clonPrefab;
@@ -42,13 +46,11 @@ public class WaterAbilities : MonoBehaviour
 
         if (context.performed && playerController.IsGrounded)
         {
-            StartLaser();
-            print("Rasho laser activado");
+            StartChargingLaser();
         }
-        else if (context.canceled && isUsingLaser)
+        else if (context.canceled)
         {
             StopLaser();
-            print("Rasho laser desactivado");
         }
     }
 
@@ -77,7 +79,6 @@ public class WaterAbilities : MonoBehaviour
         aimPivot.localRotation = Quaternion.Euler(0, 0, 0);
 
         isUsingLaser = true;
-        playerController.movementLocked = true;
 
         if (currentLaser == null)
         {
@@ -89,12 +90,21 @@ public class WaterAbilities : MonoBehaviour
         }
     }
 
-    private void StopLaser()
+   private void StopLaser()
     {
+        animator.SetBool("IsUsingLaser", false);
+
+        playerController.movementLocked = false;
+
+        if (laserRoutine != null)
+        {
+            StopCoroutine(laserRoutine);
+            laserRoutine = null;
+        }
+
         if (!isUsingLaser) return;
 
         isUsingLaser = false;
-        playerController.movementLocked = false;
 
         if (currentLaser != null)
         {
@@ -133,6 +143,26 @@ public class WaterAbilities : MonoBehaviour
     {
         if (!IsActive) return;
         aimInput = context.ReadValue<Vector2>();
+    }
+
+        private void StartChargingLaser()
+    {
+        if (isUsingLaser || laserRoutine != null) return;
+
+        playerController.movementLocked = true;
+
+        animator.SetBool("IsUsingLaser", true);
+
+        laserRoutine = StartCoroutine(LaserStartup());
+    }
+
+        private IEnumerator LaserStartup()
+    {
+        yield return new WaitForSeconds(delay);
+
+        StartLaser();
+
+        laserRoutine = null;
     }
 
     // ---------------- LOGICA CLON ---------------- //
