@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Inicio.unity
     guid: 3651643bb74e2234381e8e642bfc1b02
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Andre-Camara.unity
     guid: fff09b0b0c7afe847a24ad12575f78b1
   - enabled: 1
