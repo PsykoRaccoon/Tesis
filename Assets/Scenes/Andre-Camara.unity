@@ -856,11 +856,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
---- !u!1 &2025059405 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6308459314301837226, guid: aa61288c7ebb5c0498e6a8257daeb245, type: 3}
-  m_PrefabInstance: {fileID: 7185279790762247298}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2039634163
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,7 +893,12 @@ MonoBehaviour:
   splitDistance: 20
   cameraHeight: 30
   cameraAngle: 45
-  dividerLine: {fileID: 2025059405}
+  sharedCameraOffset: {x: 0, y: 10, z: -10}
+  sharedCameraRotation: {x: 30, y: 0, z: 0}
+  hysteresis: 2
+  cameraSmoothTime: 0.3
+  uiFadeSpeed: 5
+  dividerCanvasGroup: {fileID: 0}
 --- !u!4 &2039634165
 Transform:
   m_ObjectHideFlags: 0
