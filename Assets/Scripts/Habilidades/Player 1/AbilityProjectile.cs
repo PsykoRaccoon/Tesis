@@ -8,15 +8,32 @@ public class AbilityProjectile : MonoBehaviour
     [SerializeField] private float launchHeight;
     [SerializeField] private float launchDuration;
 
+    [Header("Lifetime")]
+    [SerializeField] private float maxLifetime;
+
     private Rigidbody rb;
     private Action onComplete;
     private bool isLaunched = false;
+
+    private float lifeTimer;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = true;
         rb.isKinematic = true;
+    }
+
+    private void Update()
+    {
+        if (!isLaunched) return;
+
+        lifeTimer += Time.deltaTime;
+
+        if (lifeTimer >= maxLifetime)
+        {
+            StopProjectile();
+        }
     }
 
     public void FollowSpawn(Transform spawn)
@@ -35,8 +52,11 @@ public class AbilityProjectile : MonoBehaviour
         transform.position = start;
         rb.isKinematic = false;
         rb.linearVelocity = CalculateLaunchVelocity(start, target, launchHeight, launchDuration);
+
         onComplete = onCompleteCallback;
         isLaunched = true;
+
+        lifeTimer = 0f;
     }
 
     private Vector3 CalculateLaunchVelocity(Vector3 start, Vector3 target, float height, float duration)
@@ -51,14 +71,40 @@ public class AbilityProjectile : MonoBehaviour
         return horizontalVel + Vector3.up * verticalVel;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Bola tocó: " + other.name + " | Tag: " + other.tag);
+
         if (!isLaunched)
         {
             return;
         }
         StopProjectile();
     }
+
+    private void FixedUpdate()
+{
+    if (!isLaunched) return;
+
+    Collider[] hits = Physics.OverlapSphere(transform.position, 0.5f);
+
+    foreach (var hit in hits)
+    {
+        if (hit.CompareTag("Player"))
+        {
+            IDamageable damageable = hit.GetComponentInParent<IDamageable>();
+
+            if (damageable != null)
+            {
+                damageable.TakeDamage(1, DamageType.Player); 
+                Debug.Log("Daño aplicado al player");
+            }
+
+            StopProjectile();
+            break;
+        }
+    }
+}
 
     public void StopProjectile()
     {

@@ -244,7 +244,7 @@ Transform:
   m_GameObject: {fileID: 258293964}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.3, y: 37.8, z: -44.7}
+  m_LocalPosition: {x: 14.59, y: 37.8, z: -44.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -708,6 +708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 1
+  damageType: 0
   targetTags:
   - Player
 --- !u!136 &907838042
@@ -3430,6 +3431,10 @@ PrefabInstance:
     - target: {fileID: 2270716438430298877, guid: cfb05f731f8b30b4ba603096794a2ed6, type: 3}
       propertyPath: m_Name
       value: Prop
+      objectReference: {fileID: 0}
+    - target: {fileID: 2270716438430298877, guid: cfb05f731f8b30b4ba603096794a2ed6, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6861,6 +6866,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3508089747024698089, guid: 2fd154e758266c540a0a8de70f511ee8, type: 3}
+      propertyPath: damageType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6304226137806760840, guid: 2fd154e758266c540a0a8de70f511ee8, type: 3}
       propertyPath: m_Name
       value: Enemy xd

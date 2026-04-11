@@ -1,20 +1,9 @@
 using UnityEngine;
 
-public class ClonHealth : MonoBehaviour, IDamageable
+public class ClonHealth : Health
 {
-    private bool isDead = false;
-
-    public void TakeDamage(int amount, DamageType type)
+    protected override void Die(DamageType type)
     {
-        if (isDead) return;
-
-        Die();
-    }
-
-    private void Die()
-    {
-        isDead = true;
-
-        Destroy(gameObject);
+        base.Die(type);
     }
 }

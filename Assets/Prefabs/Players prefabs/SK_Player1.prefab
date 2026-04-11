@@ -1256,7 +1256,6 @@ GameObject:
   - component: {fileID: 3054891715927718764}
   - component: {fileID: 4460199450769187245}
   - component: {fileID: 5851455638315331616}
-  - component: {fileID: 3826487516273495534}
   m_Layer: 8
   m_Name: SK_Player1
   m_TagString: Player
@@ -1680,21 +1679,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
---- !u!114 &3826487516273495534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4863200768201220073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba33a9c12b4aa134cb877fc90d7c7673, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 0
-  damageType: 0
-  targetTags: []
 --- !u!1 &4874863020425561311
 GameObject:
   m_ObjectHideFlags: 0

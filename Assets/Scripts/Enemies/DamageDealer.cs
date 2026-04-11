@@ -4,16 +4,16 @@ public class DamageDealer : MonoBehaviour
 {
     [Header("Damage Settings")]
     [SerializeField] private int damageAmount;
-    [SerializeField] private DamageType damageType;
+    [SerializeField] private DamageType damageType; //quien esta haciendo el damage
 
     [Tooltip("Tags que puede lastimar")]
-    [SerializeField] private string[] targetTags;
+    [SerializeField] private string[] targetTags; //a quien puede lastimar
 
     private void OnTriggerEnter(Collider other)
     {
         if (!IsValidTarget(other)) return;
 
-        IDamageable damageable = other.GetComponent<IDamageable>();
+        IDamageable damageable = other.GetComponentInParent<IDamageable>();
 
         if (damageable != null)
         {

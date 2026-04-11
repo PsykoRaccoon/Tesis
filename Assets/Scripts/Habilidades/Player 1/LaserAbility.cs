@@ -39,6 +39,6 @@ public class LaserAbility : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Impacto con {other.name}");
+        Debug.Log("rasho laser impacto con: " + other.name + " | Tag: " + other.tag);
     }
 }
