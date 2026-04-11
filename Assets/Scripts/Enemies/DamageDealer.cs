@@ -4,8 +4,9 @@ public class DamageDealer : MonoBehaviour
 {
     [Header("Damage Settings")]
     [SerializeField] private int damageAmount;
+    [SerializeField] private DamageType damageType;
 
-    [Tooltip("Tags que este objeto puede dañar")]
+    [Tooltip("Tags que puede lastimar")]
     [SerializeField] private string[] targetTags;
 
     private void OnTriggerEnter(Collider other)
@@ -16,7 +17,7 @@ public class DamageDealer : MonoBehaviour
 
         if (damageable != null)
         {
-            damageable.TakeDamage(damageAmount);
+            damageable.TakeDamage(damageAmount, damageType);
         }
     }
 

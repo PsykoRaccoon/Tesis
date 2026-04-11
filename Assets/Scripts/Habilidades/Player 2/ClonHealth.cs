@@ -4,7 +4,7 @@ public class ClonHealth : MonoBehaviour, IDamageable
 {
     private bool isDead = false;
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(int amount, DamageType type)
     {
         if (isDead) return;
 

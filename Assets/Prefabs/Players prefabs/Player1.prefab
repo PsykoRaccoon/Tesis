@@ -288,6 +288,8 @@ GameObject:
   - component: {fileID: 6578293014390283328}
   - component: {fileID: -9076909389215758056}
   - component: {fileID: 5125217650994308990}
+  - component: {fileID: 7550739998337785389}
+  - component: {fileID: 7480578190331619102}
   m_Layer: 6
   m_Name: Player1
   m_TagString: Player
@@ -691,6 +693,34 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &7550739998337785389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2926907562739512215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e76409c6004d481db0f834b3ddc7906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+--- !u!114 &7480578190331619102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2926907562739512215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba33a9c12b4aa134cb877fc90d7c7673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 0
+  damageType: 0
+  targetTags: []
 --- !u!1 &2980110959408990489
 GameObject:
   m_ObjectHideFlags: 0
