@@ -4940,7 +4940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ce4ed61c000a043b6e3d16e8f437fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 20
+  maxDistance: 10
   hitLayers:
     serializedVersion: 2
     m_Bits: 4294967295

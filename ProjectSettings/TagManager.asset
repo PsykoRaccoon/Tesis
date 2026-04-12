@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Clon
+  - Environment
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -16,8 +18,8 @@ TagManager:
   - PlayerOutline
   - Interactuable
   - Enemy
-  - 
-  - 
+  - Puddle
+  - WaterBeam
   - 
   - 
   - 
