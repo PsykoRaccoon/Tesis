@@ -11,18 +11,24 @@ public class SplitScreenManager : MonoBehaviour
     public Camera player1Camera;
     public Camera player2Camera;
 
-    [Header("Parámetros Generales")]
-    public float splitDistance = 15f;
-    public float cameraHeight = 10f;
-    public float cameraAngle = 30f;
+    [Header("Configuración de Vista (Rotación)")]
+    [Tooltip("Inclinación de la cámara hacia abajo.")]
+    public float rotationX = 40f;
+    [Tooltip("Giro de la cámara. 90 grados mira hacia la derecha.")]
+    public float rotationY = 90f;
 
-    [Header("Cámara Compartida (Main Camera)")]
-    public Vector3 sharedCameraOffset = new Vector3(0, 10, -10);
-    public Vector3 sharedCameraRotation = new Vector3(30, 0, 0);
+    [Header("Offsets de Posición (¡Modifica esto en Play Mode!)")]
+    [Tooltip("Posición relativa al punto medio cuando los jugadores están JUNTOS.")]
+    public Vector3 sharedCameraOffset = new Vector3(-15, 10, 0);
+    [Tooltip("Posición relativa a cada jugador cuando están SEPARADOS (suele ser más cerca).")]
+    public Vector3 splitCameraOffset = new Vector3(-15, 10, 0);
+
+    [Header("Reglas de Pantalla Dividida")]
+    public float splitDistance = 15f;
+    [Tooltip("Margen para evitar parpadeos si caminan en el límite.")]
+    public float hysteresis = 2f;
 
     [Header("Suavizado y Transiciones")]
-    public float hysteresis = 2f;
-    [Tooltip("Súbele a este valor (ej. 0.5 o 0.8) si quieres que el efecto de alejarse/acercarse sea más lento y dramático.")]
     public float cameraSmoothTime = 0.3f;
     public float uiFadeSpeed = 5f;
 
@@ -44,9 +50,11 @@ public class SplitScreenManager : MonoBehaviour
 
     void Start()
     {
-        mainCamera.transform.rotation = Quaternion.Euler(sharedCameraRotation);
-        player1Camera.transform.rotation = Quaternion.Euler(cameraAngle, 0, 0);
-        player2Camera.transform.rotation = Quaternion.Euler(cameraAngle, 0, 0);
+        // Aplicamos la rotación inicial de 90 grados a todas las cámaras
+        Quaternion fixedRotation = Quaternion.Euler(rotationX, rotationY, 0);
+        mainCamera.transform.rotation = fixedRotation;
+        player1Camera.transform.rotation = fixedRotation;
+        player2Camera.transform.rotation = fixedRotation;
 
         if (dividerCanvasGroup != null)
         {
@@ -59,44 +67,49 @@ public class SplitScreenManager : MonoBehaviour
     {
         if (player1 == null || player2 == null) return;
 
+        // Mantenemos la rotación fija todo el tiempo por si algo intenta cambiarla
+        Quaternion fixedRotation = Quaternion.Euler(rotationX, rotationY, 0);
+        mainCamera.transform.rotation = fixedRotation;
+        player1Camera.transform.rotation = fixedRotation;
+        player2Camera.transform.rotation = fixedRotation;
+
         float distance = Vector3.Distance(player1.position, player2.position);
 
-        // Guardamos el estado anterior para saber si justo en este frame hubo un cambio
+        // Guardamos el estado anterior para la animación de Zoom
         bool previousSplitState = isSplit;
 
+        // Lógica de Histéresis
         if (isSplit && distance < (splitDistance - hysteresis))
             isSplit = false;
         else if (!isSplit && distance > (splitDistance + hysteresis))
             isSplit = true;
 
-        // --- LA MAGIA DEL ZOOM EMPIEZA AQUÍ ---
-        if (isSplit != previousSplitState) // Si el estado acaba de cambiar...
+        // --- MAGIA DEL ZOOM (Transición) ---
+        if (isSplit != previousSplitState)
         {
             if (isSplit)
             {
-                // Se acaban de separar: Las cámaras individuales nacen donde está la principal.
-                // Así, bajarán suavemente hacia los jugadores.
+                // Al separarse: Las individuales nacen donde está la principal
                 player1Camera.transform.position = mainCamera.transform.position;
                 player2Camera.transform.position = mainCamera.transform.position;
 
-                // Reiniciamos la velocidad para que el SmoothDamp empiece limpio
                 p1CamVelocity = Vector3.zero;
                 p2CamVelocity = Vector3.zero;
             }
             else
             {
-                // Se acaban de juntar: La principal nace en medio de donde estaban las divididas.
-                // Así, subirá suavemente para ver a ambos.
+                // Al juntarse: La principal nace entre las dos individuales
                 Vector3 midPointCam = (player1Camera.transform.position + player2Camera.transform.position) / 2f;
                 mainCamera.transform.position = midPointCam;
 
                 mainCamVelocity = Vector3.zero;
             }
         }
-        // --- FIN DE LA MAGIA ---
+        // --- FIN MAGIA DEL ZOOM ---
 
         if (!isSplit)
         {
+            // MODO CÁMARA COMPARTIDA
             mainCamera.gameObject.SetActive(true);
             player1Camera.gameObject.SetActive(false);
             player2Camera.gameObject.SetActive(false);
@@ -111,12 +124,13 @@ public class SplitScreenManager : MonoBehaviour
         }
         else
         {
+            // MODO PANTALLA DIVIDIDA
             mainCamera.gameObject.SetActive(false);
             player1Camera.gameObject.SetActive(true);
             player2Camera.gameObject.SetActive(true);
 
-            Vector3 p1TargetPos = player1.position + new Vector3(0, cameraHeight, -cameraHeight);
-            Vector3 p2TargetPos = player2.position + new Vector3(0, cameraHeight, -cameraHeight);
+            Vector3 p1TargetPos = player1.position + splitCameraOffset;
+            Vector3 p2TargetPos = player2.position + splitCameraOffset;
 
             player1Camera.transform.position = Vector3.SmoothDamp(player1Camera.transform.position, p1TargetPos, ref p1CamVelocity, cameraSmoothTime);
             player2Camera.transform.position = Vector3.SmoothDamp(player2Camera.transform.position, p2TargetPos, ref p2CamVelocity, cameraSmoothTime);
