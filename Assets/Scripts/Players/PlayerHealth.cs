@@ -2,12 +2,46 @@ using UnityEngine;
 
 public class PlayerHealth : Health
 {
+    [Header("Feedback")]
+    [SerializeField] private Renderer playerRenderer;
+    [SerializeField] private Color damageColor = Color.red;
+    [SerializeField] private float flashDuration;
+
+    [Header("Stun")]
     [SerializeField] private float stunDuration;
 
+    [Header("Knockback")]
+    [SerializeField] private float knockbackForce;
+
+    private Color originalColor;
     private bool isStunned = false;
+
+    private PlayerController playerController;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        playerController = GetComponent<PlayerController>();
+
+        if (playerRenderer != null)
+        {
+            originalColor = playerRenderer.material.color;
+        }
+    }
+
     public override void TakeDamage(int amount, DamageType type)
     {
         if (isDead) return;
+
+        Vector3 direction = (transform.position - Camera.main.transform.position).normalized;
+
+        if (playerController != null)
+        {
+            playerController.ApplyKnockback(direction * knockbackForce);
+        }
+
+        StartCoroutine(DamageFlash());
 
         if (type == DamageType.Player)
         {
@@ -18,13 +52,32 @@ public class PlayerHealth : Health
 
             Debug.Log("Friendly Fire!");
 
-            StartCoroutine(Stun()); 
-
+            StartCoroutine(Stun());
             return;
         }
 
         base.TakeDamage(amount, type);
     }
+
+    // ---------------- FEEDBACK ---------------- //
+
+    private System.Collections.IEnumerator DamageFlash()
+    {
+        if (playerRenderer == null) yield break;
+
+        int flashes = 3;
+
+        for (int i = 0; i < flashes; i++)
+        {
+            playerRenderer.material.color = damageColor;
+            yield return new WaitForSeconds(0.05f);
+
+            playerRenderer.material.color = originalColor;
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    // ---------------- STUN ---------------- //
 
     private System.Collections.IEnumerator Stun()
     {
@@ -32,21 +85,22 @@ public class PlayerHealth : Health
 
         isStunned = true;
 
-        var controller = GetComponent<PlayerController>();
-        if (controller != null)
+        if (playerController != null)
         {
-            controller.movementLocked = true;
+            playerController.movementLocked = true;
         }
 
         yield return new WaitForSeconds(stunDuration);
 
-        if (controller != null)
+        if (playerController != null)
         {
-            controller.movementLocked = false;
+            playerController.movementLocked = false;
         }
 
         isStunned = false;
     }
+
+    // ---------------- MUERTE ---------------- //
 
     protected override void Die(DamageType type)
     {
@@ -54,8 +108,6 @@ public class PlayerHealth : Health
 
         Debug.Log("Jugador murió por: " + type);
 
-        // logica de muerte como la animacion
-
-        gameObject.SetActive(false); 
+        gameObject.SetActive(false);
     }
 }

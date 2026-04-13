@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 velocity;
     private Vector3 moveDirection;
 
+    private Vector3 externalVelocity;
+
     private bool runToggle = false;
 
     public bool IsGrounded => controller != null && controller.isGrounded;
@@ -47,43 +49,46 @@ public class PlayerController : MonoBehaviour
         {
             moveDirection = Vector3.zero;
             currentSpeed = 0f;
-            velocity.y += gravity * Time.deltaTime;
-            controller.Move(velocity * Time.deltaTime);
-            animator.SetFloat("Velocity", 0f, 0.1f, Time.deltaTime);
-            return;
-        }
-
-        Vector3 inputDir = new Vector3(moveInput.y, 0, -moveInput.x).normalized;
-        float targetAnimationSpeed = 0f;
-
-        if (inputDir.magnitude > 0)
-        {
-            currentSpeed = runToggle ? runSpeed : walkSpeed;
-            moveDirection = inputDir;
-            targetAnimationSpeed = currentSpeed;
-
-            Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime / rotationSmoothTime);
         }
         else
         {
-            targetAnimationSpeed = 0f;
+            Vector3 inputDir = new Vector3(moveInput.y, 0, -moveInput.x).normalized;
+            float targetAnimationSpeed = 0f;
 
-            if (!controller.isGrounded)
+            if (inputDir.magnitude > 0)
             {
-                moveDirection *= airControl;
+                currentSpeed = runToggle ? runSpeed : walkSpeed;
+                moveDirection = inputDir;
+                targetAnimationSpeed = currentSpeed;
+
+                Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+                transform.rotation = Quaternion.Slerp(
+                    transform.rotation,
+                    targetRotation,
+                    rotationSpeed * Time.deltaTime / rotationSmoothTime
+                );
             }
             else
             {
-                currentSpeed = 0f;
-                runToggle = false;
-                moveDirection = Vector3.zero;
+                targetAnimationSpeed = 0f;
+
+                if (!controller.isGrounded)
+                {
+                    moveDirection *= airControl;
+                }
+                else
+                {
+                    currentSpeed = 0f;
+                    runToggle = false;
+                    moveDirection = Vector3.zero;
+                }
             }
+
+            animator.SetFloat("Velocity", targetAnimationSpeed, 0.1f, Time.deltaTime);
         }
 
-        controller.Move(moveDirection * currentSpeed * Time.deltaTime);
-
-        animator.SetFloat("Velocity", targetAnimationSpeed, 0.1f, Time.deltaTime);
+        Vector3 totalMove = moveDirection * currentSpeed + externalVelocity;
+        controller.Move(totalMove * Time.deltaTime);
 
         if (controller.isGrounded && velocity.y < 0)
         {
@@ -92,7 +97,11 @@ public class PlayerController : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        externalVelocity = Vector3.Lerp(externalVelocity, Vector3.zero, 10f * Time.deltaTime);
     }
+
+    // ---------------- INPUT ---------------- //
 
     public void Move(InputAction.CallbackContext context)
     {
@@ -116,5 +125,12 @@ public class PlayerController : MonoBehaviour
         {
             runToggle = !runToggle;
         }
+    }
+
+    // ---------------- KNOCKBACK ---------------- //
+
+    public void ApplyKnockback(Vector3 force)
+    {
+        externalVelocity = force;
     }
 }

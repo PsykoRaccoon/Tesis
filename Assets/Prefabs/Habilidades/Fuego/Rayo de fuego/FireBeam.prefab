@@ -4983,6 +4983,7 @@ MonoBehaviour:
   - Player
   - Clon
   - Enemy
+  - Environment
 --- !u!1 &2559938078129958163
 GameObject:
   m_ObjectHideFlags: 0
@@ -5062,7 +5063,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 5}
+  - {x: 0, y: 0, z: 10}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.3
@@ -5070,8 +5071,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.22049455
-        value: 0.6835823
+        time: 0
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0

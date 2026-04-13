@@ -29,11 +29,11 @@ public class EnemyAI : MonoBehaviour
         // DEBUG 1: ¿El enemigo está tocando el suelo horneado (Bake)?
         if (navAgent.isOnNavMesh)
         {
-            Debug.Log("✅ [DIAGNÓSTICO] Todo bien. La Sombra Básica está tocando el NavMesh.");
+            Debug.Log("[DIAGNÓSTICO] Todo bien. La Sombra Básica está tocando el NavMesh.");
         }
         else
         {
-            Debug.LogError("❌ [ERROR CRÍTICO] La Sombra Básica NO está sobre el NavMesh. ¡Por eso no se mueve! Revisa su altura en el eje Y o vuelve a darle 'Bake' al suelo de este mapa.");
+            Debug.LogError("[ERROR CRÍTICO] La Sombra Básica NO está sobre el NavMesh. ¡Por eso no se mueve! Revisa su altura en el eje Y o vuelve a darle 'Bake' al suelo de este mapa.");
         }
     }
 
@@ -50,7 +50,7 @@ public class EnemyAI : MonoBehaviour
                 // DEBUG 2: Confirmar que el spawner funcionó y el Tag es correcto
                 if (!logJugadorEncontrado)
                 {
-                    Debug.Log("✅ [DIAGNÓSTICO] ¡Jugador encontrado exitosamente en la escena!");
+                    Debug.Log("[DIAGNÓSTICO] ¡Jugador encontrado exitosamente en la escena!");
                     logJugadorEncontrado = true;
                 }
             }
@@ -87,7 +87,7 @@ public class EnemyAI : MonoBehaviour
                 // DEBUG 4: Confirmar que se detuvo correctamente
                 if (logPersiguiendo)
                 {
-                    Debug.Log("🛑 [DIAGNÓSTICO] El jugador salió del radio de visión. Sombra detenida.");
+                    Debug.Log("[DIAGNÓSTICO] El jugador salió del radio de visión. Sombra detenida.");
                     logPersiguiendo = false;
                 }
             }
@@ -111,11 +111,11 @@ public class EnemyAI : MonoBehaviour
 
         if (cantidadDeToques == 1)
         {
-            Debug.Log("⚠️ ESTADO: Contaminado. El jugador ha sido tocado por primera vez. (Bloquear cambio de elemento)");
+            Debug.Log("ESTADO: Contaminado. El jugador ha sido tocado por primera vez. (Bloquear cambio de elemento)");
         }
         else if (cantidadDeToques == 2)
         {
-            Debug.Log("☠️ ESTADO: Sombrificado. El jugador ha sido tocado por segunda vez. (Muerte del jugador)");
+            Debug.Log("ESTADO: Sombrificado. El jugador ha sido tocado por segunda vez. (Muerte del jugador)");
             navAgent.isStopped = true; // El enemigo se detiene al matar al jugador
         }
     }

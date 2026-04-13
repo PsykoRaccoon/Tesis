@@ -4970,7 +4970,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 5}
+  - {x: 0, y: 0, z: 10}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.3
@@ -4987,8 +4987,8 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.92023295
-        value: 0.81194407
+        time: 1
+        value: 1
         inSlope: 0.16441841
         outSlope: 0.16441841
         tangentMode: 0
@@ -5088,10 +5088,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ce4ed61c000a043b6e3d16e8f437fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 10.09
+  maxDistance: 10
   hitLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
 --- !u!65 &-539419630544108372
 BoxCollider:
   m_ObjectHideFlags: 0
