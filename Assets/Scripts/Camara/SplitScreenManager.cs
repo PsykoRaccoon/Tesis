@@ -12,12 +12,10 @@ public class SplitScreenManager : MonoBehaviour
     public Camera player2Camera;
 
     [Header("Configuración de Vista (Rotación)")]
-    [Tooltip("Inclinación de la cámara hacia abajo.")]
     public float rotationX = 40f;
-    [Tooltip("Giro de la cámara. 90 grados mira hacia la derecha.")]
     public float rotationY = 90f;
 
-    [Header("Offsets de Posición (¡Modifica esto en Play Mode!)")]
+    [Header("Offsets de Posición")]
     [Tooltip("Posición relativa al punto medio cuando los jugadores están JUNTOS.")]
     public Vector3 sharedCameraOffset = new Vector3(-15, 10, 0);
     [Tooltip("Posición relativa a cada jugador cuando están SEPARADOS (suele ser más cerca).")]
