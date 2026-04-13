@@ -115,7 +115,7 @@ private Coroutine laserRoutine;
     private void HandleLaserRotation()
     {
         Vector2 moveInput = playerController.GetComponent<PlayerInput>().actions["Move"].ReadValue<Vector2>();
-        Vector3 inputDir = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+        Vector3 inputDir = new Vector3(moveInput.y, 0, -moveInput.x).normalized;
 
         if (inputDir.magnitude > 0)
         {

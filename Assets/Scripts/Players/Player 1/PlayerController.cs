@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float jumpHeight;
     [SerializeField] private float gravity = -9.81f;
 
-    [Header("Rotación")]
+    [Header("Rotacion")]
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float rotationSmoothTime;
 
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        Vector3 inputDir = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+        Vector3 inputDir = new Vector3(moveInput.y, 0, -moveInput.x).normalized;
         float targetAnimationSpeed = 0f;
 
         if (inputDir.magnitude > 0)

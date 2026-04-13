@@ -10,6 +10,10 @@ public class FireAbilities : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private GameObject groundMarkerPrefab;
+    [SerializeField] private LineRenderer trajectoryLine;
+    [SerializeField] private int resolution;
+    [SerializeField] private float timeStep;
+    [SerializeField] private LayerMask trajectoryCollisionMask;
 
     [Header("Configuracion")]
     [SerializeField] private float aimDistance;
@@ -68,6 +72,7 @@ public class FireAbilities : MonoBehaviour
         if (isAiming && currentProjectile != null)
         {
             UpdateMarkerPosition();
+            DrawTrajectory();
             currentProjectile.FollowSpawn(spawnPoint);
         }
 
@@ -109,12 +114,14 @@ public class FireAbilities : MonoBehaviour
         currentProjectile = proj.GetComponent<AbilityProjectile>();
 
         currentMarker.SetActive(true);
+        trajectoryLine.enabled = true;
     }
 
     private void CancelAiming()
     {
         isAiming = false;
         currentMarker.SetActive(false);
+        trajectoryLine.enabled = false;
 
         if (currentProjectile != null)
         {
@@ -130,6 +137,7 @@ public class FireAbilities : MonoBehaviour
         isAiming = false;
         projectileLaunched = true;
         currentMarker.SetActive(false);
+        trajectoryLine.enabled = false;
         currentProjectile.Launch(spawnPoint.position, targetPosition, OnProjectileComplete);
     }
 
@@ -160,6 +168,40 @@ public class FireAbilities : MonoBehaviour
         isOnCooldown = true;
         yield return new WaitForSeconds(cooldownDuration);
         isOnCooldown = false;
+    }
+
+    private void DrawTrajectory()
+    {
+        if (currentProjectile == null) return;
+
+        Vector3 start = spawnPoint.position;
+        Vector3 velocity = currentProjectile.GetLaunchVelocityPreview(start, targetPosition);
+
+        trajectoryLine.positionCount = resolution;
+
+        Vector3 previousPoint = start;
+
+        for (int i = 0; i < resolution; i++)
+        {
+            float t = i * timeStep;
+
+            Vector3 currentPoint = start
+                + velocity * t
+                + 0.5f * Physics.gravity * t * t;
+
+            Vector3 direction = currentPoint - previousPoint;
+            float distance = direction.magnitude;
+
+            if (Physics.Raycast(previousPoint, direction.normalized, out RaycastHit hit, distance, trajectoryCollisionMask))
+            {
+                trajectoryLine.positionCount = i + 1;
+                trajectoryLine.SetPosition(i, hit.point);
+                break;
+            }
+
+            trajectoryLine.SetPosition(i, currentPoint);
+            previousPoint = currentPoint;
+        }
     }
 
     // ------------------------------------------------------------------------------- logica rayo laser ----------------------------------------------------------------------------------- \\
@@ -218,7 +260,7 @@ public class FireAbilities : MonoBehaviour
     private void HandleLaserRotation()
     {
         Vector2 moveInput = playerController.GetComponent<PlayerInput>().actions["Move"].ReadValue<Vector2>();
-        Vector3 inputDir = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+        Vector3 inputDir = new Vector3(moveInput.y, 0, -moveInput.x).normalized;
 
         if (inputDir.magnitude > 0)
         {

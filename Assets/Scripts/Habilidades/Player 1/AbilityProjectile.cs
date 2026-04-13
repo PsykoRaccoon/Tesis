@@ -47,6 +47,11 @@ public class AbilityProjectile : MonoBehaviour
         transform.rotation = spawn.rotation;
     }
 
+    public Vector3 GetLaunchVelocityPreview(Vector3 start, Vector3 target)
+    {
+        return CalculateLaunchVelocity(start, target, launchHeight, launchDuration);
+    }
+
     public void Launch(Vector3 start, Vector3 target, Action onCompleteCallback)
     {
         transform.position = start;
