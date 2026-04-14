@@ -1257,6 +1257,7 @@ GameObject:
   - component: {fileID: 4460199450769187245}
   - component: {fileID: 5851455638315331616}
   - component: {fileID: -6385420506578220835}
+  - component: {fileID: -4148460425764815635}
   m_Layer: 6
   m_Name: SK_Player1
   m_TagString: Player
@@ -1807,6 +1808,22 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &-4148460425764815635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4863200768201220073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfc0510cc66a8184a94fd5705091a0b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombreDelObjetoUI: VidaPlayer2
+  iconoNormal: {fileID: 21300000, guid: 7f07a70c58c2b6043a3ba2fec24415ed, type: 3}
+  iconoContaminado: {fileID: 21300000, guid: a56561981aa6f974e96d911c33c1e8d6, type: 3}
+  iconoSombrificado: {fileID: 21300000, guid: 6c53edd03bedd81479556110e03303f1, type: 3}
 --- !u!1 &4874863020425561311
 GameObject:
   m_ObjectHideFlags: 0
