@@ -8,8 +8,8 @@ public class SpawnManager : MonoBehaviour
     public GameObject player2Prefab;
 
     [Header("Spawn Points")]
-    public Transform player1Spawn;
     public Transform player2Spawn;
+    public Transform player1Spawn;
 
     private SplitScreenManager splitScreenManager;
 

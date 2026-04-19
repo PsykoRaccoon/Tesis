@@ -75,7 +75,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: e925286b808f223498e35552be7bcbdf, type: 3}
+  m_Motion: {fileID: 1862008713766607075, guid: 61286f0a162b2cc48a830776b8791680, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -347,7 +347,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: JumpingUp
-  m_Speed: 1.8
+  m_Speed: 1.3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -619644715695639331}
@@ -360,7 +360,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: a2f599fc051d61641ac9d2adf92bd43c, type: 3}
+  m_Motion: {fileID: 2646048071975562462, guid: 1b3cc754769114444b2babbd9afe1af4, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -388,7 +388,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: b97e912a8f2fdb546b42006f3f7db9b9, type: 3}
+  m_Motion: {fileID: -5839061015329922458, guid: df2d48ef775a5274a82cf047ff76adf2, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

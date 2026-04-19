@@ -1720,10 +1720,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9708657111b9834db811f43b60f7773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1Prefab: {fileID: 2926907562739512215, guid: 753d6d996c7c3254eb9dc7569a843be5, type: 3}
+  player1Prefab: {fileID: 5004115424102698426, guid: d86eb623cea2a2f48a142e24547db39d, type: 3}
   player2Prefab: {fileID: 4863200768201220073, guid: 3fcb0358d097bdc4ebeb4334fd6f574c, type: 3}
-  player1Spawn: {fileID: 19792653}
   player2Spawn: {fileID: 258293965}
+  player1Spawn: {fileID: 19792653}
 --- !u!1 &1587510101
 GameObject:
   m_ObjectHideFlags: 0
@@ -17746,7 +17746,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7574915838063259770, guid: d900a940455a2c349922f0938d74b3ba, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.3
+      value: -1.127
       objectReference: {fileID: 0}
     - target: {fileID: 7574915838063259770, guid: d900a940455a2c349922f0938d74b3ba, type: 3}
       propertyPath: m_LocalPosition.z

@@ -49,9 +49,9 @@ public class SpecialAbility : MonoBehaviour
 
         playerController.GetComponentInChildren<Animator>().SetTrigger("Special");
 
+        yield return new WaitForSeconds(castTime * 0.5f);
         spawnAction.Invoke();
-
-        yield return new WaitForSeconds(castTime);
+        yield return new WaitForSeconds(castTime * 0.5f);
 
         playerController.movementLocked = false;
         isCasting = false;
@@ -66,8 +66,16 @@ public class SpecialAbility : MonoBehaviour
         isOnCooldown = false;
     }
 
-    private IEnumerator RaiseFromGround(Transform obj)
+        private IEnumerator RaiseFromGround(Transform obj)
     {
+        Rigidbody rb = obj.GetComponent<Rigidbody>();
+
+        if (rb != null)
+        {
+            rb.isKinematic = true;
+            rb.useGravity = false;
+        }
+
         Vector3 finalPos = obj.position;
 
         Vector3 start = new Vector3(
@@ -95,5 +103,11 @@ public class SpecialAbility : MonoBehaviour
         }
 
         obj.position = target;
+
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+            rb.useGravity = true;
+        }
     }
 }
