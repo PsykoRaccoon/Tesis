@@ -1551,6 +1551,8 @@ MonoBehaviour:
   flashDuration: 2
   stunDuration: 1
   knockbackForce: 20
+  animator: {fileID: 1383080254200005583}
+  damageTriggerName: Damage
 --- !u!114 &2198467871430470013
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1511,6 +1511,8 @@ MonoBehaviour:
   flashDuration: 2
   stunDuration: 1
   knockbackForce: 15
+  animator: {fileID: 3054891715927718764}
+  damageTriggerName: Damage
 --- !u!120 &-6385420506578220835
 LineRenderer:
   serializedVersion: 2

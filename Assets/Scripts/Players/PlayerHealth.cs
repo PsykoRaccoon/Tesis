@@ -13,6 +13,10 @@ public class PlayerHealth : Health
     [Header("Knockback")]
     [SerializeField] private float knockbackForce;
 
+    [Header("Animation")]
+    [SerializeField] private Animator animator;
+    [SerializeField] private string damageTriggerName;
+
     private Color originalColor;
     private bool isStunned = false;
 
@@ -39,6 +43,11 @@ public class PlayerHealth : Health
         if (playerController != null)
         {
             playerController.ApplyKnockback(direction * knockbackForce);
+        }
+
+        if (animator != null)
+        {
+            animator.SetTrigger(damageTriggerName);
         }
 
         StartCoroutine(DamageFlash());
