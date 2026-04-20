@@ -6114,6 +6114,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1420017624}
     m_Modifications:
+    - target: {fileID: 2944973825655885840, guid: f06641dcab1bff5498ad500215c648b4, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2944973825655885840, guid: f06641dcab1bff5498ad500215c648b4, type: 3}
+      propertyPath: SizeModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2944973825655885840, guid: f06641dcab1bff5498ad500215c648b4, type: 3}
+      propertyPath: InitialModule.startRotationY.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2944973825655885840, guid: f06641dcab1bff5498ad500215c648b4, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2944973825655885840, guid: f06641dcab1bff5498ad500215c648b4, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].time
+      value: 0.9810486
+      objectReference: {fileID: 0}
+    - target: {fileID: 2944973825655885840, guid: f06641dcab1bff5498ad500215c648b4, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].value
+      value: 0.25561523
+      objectReference: {fileID: 0}
+    - target: {fileID: 2944973825655885840, guid: f06641dcab1bff5498ad500215c648b4, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].value
+      value: 0.86833763
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100933878364427343, guid: f06641dcab1bff5498ad500215c648b4, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 3613567641014311022, guid: 1824f6266f5d3df4193ed60afc1fe57a, type: 3}
     - target: {fileID: 8365267946635112652, guid: f06641dcab1bff5498ad500215c648b4, type: 3}
       propertyPath: m_Name
       value: PS_AirAttack
