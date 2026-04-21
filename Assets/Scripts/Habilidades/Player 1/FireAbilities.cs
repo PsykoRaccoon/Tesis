@@ -15,10 +15,19 @@ public class FireAbilities : MonoBehaviour
     [SerializeField] private float timeStep;
     [SerializeField] private LayerMask trajectoryCollisionMask;
 
-    [Header("Configuracion")]
+    [Header("Config")]
     [SerializeField] private float aimDistance;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float cooldownDuration;
+
+    [Header("Animaciones")]
+    [SerializeField] private string aimBoolName;
+    [SerializeField] private string throwTriggerName;
+    [SerializeField] private Animator animator;
+    [SerializeField] private string laserBoolName;
+
+    [Header("Laser Timing")]
+    [SerializeField] private float laserStartDelay;
 
     private AbilityProjectile currentProjectile;
     private GameObject currentMarker;
@@ -30,12 +39,13 @@ public class FireAbilities : MonoBehaviour
 
     //-------------------------------------------------------------------------------------\\
 
-    [Header("Referencias rayo laser")]
+    [Header("Laser Refs")]
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Transform aimPivot;
     [SerializeField] private GameObject laserBeamPrefab;
+    [SerializeField] private Transform laserSpawnPoint;
 
-    [Header("Configuracion del Laser")]
+    [Header("Laser Config")]
     [SerializeField] private float verticalAimSpeed;
     [SerializeField] private float rotationSpeed;
     [SerializeField, Range(0.05f, 1f)] private float rotationSmoothTime;
@@ -110,6 +120,8 @@ public class FireAbilities : MonoBehaviour
 
         isAiming = true;
 
+        animator.SetBool(aimBoolName, true);
+
         GameObject proj = Instantiate(projectilePrefab, spawnPoint.position, spawnPoint.rotation);
         currentProjectile = proj.GetComponent<AbilityProjectile>();
 
@@ -120,6 +132,7 @@ public class FireAbilities : MonoBehaviour
     private void CancelAiming()
     {
         isAiming = false;
+        animator.SetBool(aimBoolName, false);
         currentMarker.SetActive(false);
         trajectoryLine.enabled = false;
 
@@ -135,9 +148,14 @@ public class FireAbilities : MonoBehaviour
         if (currentProjectile == null) return;
 
         isAiming = false;
+
+        animator.SetBool(aimBoolName, false);
+        animator.SetTrigger(throwTriggerName); 
+
         projectileLaunched = true;
         currentMarker.SetActive(false);
         trajectoryLine.enabled = false;
+
         currentProjectile.Launch(spawnPoint.position, targetPosition, OnProjectileComplete);
     }
 
@@ -228,9 +246,23 @@ public class FireAbilities : MonoBehaviour
         isUsingLaser = true;
         playerController.movementLocked = true;
 
+        if (animator != null)
+        {
+            animator.SetBool(laserBoolName,true);
+        }
+
+        StartCoroutine(LaserDelayRoutine());
+    }
+
+    private IEnumerator LaserDelayRoutine()
+    {
+        yield return new WaitForSeconds(laserStartDelay);
+
+        if (!isUsingLaser) yield break;
+
         if (currentLaser == null)
         {
-            currentLaser = Instantiate(laserBeamPrefab, spawnPoint.position, spawnPoint.rotation);
+            currentLaser = Instantiate(laserBeamPrefab, laserSpawnPoint.position, laserSpawnPoint.rotation);
         }
         else
         {
@@ -244,6 +276,7 @@ public class FireAbilities : MonoBehaviour
 
         isUsingLaser = false;
         playerController.movementLocked = false;
+        animator.SetBool(laserBoolName, false);
 
         if (currentLaser != null)
         {
@@ -277,7 +310,7 @@ public class FireAbilities : MonoBehaviour
 
         if (currentLaser != null)
         {
-            currentLaser.transform.position = spawnPoint.position;
+            currentLaser.transform.position = laserSpawnPoint.position;
             currentLaser.transform.rotation = aimPivot.rotation;
         }
     }
