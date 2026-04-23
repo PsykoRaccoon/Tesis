@@ -257,12 +257,12 @@ public class FireAbilities : MonoBehaviour
     private IEnumerator LaserDelayRoutine()
     {
         yield return new WaitForSeconds(laserStartDelay);
-
         if (!isUsingLaser) yield break;
 
         if (currentLaser == null)
         {
             currentLaser = Instantiate(laserBeamPrefab, laserSpawnPoint.position, laserSpawnPoint.rotation);
+            currentLaser.transform.SetParent(laserSpawnPoint);
         }
         else
         {
@@ -308,10 +308,5 @@ public class FireAbilities : MonoBehaviour
         currentX = Mathf.Clamp(currentX - vertical * verticalAimSpeed * Time.deltaTime, -45f, 45f);
         aimPivot.localRotation = Quaternion.Euler(currentX, 0, 0);
 
-        if (currentLaser != null)
-        {
-            currentLaser.transform.position = laserSpawnPoint.position;
-            currentLaser.transform.rotation = aimPivot.rotation;
-        }
     }
 }

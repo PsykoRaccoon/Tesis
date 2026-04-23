@@ -83,6 +83,7 @@ private Coroutine laserRoutine;
         if (currentLaser == null)
         {
             currentLaser = Instantiate(laserBeamPrefab, spawnPoint.position, spawnPoint.rotation);
+            currentLaser.transform.SetParent(spawnPoint);
         }
         else
         {
@@ -131,12 +132,6 @@ private Coroutine laserRoutine;
         currentX = Mathf.Clamp(currentX - vertical * verticalAimSpeed * Time.deltaTime, -45f, 45f);
 
         aimPivot.localRotation = Quaternion.Euler(currentX, 0, 0);
-
-        if (currentLaser != null)
-        {
-            currentLaser.transform.position = spawnPoint.position;
-            currentLaser.transform.rotation = aimPivot.rotation;
-        }
     }
 
     public void AimVertical(InputAction.CallbackContext context)

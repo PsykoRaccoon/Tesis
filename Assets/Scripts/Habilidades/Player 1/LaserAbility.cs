@@ -12,23 +12,27 @@ public class LaserAbility : MonoBehaviour
     private void Awake()
     {
         boxCollider = GetComponent<BoxCollider>();
+        currentLaserLength=maxDistance;
     }
 
-    private void Update()
+    private float currentLaserLength = 0;
+
+    private void LateUpdate()
     {
         Vector3 origin = transform.position;
         Vector3 direction = transform.forward;
 
-        if (Physics.Raycast(origin, direction, out hitInfo, maxDistance, hitLayers))
-        {
-            UpdateCollider(hitInfo.distance);
-        }
+        if (Physics.Raycast(origin, direction, out RaycastHit hitInfo, maxDistance, hitLayers, QueryTriggerInteraction.Ignore))
+            currentLaserLength = hitInfo.distance;
         else
-        {
-            UpdateCollider(maxDistance);
-        }
+            currentLaserLength = maxDistance;
 
-        Debug.DrawRay(origin, direction * (hitInfo.collider ? hitInfo.distance : maxDistance), Color.red);
+        Debug.DrawRay(origin, direction * currentLaserLength, Color.red);
+    }
+
+    private void FixedUpdate()
+    {
+        UpdateCollider(currentLaserLength);
     }
 
     private void UpdateCollider(float length)
