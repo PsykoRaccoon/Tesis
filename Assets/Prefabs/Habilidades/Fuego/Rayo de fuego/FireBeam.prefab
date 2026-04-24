@@ -4944,6 +4944,16 @@ MonoBehaviour:
   hitLayers:
     serializedVersion: 2
     m_Bits: 4294967295
+  effectOnlyLayers:
+    serializedVersion: 2
+    m_Bits: 2048
+  impactEffects:
+  - label: Rayo
+    layer: 11
+    prefab: {fileID: 958800534318925429, guid: 6af594ec822b0d841896bd627ba57625, type: 3}
+  - label: Piso
+    layer: 3
+    prefab: {fileID: 958800534318925429, guid: 6af594ec822b0d841896bd627ba57625, type: 3}
 --- !u!65 &9104773016270990166
 BoxCollider:
   m_ObjectHideFlags: 0
