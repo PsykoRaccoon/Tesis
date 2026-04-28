@@ -1425,7 +1425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 7409130150601475930}
-  projectilePrefab: {fileID: 8235021441435618320, guid: 9ab3786fdfe89e344ab62ab752866e1a, type: 3}
+  projectilePrefab: {fileID: 2972392977303283589, guid: 11c9a5d587e034e43a68d4ebfb901206, type: 3}
   groundMarkerPrefab: {fileID: 9196375943270294652, guid: 4b344d3982ad4f948badc8e48892c7d7, type: 3}
   trajectoryLine: {fileID: -6385420506578220835}
   resolution: 30
