@@ -5091,7 +5091,14 @@ MonoBehaviour:
   hitLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  impactEffects: []
+  effectOnlyLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  impactEffects:
+  - label: Piso
+    layer: 3
+    prefab: {fileID: 8866987181904549775, guid: 8c8d8385f96bd054a88a3df780d77bcc, type: 3}
+    effectDuration: 0.3
 --- !u!65 &-539419630544108372
 BoxCollider:
   m_ObjectHideFlags: 0

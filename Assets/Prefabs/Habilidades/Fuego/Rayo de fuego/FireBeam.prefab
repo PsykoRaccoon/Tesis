@@ -4951,9 +4951,11 @@ MonoBehaviour:
   - label: Rayo
     layer: 11
     prefab: {fileID: 958800534318925429, guid: 6af594ec822b0d841896bd627ba57625, type: 3}
+    effectDuration: 1
   - label: Piso
     layer: 3
     prefab: {fileID: 958800534318925429, guid: 6af594ec822b0d841896bd627ba57625, type: 3}
+    effectDuration: 1
 --- !u!65 &9104773016270990166
 BoxCollider:
   m_ObjectHideFlags: 0

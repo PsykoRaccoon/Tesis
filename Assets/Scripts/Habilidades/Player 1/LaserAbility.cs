@@ -10,20 +10,21 @@ public class LaserAbility : MonoBehaviour
 
     [Header("Impact Effects")]
     [SerializeField] private List<LaserImpactEntry> impactEffects;
-    
 
     private BoxCollider boxCollider;
     private float currentLaserLength = 0;
 
     private GameObject currentEffect;
     private int currentHitLayer = -1;
+    private float lastEffectSpawnTime = -999f;
 
     [System.Serializable]
     public class LaserImpactEntry
     {
-        public string label;           
-        [Layer] public int layer;      
-        public GameObject prefab;     
+        public string label;
+        [Layer] public int layer;
+        public GameObject prefab;
+        public float effectDuration = 1f; 
     }
 
     private void Awake()
@@ -75,21 +76,37 @@ public class LaserAbility : MonoBehaviour
         int hitLayer = hitInfo.collider.gameObject.layer;
         string hitLayerName = LayerMask.LayerToName(hitLayer);
 
+        LaserImpactEntry entry = GetEntryForLayer(hitLayer);
+
         if (hitLayer != currentHitLayer)
         {
             ClearImpactEffect();
             currentHitLayer = hitLayer;
+        }
 
-            GameObject prefab = GetPrefabForLayer(hitLayer);
-            if (prefab != null)
+        float duration = entry != null ? entry.effectDuration : 1f;
+        bool shouldSpawn = currentEffect == null || (Time.time - lastEffectSpawnTime >= duration);
+
+        if (shouldSpawn)
+        {
+            if (entry?.prefab != null)
             {
-                currentEffect = Instantiate(prefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-                Debug.Log($"[Laser] Impacto con: {hitInfo.collider.name} | Layer: {hitLayerName} | Prefab instanciado: {prefab.name}");
+                if (currentEffect != null)
+                    Destroy(currentEffect);
+
+                currentEffect = Instantiate(entry.prefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+                lastEffectSpawnTime = Time.time;
+                Debug.Log($"[Laser] Impacto con: {hitInfo.collider.name} | Layer: {hitLayerName} | Spawn de: {entry.prefab.name}");
             }
-            else
+            else if (entry == null)
             {
-                Debug.LogWarning($"[Laser] Impacto con: {hitInfo.collider.name} | Layer: {hitLayerName} | Sin prefab asignado para este layer");
+                Debug.LogWarning($"[Laser] Impacto con: {hitInfo.collider.name} | Layer: {hitLayerName} | Sin prefab asignado");
             }
+        }
+        else if (currentEffect != null)
+        {
+            currentEffect.transform.position = hitInfo.point;
+            currentEffect.transform.rotation = Quaternion.LookRotation(hitInfo.normal);
         }
     }
 
@@ -102,14 +119,15 @@ public class LaserAbility : MonoBehaviour
             currentEffect = null;
         }
         currentHitLayer = -1;
+        lastEffectSpawnTime = -999f;
     }
 
-    private GameObject GetPrefabForLayer(int layer)
+    private LaserImpactEntry GetEntryForLayer(int layer)
     {
         foreach (var entry in impactEffects)
         {
             if (entry.layer == layer)
-                return entry.prefab;
+                return entry;
         }
         return null;
     }
@@ -119,4 +137,3 @@ public class LaserAbility : MonoBehaviour
         ClearImpactEffect();
     }
 }
-
