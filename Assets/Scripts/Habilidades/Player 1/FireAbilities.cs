@@ -29,6 +29,10 @@ public class FireAbilities : MonoBehaviour
     [Header("Laser Timing")]
     [SerializeField] private float laserStartDelay;
 
+    // --- UI Cooldown ---
+    private CooldownUI fireballIconUI;
+    private CooldownUI laserIconUI;
+
     private AbilityProjectile currentProjectile;
     private GameObject currentMarker;
 
@@ -65,6 +69,12 @@ public class FireAbilities : MonoBehaviour
     {
         currentMarker = Instantiate(groundMarkerPrefab, spawnPoint.position, Quaternion.identity);
         currentMarker.SetActive(false);
+
+        if (AbilityHUD.Instance != null)
+        {
+            fireballIconUI = AbilityHUD.Instance.fireballIcon;
+            laserIconUI    = AbilityHUD.Instance.laserIcon;
+        }
     }
 
     private void Update()
@@ -120,6 +130,8 @@ public class FireAbilities : MonoBehaviour
 
         isAiming = true;
 
+        fireballIconUI?.SetUnavailable();
+
         animator.SetBool(aimBoolName, true);
 
         GameObject proj = Instantiate(projectilePrefab, spawnPoint.position, spawnPoint.rotation);
@@ -141,6 +153,9 @@ public class FireAbilities : MonoBehaviour
             Destroy(currentProjectile.gameObject);
             currentProjectile = null;
         }
+
+        if (!isOnCooldown)
+            fireballIconUI?.SetAvailable();
     }
 
     private void LaunchProjectile()
@@ -155,6 +170,8 @@ public class FireAbilities : MonoBehaviour
         projectileLaunched = true;
         currentMarker.SetActive(false);
         trajectoryLine.enabled = false;
+
+        fireballIconUI?.SetUnavailable();
 
         currentProjectile.Launch(spawnPoint.position, targetPosition, OnProjectileComplete);
     }
@@ -178,6 +195,9 @@ public class FireAbilities : MonoBehaviour
     {
         projectileLaunched = false;
         currentProjectile = null;
+
+        fireballIconUI?.SetOnCooldown(cooldownDuration);
+
         StartCoroutine(CooldownRoutine());
     }
 
@@ -246,9 +266,11 @@ public class FireAbilities : MonoBehaviour
         isUsingLaser = true;
         playerController.movementLocked = true;
 
+        laserIconUI?.SetUnavailable();
+
         if (animator != null)
         {
-            animator.SetBool(laserBoolName,true);
+            animator.SetBool(laserBoolName, true);
         }
 
         StartCoroutine(LaserDelayRoutine());
@@ -282,6 +304,8 @@ public class FireAbilities : MonoBehaviour
         {
             currentLaser.SetActive(false);
         }
+
+        laserIconUI?.SetAvailable();
     }
 
     public void AimVertical(InputAction.CallbackContext context)
@@ -307,6 +331,5 @@ public class FireAbilities : MonoBehaviour
 
         currentX = Mathf.Clamp(currentX - vertical * verticalAimSpeed * Time.deltaTime, -45f, 45f);
         aimPivot.localRotation = Quaternion.Euler(currentX, 0, 0);
-
     }
 }

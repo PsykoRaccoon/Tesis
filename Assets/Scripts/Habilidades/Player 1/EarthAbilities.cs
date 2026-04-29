@@ -14,203 +14,226 @@ public class EarthAbilities : MonoBehaviour
 
     [Header("Config General")]
     [SerializeField] private float spawnDistance;
-    [SerializeField] private float cooldownDuration;
 
     [Header("Bloque de Tierra")]
+    [SerializeField] private float blockCooldownDuration;
     [SerializeField] private float blockLifetime;
     [SerializeField] private float blockRiseHeight;
-    [SerializeField] private float appearDuration; 
+    [SerializeField] private float appearDuration;
     [SerializeField] private float sinkDistance;
     [SerializeField] private float sinkDuration;
     [SerializeField] private float undergroundOffset;
     [SerializeField] private float floatDuration;
 
     [Header("Rampa")]
+    [SerializeField] private float rampCooldownDuration;
     [SerializeField] private float rampRiseHeight;
     [SerializeField] private float rampAppearDuration;
+    [SerializeField] private float rampSinkDistance;
+    [SerializeField] private float rampSinkDuration;
+    [SerializeField] private float rampUndergroundOffset;
+
+    // --- UI ---
+    private CooldownUI blockIconUI;
+    private CooldownUI rampIconUI;
 
     private GameObject currentBlock;
     private GameObject currentRamp;
-    private bool isOnCooldown = false;
-    private bool isActive = false;
-    private bool isCasting = false;
+
+    private bool isBlockOnCooldown = false;
+    private bool isRampOnCooldown  = false;
+    private bool isBlockCasting    = false;
+    private bool isRampCasting     = false;
+    private bool isActive          = false;
 
     public bool IsActive
     {
         get => isActive;
-        set
-        {
-            isActive = value;
-            enabled = isActive;
-        }
+        set { isActive = value; enabled = isActive; }
     }
 
     private Vector3 SpawnOrigin => spawnPoint.position + spawnPoint.forward * spawnDistance;
 
+    private void Start()
+    {
+        if (AbilityHUD.Instance != null)
+        {
+            blockIconUI = AbilityHUD.Instance.earthBlockIcon;
+            rampIconUI  = AbilityHUD.Instance.earthRampIcon;
+        }
+    }
+
     // ------------------------- habilidad 1 bloque -------------------------
+
     public void Habilidad1(InputAction.CallbackContext context)
     {
-        if (!isActive || !context.performed || isOnCooldown || !playerController.IsGrounded || isCasting)
+        if (!isActive || !context.performed || isBlockOnCooldown || !playerController.IsGrounded || isBlockCasting)
             return;
 
         if (currentBlock != null) return;
 
         if (Physics.Raycast(SpawnOrigin, Vector3.down, out RaycastHit hit, 100f, groundMask))
         {
-            StartCoroutine(CastSequence(() =>
-            {
-                Vector3 groundPos = hit.point;
-                Quaternion rotation = blockPrefab.transform.rotation;
-                currentBlock = Instantiate(blockPrefab, groundPos, rotation);
-
-                StartCoroutine(BlockSequence(currentBlock.transform));
-            }, "EarthBlock", appearDuration));
+            StartCoroutine(BlockCastSequence(hit.point));
         }
     }
 
-    // ------------------------- habilidad 2 rampa -------------------------
-    public void Habilidad2(InputAction.CallbackContext context)
+    private IEnumerator BlockCastSequence(Vector3 groundPos)
     {
-        if (!isActive || !context.performed || isOnCooldown || !playerController.IsGrounded || isCasting)
-            return;
-
-        if (currentRamp != null) return;
-
-        if (Physics.Raycast(SpawnOrigin, Vector3.down, out RaycastHit hit, 100f, groundMask))
-        {
-            StartCoroutine(CastSequence(() =>
-            {
-                Vector3 groundPos = hit.point;
-                Quaternion playerRot = Quaternion.LookRotation(spawnPoint.forward, Vector3.up);
-                Quaternion prefabRot = rampPrefab.transform.rotation;
-                Quaternion finalRot = playerRot * prefabRot;
-
-                currentRamp = Instantiate(rampPrefab, groundPos, finalRot);
-
-                StartCoroutine(RaiseFromGround(currentRamp.transform, rampRiseHeight, rampAppearDuration));
-            }, "EarthRamp", rampAppearDuration));
-        }
-    }
-
-    // ------------------------- cast -------------------------
-
-    private IEnumerator CastSequence(Action spawnAction, string triggerName, float duration)
-    {
-        isCasting = true;
+        isBlockCasting = true;
         playerController.movementLocked = true;
+        blockIconUI?.SetUnavailable();
 
-        playerController.GetComponentInChildren<Animator>().SetTrigger(triggerName);
+        playerController.GetComponentInChildren<Animator>().SetTrigger("EarthBlock");
 
-        float impactDelay = 0.2f;
-
-        if (duration < impactDelay) impactDelay = duration;
-
+        float impactDelay = Mathf.Min(0.2f, appearDuration);
         yield return new WaitForSeconds(impactDelay);
 
-        spawnAction.Invoke();
+        currentBlock = Instantiate(blockPrefab, groundPos, blockPrefab.transform.rotation);
+        StartCoroutine(BlockSequence(currentBlock.transform));
 
-        float remainingTime = duration - impactDelay;
-        if (remainingTime > 0)
-        {
-            yield return new WaitForSeconds(remainingTime);
-        }
+        float remaining = appearDuration - impactDelay;
+        if (remaining > 0) yield return new WaitForSeconds(remaining);
 
         playerController.movementLocked = false;
-        isCasting = false;
-        StartCoroutine(CooldownRoutine());
-    }
-
-    private IEnumerator CooldownRoutine()
-    {
-        isOnCooldown = true;
-        yield return new WaitForSeconds(cooldownDuration);
-        isOnCooldown = false;
+        isBlockCasting = false;
     }
 
     private IEnumerator BlockSequence(Transform block)
     {
         Rigidbody rb = block.GetComponent<Rigidbody>();
-
-        if (rb != null)
-        {
-            rb.isKinematic = true;
-            rb.useGravity = false;
-        }
+        if (rb != null) { rb.isKinematic = true; rb.useGravity = false; }
 
         Vector3 finalPos = block.position;
-        Vector3 start = new Vector3(finalPos.x, finalPos.y - undergroundOffset, finalPos.z);
-        Vector3 target = new Vector3(finalPos.x, finalPos.y + blockRiseHeight, finalPos.z);
-
+        Vector3 start  = new Vector3(finalPos.x, finalPos.y - undergroundOffset, finalPos.z);
+        Vector3 target = new Vector3(finalPos.x, finalPos.y + blockRiseHeight,   finalPos.z);
         block.position = start;
 
         float elapsed = 0f;
-
         while (elapsed < appearDuration)
         {
             elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / appearDuration);
-            block.position = Vector3.Lerp(start, target, t);
+            block.position = Vector3.Lerp(start, target, Mathf.Clamp01(elapsed / appearDuration));
             yield return null;
         }
-
         block.position = target;
 
         yield return new WaitForSeconds(floatDuration);
 
-        if (rb != null)
-        {
-            rb.isKinematic = false;
-            rb.useGravity = true;
-        }
-
+        if (rb != null) { rb.isKinematic = false; rb.useGravity = true; }
         yield return new WaitForSeconds(blockLifetime);
+        if (rb != null) { rb.isKinematic = true; rb.useGravity = false; }
 
-        if (rb != null)
-        {
-            rb.isKinematic = true;
-            rb.useGravity = false;
-        }
-
-        Vector3 sinkStart = block.position;
+        Vector3 sinkStart  = block.position;
         Vector3 sinkTarget = sinkStart - new Vector3(0, sinkDistance, 0);
-
         elapsed = 0f;
-
         while (elapsed < sinkDuration)
         {
             elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / sinkDuration);
-            block.position = Vector3.Lerp(sinkStart, sinkTarget, t);
+            block.position = Vector3.Lerp(sinkStart, sinkTarget, Mathf.Clamp01(elapsed / sinkDuration));
             yield return null;
         }
 
-        if (block != null)
+        if (block != null) { Destroy(block.gameObject); currentBlock = null; }
+
+        blockIconUI?.SetOnCooldown(blockCooldownDuration);
+        StartCoroutine(BlockCooldownRoutine());
+    }
+
+    private IEnumerator BlockCooldownRoutine()
+    {
+        isBlockOnCooldown = true;
+        yield return new WaitForSeconds(blockCooldownDuration);
+        isBlockOnCooldown = false;
+    }
+
+    // ------------------------- habilidad 2 rampa -------------------------
+
+    public void Habilidad2(InputAction.CallbackContext context)
+    {
+        if (!isActive || !context.performed || isRampOnCooldown || !playerController.IsGrounded || isRampCasting)
+            return;
+
+        if (Physics.Raycast(SpawnOrigin, Vector3.down, out RaycastHit hit, 100f, groundMask))
         {
-            Destroy(block.gameObject);
-            currentBlock = null;
+            StartCoroutine(RampCastSequence(hit.point));
         }
     }
 
-    private IEnumerator RaiseFromGround(Transform ramp, float riseHeight, float duration)
+    private IEnumerator RampCastSequence(Vector3 groundPos)
     {
-        Vector3 startPos = ramp.position;
-        Vector3 targetPos = new Vector3(startPos.x, startPos.y + riseHeight, startPos.z);
+        isRampCasting = true;
+        playerController.movementLocked = true;
+        rampIconUI?.SetUnavailable();
+
+        if (currentRamp != null)
+        {
+            StartCoroutine(SinkAndDestroy(currentRamp.transform));
+            currentRamp = null;
+        }
+
+        playerController.GetComponentInChildren<Animator>().SetTrigger("EarthRamp");
+
+        float impactDelay = Mathf.Min(0.2f, rampAppearDuration);
+        yield return new WaitForSeconds(impactDelay);
+
+        Quaternion finalRot = Quaternion.LookRotation(spawnPoint.forward, Vector3.up) * rampPrefab.transform.rotation;
+        currentRamp = Instantiate(rampPrefab, groundPos - new Vector3(0, rampUndergroundOffset, 0), finalRot);
+        StartCoroutine(RaiseFromGround(currentRamp.transform, rampRiseHeight + rampUndergroundOffset, rampAppearDuration));
+
+        float remaining = rampAppearDuration - impactDelay;
+        if (remaining > 0) yield return new WaitForSeconds(remaining);
+
+        playerController.movementLocked = false;
+        isRampCasting = false;
+
+        rampIconUI?.SetOnCooldown(rampCooldownDuration);
+        StartCoroutine(RampCooldownRoutine());
+    }
+
+    private IEnumerator RampCooldownRoutine()
+    {
+        isRampOnCooldown = true;
+        yield return new WaitForSeconds(rampCooldownDuration);
+        isRampOnCooldown = false;
+    }
+
+    private IEnumerator SinkAndDestroy(Transform ramp)
+    {
+        Vector3 sinkStart  = ramp.position;
+        Vector3 sinkTarget = sinkStart - new Vector3(0, rampSinkDistance, 0);
 
         float elapsed = 0f;
-
-        while (elapsed < duration)
+        while (elapsed < rampSinkDuration)
         {
+            if (ramp == null) yield break;
             elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / duration);
-            ramp.position = Vector3.Lerp(startPos, targetPos, t);
+            ramp.position = Vector3.Lerp(sinkStart, sinkTarget, Mathf.Clamp01(elapsed / rampSinkDuration));
             yield return null;
         }
 
+        if (ramp != null) Destroy(ramp.gameObject);
+    }
+
+    // ------------------------- utilidades -------------------------
+
+    private IEnumerator RaiseFromGround(Transform ramp, float riseHeight, float duration)
+    {
+        Vector3 startPos  = ramp.position;
+        Vector3 targetPos = new Vector3(startPos.x, startPos.y + riseHeight, startPos.z);
+
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            ramp.position = Vector3.Lerp(startPos, targetPos, Mathf.Clamp01(elapsed / duration));
+            yield return null;
+        }
         ramp.position = targetPos;
     }
 
     public bool IsUsingAbility()
     {
-        return isOnCooldown || isCasting;
+        return isBlockOnCooldown || isRampOnCooldown || isBlockCasting || isRampCasting;
     }
 }
