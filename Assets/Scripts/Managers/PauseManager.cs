@@ -50,7 +50,7 @@ public class PauseManager : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("⚠️ Falta un EventSystem en la escena. Créalo desde UI > Event System.");
+                Debug.LogWarning("Falta un EventSystem en la escena. Créalo desde UI > Event System.");
             }
 
             if (idJugador == 1)

@@ -1,9 +1,5 @@
 using UnityEngine;
 
-/// <summary>
-/// Ponlo en el Canvas de la escena. Tiene las referencias a los 4 íconos.
-/// Los scripts del prefab lo buscan solos en Start(), sin arrastrar nada.
-/// </summary>
 public class AbilityHUD : MonoBehaviour
 {
     public static AbilityHUD Instance { get; private set; }
@@ -15,6 +11,14 @@ public class AbilityHUD : MonoBehaviour
     [Header("Fuego")]
     public CooldownUI fireballIcon;
     public CooldownUI laserIcon;
+
+    [Header("Agua")]
+    public CooldownUI waterLaserIcon;
+    public CooldownUI waterClonIcon;
+
+    [Header("Aire")]
+    public CooldownUI airRepulsionIcon;
+    public CooldownUI airAttractionIcon;
 
     private void Awake()
     {

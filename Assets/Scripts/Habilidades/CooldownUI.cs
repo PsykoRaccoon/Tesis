@@ -2,10 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-/// <summary>
-/// Adjunta este script al objeto del ícono de habilidad.
-/// Solo necesita el Image del ícono, sin overlay ni configuración extra.
-/// </summary>
 public class CooldownUI : MonoBehaviour
 {
     [Header("Referencia")]

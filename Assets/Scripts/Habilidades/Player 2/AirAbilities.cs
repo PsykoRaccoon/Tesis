@@ -11,85 +11,83 @@ public class AirAbilities : MonoBehaviour
     [SerializeField] private string repulsionTrigger;
     [SerializeField] private string attractionTrigger;
 
-
     [Header("Repulsion Config")]
     [SerializeField] private Vector3 boxSize = new Vector3();
     [SerializeField] private float force;
-    [SerializeField] private float upwardModifier ;
+    [SerializeField] private float upwardModifier;
     [SerializeField] private LayerMask affectedLayers;
 
     [Header("Timing")]
-    [SerializeField] private float abilityDuration; //tiempo que se mantiene bloqueado despues de lanzar la hab
-    [SerializeField] private float cooldown; //cooldown xd 
-    [SerializeField] private float animationTime; //tiempo antes de que salga la hab
-    private bool isOnCooldown = false;
+    [SerializeField] private float abilityDuration;
+    [SerializeField] private float cooldown;
+    [SerializeField] private float animationTime;
+
+    // --- UI ---
+    private CooldownUI repulsionIconUI;
+    private CooldownUI attractionIconUI;
+
+    private bool isRepulsionOnCooldown = false;
+    private bool isAttractionOnCooldown = false;
 
     public bool IsActive { get; set; } = false;
 
+    private void Start()
+    {
+        if (AbilityHUD.Instance != null)
+        {
+            repulsionIconUI  = AbilityHUD.Instance.airRepulsionIcon;
+            attractionIconUI = AbilityHUD.Instance.airAttractionIcon;
+        }
+    }
+
     public void Habilidad1(InputAction.CallbackContext context)
     {
-        if (!IsActive) return;
-        if (!context.performed) return;
-        if (isOnCooldown) return;
-
+        if (!IsActive || !context.performed || isRepulsionOnCooldown) return;
         StartCoroutine(ForceWaveRoutine());
     }
 
     public void Habilidad2(InputAction.CallbackContext context)
     {
-        if (!IsActive) return;
-        if (!context.performed) return;
-        if (isOnCooldown) return;
-
+        if (!IsActive || !context.performed || isAttractionOnCooldown) return;
         StartCoroutine(PullRoutine());
     }
 
     //////////////////////////////////// Logica de habilidad de empuje ////////////////////////////////////
+
     private IEnumerator ForceWaveRoutine()
     {
-        isOnCooldown = true;
+        isRepulsionOnCooldown = true;
+        repulsionIconUI?.SetUnavailable();
 
-        if (playerController != null)
-        {
-            playerController.movementLocked = true;
-        }
+        if (playerController != null) playerController.movementLocked = true;
+        if (animator != null) animator.SetTrigger(repulsionTrigger);
 
-        if (animator != null)
-        {
-            animator.SetTrigger(repulsionTrigger);
-        }
-
-        yield return new WaitForSeconds(animationTime); 
+        yield return new WaitForSeconds(animationTime);
 
         ApplyForceWave();
 
         yield return new WaitForSeconds(abilityDuration);
 
-        if (playerController != null)
-        {
-            playerController.movementLocked = false;
-        }
+        if (playerController != null) playerController.movementLocked = false;
+
+        repulsionIconUI?.SetOnCooldown(cooldown);
 
         yield return new WaitForSeconds(cooldown);
 
-        isOnCooldown = false;
+        isRepulsionOnCooldown = false;
     }
 
     private void ApplyForceWave()
     {
         Vector3 center = originPoint.position + transform.forward * (boxSize.z / 2f);
-
         Collider[] hits = Physics.OverlapBox(center, boxSize / 2f, transform.rotation, affectedLayers);
 
         foreach (Collider hit in hits)
         {
             Rigidbody rb = hit.attachedRigidbody;
-
             if (rb != null)
             {
-                Vector3 direction = transform.forward;
-
-                rb.AddForce(direction * force, ForceMode.Impulse);
+                rb.AddForce(transform.forward * force, ForceMode.Impulse);
                 rb.AddForce(Vector3.up * upwardModifier, ForceMode.Impulse);
             }
         }
@@ -100,28 +98,20 @@ public class AirAbilities : MonoBehaviour
         if (originPoint == null) return;
 
         Gizmos.color = Color.cyan;
-
         Vector3 center = originPoint.position + transform.forward * (boxSize.z / 2f);
-
         Gizmos.matrix = Matrix4x4.TRS(center, transform.rotation, Vector3.one);
         Gizmos.DrawWireCube(Vector3.zero, boxSize);
     }
 
     //////////////////////////////////// Logica de habilidad de atraccion ////////////////////////////////////
+
     private IEnumerator PullRoutine()
     {
-        isOnCooldown = true;
+        isAttractionOnCooldown = true;
+        attractionIconUI?.SetUnavailable();
 
-        if (playerController != null)
-        {
-            playerController.movementLocked = true;
-        }
-
-        if (animator != null)
-        {
-            animator.SetTrigger(attractionTrigger);
-            
-        }
+        if (playerController != null) playerController.movementLocked = true;
+        if (animator != null) animator.SetTrigger(attractionTrigger);
 
         yield return new WaitForSeconds(animationTime);
 
@@ -129,31 +119,26 @@ public class AirAbilities : MonoBehaviour
 
         yield return new WaitForSeconds(abilityDuration);
 
-        if (playerController != null)
-        {
-            playerController.movementLocked = false;
-            
-        }
+        if (playerController != null) playerController.movementLocked = false;
+
+        attractionIconUI?.SetOnCooldown(cooldown);
 
         yield return new WaitForSeconds(cooldown);
 
-        isOnCooldown = false;
+        isAttractionOnCooldown = false;
     }
 
     private void ApplyPullWave()
     {
         Vector3 center = originPoint.position + transform.forward * (boxSize.z / 2f);
-
         Collider[] hits = Physics.OverlapBox(center, boxSize / 2f, transform.rotation, affectedLayers);
 
         foreach (Collider hit in hits)
         {
             Rigidbody rb = hit.attachedRigidbody;
-
             if (rb != null && !rb.isKinematic)
             {
                 Vector3 direction = (originPoint.position - hit.transform.position).normalized;
-
                 rb.AddForce(direction * force, ForceMode.Impulse);
                 rb.AddForce(Vector3.up * upwardModifier, ForceMode.Impulse);
             }

@@ -1303,8 +1303,8 @@ GameObject:
   - component: {fileID: 1383080254200005583}
   - component: {fileID: 8252372492642289295}
   - component: {fileID: 4325788921464982255}
-  - component: {fileID: 2734724485687269665}
   - component: {fileID: 5284162034873048168}
+  - component: {fileID: 2734724485687269665}
   - component: {fileID: 8716222031473269039}
   - component: {fileID: 3511569357603505690}
   - component: {fileID: 994085427568230234}
@@ -1457,19 +1457,6 @@ MonoBehaviour:
   clonSpawnPoint: {fileID: 8665142357206633813}
   cooldown: 5
   aimInput: {x: 0, y: 0}
---- !u!114 &2734724485687269665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5004115424102698426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46a09c89ee28d0343a5990d584fade2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1668717007757327538}
 --- !u!114 &5284162034873048168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1496,6 +1483,19 @@ MonoBehaviour:
   abilityDuration: 0.3
   cooldown: 3
   animationTime: 0.3
+--- !u!114 &2734724485687269665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5004115424102698426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a09c89ee28d0343a5990d584fade2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1668717007757327538}
 --- !u!114 &8716222031473269039
 MonoBehaviour:
   m_ObjectHideFlags: 0
