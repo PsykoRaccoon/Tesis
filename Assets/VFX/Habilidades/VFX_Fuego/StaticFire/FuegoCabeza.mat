@@ -59,7 +59,7 @@ Material:
     - _FirePower: 0.5
     - _FireThreshold: -0.5
     - _FireVel: -0.3
-    - _MaskPower: 6
+    - _MaskPower: 5.08
     - _NoiseVoronoiVel: -0.5
     - _QueueControl: 0
     - _QueueOffset: 0
