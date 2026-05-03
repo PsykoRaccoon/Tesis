@@ -103,7 +103,7 @@ Material:
     - _BurntAmount: 0
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _ColorAmount: 2
+    - _ColorAmount: 4.5
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
