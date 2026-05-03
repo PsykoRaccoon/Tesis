@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3589580744332188136}
   - component: {fileID: 5941104584260650303}
   - component: {fileID: 4376761480281814201}
+  - component: {fileID: -9016330475287223684}
   m_Layer: 0
   m_Name: Enredadera
   m_TagString: Untagged
@@ -109,3 +110,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.03725738, y: 0.042175137, z: 0.116280586}
   m_Center: {x: 0.0020675277, y: 0.0013430594, z: 0.052789144}
+--- !u!114 &-9016330475287223684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6744478108956758113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3bf72643c0f7ab40b357f1d837be635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reactionTag: Fire
+  shaderProperty: _BurntAmount
+  burntFrom: 0
+  burntTo: 1.2
+  duration: 1.5
+  desactivarCollider: 1
+  destruirObjeto: 0
