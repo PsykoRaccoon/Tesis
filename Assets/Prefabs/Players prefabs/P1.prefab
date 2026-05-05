@@ -1556,10 +1556,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   aimDistance: 10
+  minAimDistance: 3
+  maxAimDistance: 15
+  aimDistanceSpeed: 10
   groundMask:
     serializedVersion: 2
     m_Bits: 8
   cooldownDuration: 2
+  fireballRotationSpeed: 180
+  fireballRotationSmoothTime: 0.1
   aimBoolName: isAiming
   throwTriggerName: Throw
   animator: {fileID: 3054891715927718764}
@@ -1586,26 +1591,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 2472521253014834558}
   spawnPoint: {fileID: 6713470555379174042}
-  blockPrefab: {fileID: 7829821642714444320, guid: 85ade36de8a458d449c2cad4428e47af, type: 3}
-  rampPrefab: {fileID: 6972952682389166373, guid: 0c9773f0c0dce3a4b83fffc0a1e8c47d, type: 3}
+  blockPrefab: {fileID: 537548722006958442, guid: 4e9bea543cc02b043a3afe0b552fdd61, type: 3}
+  rampPrefab: {fileID: 8937149023786853311, guid: 59bc1a3d72ef0a24f8d449afcd0b6ce9, type: 3}
   groundMask:
     serializedVersion: 2
     m_Bits: 8
   spawnDistance: 2
   blockCooldownDuration: 5
   blockLifetime: 7
-  blockRiseHeight: 3
+  blockRiseHeight: 2.5
   appearDuration: 1.5
   sinkDistance: 5
   sinkDuration: 1.5
   undergroundOffset: 4
   floatDuration: 5
   rampCooldownDuration: 5
-  rampRiseHeight: 2
+  rampRiseHeight: -1
   rampAppearDuration: 3
   rampSinkDistance: 8
-  rampSinkDuration: 3
-  rampUndergroundOffset: 5
+  rampSinkDuration: 2
+  rampUndergroundOffset: 8
 --- !u!114 &2059285980434394710
 MonoBehaviour:
   m_ObjectHideFlags: 0

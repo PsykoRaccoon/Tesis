@@ -11,6 +11,8 @@ public class EarthAbilities : MonoBehaviour
     [SerializeField] private GameObject blockPrefab;
     [SerializeField] private GameObject rampPrefab;
     [SerializeField] private LayerMask groundMask;
+    [Tooltip("Opcional: si no se asigna, buscará automáticamente la MainCamera")]
+    [SerializeField] private Transform cameraTransform; // Referencia a la cámara
 
     [Header("Config General")]
     [SerializeField] private float spawnDistance;
@@ -33,6 +35,18 @@ public class EarthAbilities : MonoBehaviour
     [SerializeField] private float rampSinkDuration;
     [SerializeField] private float rampUndergroundOffset;
 
+    [Header("Camera Shake")]
+    [SerializeField] private float blockRiseShakeIntensity = 0.15f;      // Shake cuando el bloque sube
+    [SerializeField] private float blockRiseShakeDuration = 0.3f;
+    [SerializeField] private float blockFallShakeIntensity = 0.25f;      // Shake cuando el bloque cae
+    [SerializeField] private float blockFallShakeDuration = 0.4f;
+    [SerializeField] private float blockSinkShakeIntensity = 0.12f;      // Shake cuando se hunde
+    [SerializeField] private float blockSinkShakeDuration = 0.25f;
+    [SerializeField] private float rampRiseShakeIntensity = 0.2f;        // Shake cuando la rampa sube
+    [SerializeField] private float rampRiseShakeDuration = 0.4f;
+    [SerializeField] private float rampSinkShakeIntensity = 0.15f;       // Shake cuando la rampa se hunde
+    [SerializeField] private float rampSinkShakeDuration = 0.3f;
+
     // --- UI ---
     private CooldownUI blockIconUI;
     private CooldownUI rampIconUI;
@@ -45,6 +59,9 @@ public class EarthAbilities : MonoBehaviour
     private bool isBlockCasting    = false;
     private bool isRampCasting     = false;
     private bool isActive          = false;
+
+    private Vector3 originalCameraPosition;
+    private bool isShaking = false;
 
     public bool IsActive
     {
@@ -61,6 +78,52 @@ public class EarthAbilities : MonoBehaviour
             blockIconUI = AbilityHUD.Instance.earthBlockIcon;
             rampIconUI  = AbilityHUD.Instance.earthRampIcon;
         }
+
+        if (cameraTransform == null)
+        {
+            Camera mainCam = Camera.main;
+            if (mainCam != null)
+            {
+                cameraTransform = mainCam.transform;
+                Debug.Log("[EarthAbilities] Cámara principal encontrada automáticamente");
+            }
+            else
+            {
+                Debug.LogWarning("[EarthAbilities] No se encontró una MainCamera. El camera shake no funcionará.");
+            }
+        }
+
+        if (cameraTransform != null)
+        {
+            originalCameraPosition = cameraTransform.localPosition;
+        }
+    }
+
+    // ------------------------- CAMERA SHAKE SYSTEM -------------------------
+
+    private IEnumerator CameraShake(float intensity, float duration)
+    {
+        if (cameraTransform == null) yield break;
+
+        isShaking = true;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            
+            float currentIntensity = intensity * (1f - (elapsed / duration));
+            
+            float offsetX = UnityEngine.Random.Range(-1f, 1f) * currentIntensity;
+            float offsetY = UnityEngine.Random.Range(-1f, 1f) * currentIntensity;
+            
+            cameraTransform.localPosition = originalCameraPosition + new Vector3(offsetX, offsetY, 0f);
+            
+            yield return null;
+        }
+
+        cameraTransform.localPosition = originalCameraPosition;
+        isShaking = false;
     }
 
     // ------------------------- habilidad 1 bloque -------------------------
@@ -109,6 +172,9 @@ public class EarthAbilities : MonoBehaviour
         Vector3 target = new Vector3(finalPos.x, finalPos.y + blockRiseHeight,   finalPos.z);
         block.position = start;
 
+        // SHAKE: Bloque empezando a salir del suelo
+        StartCoroutine(CameraShake(blockRiseShakeIntensity, blockRiseShakeDuration));
+
         float elapsed = 0f;
         while (elapsed < appearDuration)
         {
@@ -120,9 +186,13 @@ public class EarthAbilities : MonoBehaviour
 
         yield return new WaitForSeconds(floatDuration);
 
+        StartCoroutine(CameraShake(blockFallShakeIntensity, blockFallShakeDuration));
+
         if (rb != null) { rb.isKinematic = false; rb.useGravity = true; }
         yield return new WaitForSeconds(blockLifetime);
         if (rb != null) { rb.isKinematic = true; rb.useGravity = false; }
+
+        StartCoroutine(CameraShake(blockSinkShakeIntensity, blockSinkShakeDuration));
 
         Vector3 sinkStart  = block.position;
         Vector3 sinkTarget = sinkStart - new Vector3(0, sinkDistance, 0);
@@ -179,6 +249,9 @@ public class EarthAbilities : MonoBehaviour
 
         Quaternion finalRot = Quaternion.LookRotation(spawnPoint.forward, Vector3.up) * rampPrefab.transform.rotation;
         currentRamp = Instantiate(rampPrefab, groundPos - new Vector3(0, rampUndergroundOffset, 0), finalRot);
+        
+        StartCoroutine(CameraShake(rampRiseShakeIntensity, rampRiseShakeDuration));
+        
         StartCoroutine(RaiseFromGround(currentRamp.transform, rampRiseHeight + rampUndergroundOffset, rampAppearDuration));
 
         float remaining = rampAppearDuration - impactDelay;
@@ -200,6 +273,8 @@ public class EarthAbilities : MonoBehaviour
 
     private IEnumerator SinkAndDestroy(Transform ramp)
     {
+        StartCoroutine(CameraShake(rampSinkShakeIntensity, rampSinkShakeDuration));
+
         Vector3 sinkStart  = ramp.position;
         Vector3 sinkTarget = sinkStart - new Vector3(0, rampSinkDistance, 0);
 

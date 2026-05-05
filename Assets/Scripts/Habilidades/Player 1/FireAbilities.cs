@@ -17,8 +17,15 @@ public class FireAbilities : MonoBehaviour
 
     [Header("Config")]
     [SerializeField] private float aimDistance;
+    [SerializeField] private float minAimDistance;
+    [SerializeField] private float maxAimDistance;
+    [SerializeField] private float aimDistanceSpeed;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float cooldownDuration;
+
+    [Header("Fireball Rotation")]                           
+    [SerializeField] private float fireballRotationSpeed;
+    [SerializeField, Range(0.05f, 1f)] private float fireballRotationSmoothTime;
 
     [Header("Animaciones")]
     [SerializeField] private string aimBoolName;
@@ -40,6 +47,7 @@ public class FireAbilities : MonoBehaviour
     private bool isAiming = false;
     private bool isOnCooldown = false;
     private Vector3 targetPosition;
+    private float currentAimDistance;  
 
     //-------------------------------------------------------------------------------------\\
 
@@ -91,6 +99,7 @@ public class FireAbilities : MonoBehaviour
         // --- bola de fuego --- \\
         if (isAiming && currentProjectile != null)
         {
+            HandleFireballAiming();  
             UpdateMarkerPosition();
             DrawTrajectory();
             currentProjectile.FollowSpawn(spawnPoint);
@@ -129,6 +138,9 @@ public class FireAbilities : MonoBehaviour
         if (!playerController.IsGrounded) return;
 
         isAiming = true;
+        currentAimDistance = aimDistance;  
+
+        playerController.movementLocked = true;  
 
         fireballIconUI?.SetUnavailable();
 
@@ -144,6 +156,7 @@ public class FireAbilities : MonoBehaviour
     private void CancelAiming()
     {
         isAiming = false;
+        playerController.movementLocked = false;  
         animator.SetBool(aimBoolName, false);
         currentMarker.SetActive(false);
         trajectoryLine.enabled = false;
@@ -163,6 +176,7 @@ public class FireAbilities : MonoBehaviour
         if (currentProjectile == null) return;
 
         isAiming = false;
+        playerController.movementLocked = false;
 
         animator.SetBool(aimBoolName, false);
         animator.SetTrigger(throwTriggerName); 
@@ -176,9 +190,28 @@ public class FireAbilities : MonoBehaviour
         currentProjectile.Launch(spawnPoint.position, targetPosition, OnProjectileComplete);
     }
 
+    private void HandleFireballAiming()
+    {
+        float horizontal = aimInput.x;
+        
+        if (Mathf.Abs(horizontal) > 0.1f)
+        {
+            float rotationAmount = horizontal * fireballRotationSpeed * Time.deltaTime;
+            transform.Rotate(0, rotationAmount, 0);
+        }
+
+        float vertical = aimInput.y;
+        
+        if (Mathf.Abs(vertical) > 0.1f)
+        {
+            currentAimDistance += vertical * aimDistanceSpeed * Time.deltaTime;
+            currentAimDistance = Mathf.Clamp(currentAimDistance, minAimDistance, maxAimDistance);
+        }
+    }
+
     private void UpdateMarkerPosition()
     {
-        Vector3 rayOrigin = spawnPoint.position + spawnPoint.forward * aimDistance + Vector3.up * 2f;
+        Vector3 rayOrigin = spawnPoint.position + spawnPoint.forward * currentAimDistance + Vector3.up * 2f;
 
         if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, 10f, groundMask))
         {
@@ -186,7 +219,7 @@ public class FireAbilities : MonoBehaviour
         }
         else
         {
-            targetPosition = spawnPoint.position + spawnPoint.forward * aimDistance;
+            targetPosition = spawnPoint.position + spawnPoint.forward * currentAimDistance;
         }
         currentMarker.transform.position = targetPosition;
     }
