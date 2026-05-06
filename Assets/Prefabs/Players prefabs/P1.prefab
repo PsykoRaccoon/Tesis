@@ -1596,6 +1596,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+  cameraTransform: {fileID: 0}
   spawnDistance: 2
   blockCooldownDuration: 5
   blockLifetime: 7
@@ -1611,6 +1612,16 @@ MonoBehaviour:
   rampSinkDistance: 8
   rampSinkDuration: 2
   rampUndergroundOffset: 8
+  blockRiseShakeIntensity: 0.15
+  blockRiseShakeDuration: 1.5
+  blockFallShakeIntensity: 0.25
+  blockFallShakeDuration: 0.4
+  blockSinkShakeIntensity: 0.12
+  blockSinkShakeDuration: 1.5
+  rampRiseShakeIntensity: 0.2
+  rampRiseShakeDuration: 3
+  rampSinkShakeIntensity: 0.15
+  rampSinkShakeDuration: 2
 --- !u!114 &2059285980434394710
 MonoBehaviour:
   m_ObjectHideFlags: 0
