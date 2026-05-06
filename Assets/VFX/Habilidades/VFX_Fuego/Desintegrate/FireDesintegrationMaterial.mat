@@ -32,6 +32,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 2478013016554174d956e7347a79b32f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _TextureNormal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -46,15 +50,20 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BurntAmount: 1
+    - _BurntAmount: 0.78
     - _ColorAmount: 2
+    - _DissolveAmount: 0.5
     - _DistortionAmount: 0.44
+    - _EdgeAmount: 1.2
+    - _HeatWaveAmount: 0.2
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Velocity: 1
+    - _WiggleAmount: 0.05
     m_Colors:
+    - _ColorNormal: {r: 0.509434, g: 0.033641797, b: 0.033641797, a: 0}
     - _FireColor: {r: 0, g: 0, b: 0, a: 0}
-    - _FireHotColor: {r: 1.4980394, g: 0, b: 0, a: 1}
+    - _FireHotColor: {r: 1.4716982, g: 0.008330246, b: 0.008330246, a: 1}
     - _FireMidColor: {r: 1.4980394, g: 0.93951833, b: 0, a: 1}
     - _ScrollSpeed: {r: 0, g: -1, b: 0, a: 0}
   m_BuildTextureStacks: []
