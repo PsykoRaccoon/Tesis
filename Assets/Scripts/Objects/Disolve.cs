@@ -20,11 +20,13 @@ public class Disolve : MonoBehaviour
 
     private Material[] _mats;
     private Collider   _col;
-    private bool       _reacting = false;
+    private bool _reacting = false;
+    public GameObject wall;
 
     void Awake()
     {
         _col = GetComponent<Collider>();
+        wall.SetActive(true);
 
         _mats = GetComponent<Renderer>().materials;
     }
@@ -66,6 +68,9 @@ public class Disolve : MonoBehaviour
             _col.enabled = false;
 
         if (destruirObjeto)
+        {
             Destroy(gameObject);
+            wall.SetActive(false);
+        }
     }
 }

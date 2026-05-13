@@ -22,6 +22,10 @@ public class AirAbilities : MonoBehaviour
     [SerializeField] private float cooldown;
     [SerializeField] private float animationTime;
 
+    [Header("Particles")]
+    [SerializeField] private GameObject repulsionParticles;
+    [SerializeField] private GameObject attractionParticles;
+
     // --- UI ---
     private CooldownUI repulsionIconUI;
     private CooldownUI attractionIconUI;
@@ -63,10 +67,13 @@ public class AirAbilities : MonoBehaviour
         if (animator != null) animator.SetTrigger(repulsionTrigger);
 
         yield return new WaitForSeconds(animationTime);
+        if (repulsionParticles != null) repulsionParticles.SetActive(true);
 
         ApplyForceWave();
 
         yield return new WaitForSeconds(abilityDuration);
+
+        if (repulsionParticles != null) repulsionParticles.SetActive(false);
 
         if (playerController != null) playerController.movementLocked = false;
 
@@ -115,9 +122,13 @@ public class AirAbilities : MonoBehaviour
 
         yield return new WaitForSeconds(animationTime);
 
+        if (attractionParticles != null) attractionParticles.SetActive(true);
+
         ApplyPullWave();
 
         yield return new WaitForSeconds(abilityDuration);
+
+        if (attractionParticles != null) attractionParticles.SetActive(false);
 
         if (playerController != null) playerController.movementLocked = false;
 

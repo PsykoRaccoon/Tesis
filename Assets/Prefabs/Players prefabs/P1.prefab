@@ -1690,7 +1690,7 @@ MonoBehaviour:
   playerRenderer: {fileID: 8744742106036808742}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 2
-  stunDuration: 1
+  stunDuration: 2
   knockbackForce: 15
   animator: {fileID: 3054891715927718764}
   damageTriggerName: Damage

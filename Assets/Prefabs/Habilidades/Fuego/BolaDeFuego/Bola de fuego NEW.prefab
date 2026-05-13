@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1769629088}
   - component: {fileID: 1769629090}
   - component: {fileID: 1769629089}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: fire1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4849,7 +4849,7 @@ GameObject:
   - component: {fileID: 4072979575098651739}
   - component: {fileID: 8770287910165903379}
   - component: {fileID: -1800886419463539497}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bola de fuego NEW
   m_TagString: Fire
   m_Icon: {fileID: 0}
@@ -9873,7 +9873,7 @@ GameObject:
   - component: {fileID: 2972392977518692227}
   - component: {fileID: 2972392977518692225}
   - component: {fileID: 2972392977518692224}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: fire2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14706,7 +14706,7 @@ GameObject:
   - component: {fileID: 2972392978296103415}
   - component: {fileID: 2972392978296103413}
   - component: {fileID: 2972392978296103412}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: pati1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19548,7 +19548,7 @@ GameObject:
   - component: {fileID: 2972392978941833380}
   - component: {fileID: 2972392978941833402}
   - component: {fileID: 2972392978941833381}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: FX_Smoke_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24381,7 +24381,7 @@ GameObject:
   - component: {fileID: 2972392979007978753}
   - component: {fileID: 2972392979007978759}
   - component: {fileID: 2972392979007978758}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: fire1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

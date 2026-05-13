@@ -1,4 +1,5 @@
 using UnityEngine;
+
 public class Health : MonoBehaviour, IDamageable
 {
     [SerializeField] protected int maxHealth = 10;
@@ -18,9 +19,12 @@ public class Health : MonoBehaviour, IDamageable
         currentHealth -= amount;
 
         if (currentHealth <= 0)
-        {
             Die(type);
-        }
+    }
+
+    public virtual void TakeDamage(int amount, DamageType type, Vector3 sourcePosition)
+    {
+        TakeDamage(amount, type);
     }
 
     protected virtual void Die(DamageType type)

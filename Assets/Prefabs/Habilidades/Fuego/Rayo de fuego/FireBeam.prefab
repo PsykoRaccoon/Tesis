@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1271615490496917524}
   - component: {fileID: 2167943525225921269}
   - component: {fileID: 6798158320304312439}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Energy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4903,7 +4903,7 @@ GameObject:
   - component: {fileID: -8124951729304031777}
   - component: {fileID: 9104773016270990166}
   - component: {fileID: 1421145103268463352}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FireBeam
   m_TagString: Fire
   m_Icon: {fileID: 0}
@@ -4969,7 +4969,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16384
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -5006,7 +5006,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1579296842414044860}
   - component: {fileID: 4664638735789234950}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5155,7 +5155,7 @@ GameObject:
   - component: {fileID: 1976635723875991187}
   - component: {fileID: 1293035935564807817}
   - component: {fileID: 2979974590949115509}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

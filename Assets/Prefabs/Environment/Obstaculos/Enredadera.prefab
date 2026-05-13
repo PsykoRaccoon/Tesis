@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5941104584260650303}
   - component: {fileID: 4376761480281814201}
   - component: {fileID: -9016330475287223684}
+  - component: {fileID: 6759788363843099697}
   m_Layer: 0
   m_Name: Enredadera
   m_TagString: Untagged
@@ -104,7 +105,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -129,3 +130,19 @@ MonoBehaviour:
   duration: 1.5
   desactivarCollider: 1
   destruirObjeto: 0
+--- !u!114 &6759788363843099697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6744478108956758113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba33a9c12b4aa134cb877fc90d7c7673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
+  damageType: 2
+  targetTags:
+  - Player

@@ -36,31 +36,31 @@ public class PlayerHealth : Health
 
     public override void TakeDamage(int amount, DamageType type)
     {
+        TakeDamage(amount, type, transform.position);
+    }
+
+    public override void TakeDamage(int amount, DamageType type, Vector3 sourcePosition)
+    {
         if (isDead) return;
 
-        Vector3 direction = (transform.position - Camera.main.transform.position).normalized;
+        Vector3 knockbackDirection = (transform.position - sourcePosition).normalized;
+
+        if (knockbackDirection == Vector3.zero)
+            knockbackDirection = -transform.forward;
 
         if (playerController != null)
-        {
-            playerController.ApplyKnockback(direction * knockbackForce);
-        }
+            playerController.ApplyKnockback(knockbackDirection * knockbackForce);
 
         if (animator != null)
-        {
             animator.SetTrigger(damageTriggerName);
-        }
 
         StartCoroutine(DamageFlash());
 
         if (type == DamageType.Player)
         {
             currentHealth -= amount;
-
-            if (currentHealth <= 1)
-                currentHealth = 1;
-
+            if (currentHealth <= 1) currentHealth = 1;
             Debug.Log("Friendly Fire!");
-
             StartCoroutine(Stun());
             return;
         }
@@ -95,16 +95,12 @@ public class PlayerHealth : Health
         isStunned = true;
 
         if (playerController != null)
-        {
             playerController.movementLocked = true;
-        }
 
         yield return new WaitForSeconds(stunDuration);
 
         if (playerController != null)
-        {
             playerController.movementLocked = false;
-        }
 
         isStunned = false;
     }
@@ -114,9 +110,7 @@ public class PlayerHealth : Health
     protected override void Die(DamageType type)
     {
         isDead = true;
-
         Debug.Log("Jugador murió por: " + type);
-
         gameObject.SetActive(false);
     }
 }
