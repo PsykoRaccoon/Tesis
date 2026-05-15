@@ -4947,6 +4947,7 @@ MonoBehaviour:
   effectOnlyLayers:
     serializedVersion: 2
     m_Bits: 2048
+  laserWidth: 0.5
   impactEffects:
   - label: Rayo
     layer: 11
