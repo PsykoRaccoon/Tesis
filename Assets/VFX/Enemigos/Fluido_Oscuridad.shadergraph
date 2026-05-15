@@ -1533,8 +1533,8 @@
     "m_ObjectId": "17ddf3e7604c4737ba3cf6dec95a4d2f",
     "m_Title": "Get View Direction",
     "m_Position": {
-        "x": -2183.0,
-        "y": 777.9999389648438
+        "x": -2184.0,
+        "y": 776.7999877929688
     }
 }
 
@@ -1944,8 +1944,8 @@
     "m_ObjectId": "249a4ac88d3d4046a88518a1df12fa1f",
     "m_Title": "Base Color",
     "m_Position": {
-        "x": -1433.0,
-        "y": 8.99997329711914
+        "x": -1433.5999755859375,
+        "y": 8.0
     }
 }
 
@@ -3648,8 +3648,8 @@
     "m_ObjectId": "667b29831e6645ffb979276c3e3c0396",
     "m_Title": "GET Glitter Facing Directions (Sample Noises)",
     "m_Position": {
-        "x": -3198.0,
-        "y": 327.0
+        "x": -3198.39990234375,
+        "y": 325.5999755859375
     }
 }
 
@@ -5473,8 +5473,8 @@
     "m_ObjectId": "b057e18891ec4a0eabc560ee405c08cf",
     "m_Title": "Combine colores (Make glitter)",
     "m_Position": {
-        "x": -1422.0,
-        "y": 532.0
+        "x": -1422.4000244140625,
+        "y": 531.199951171875
     }
 }
 
@@ -6356,8 +6356,8 @@
     "m_ObjectId": "d666445dab5f48fa9c267533c2f4d883",
     "m_Title": "Posición para las olas (movimiento)",
     "m_Position": {
-        "x": -1728.0,
-        "y": -618.9999389648438
+        "x": -1728.7999267578125,
+        "y": -620.0
     }
 }
 

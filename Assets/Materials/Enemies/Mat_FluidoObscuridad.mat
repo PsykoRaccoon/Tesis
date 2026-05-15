@@ -56,8 +56,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _BaseGradientPower: 0.5
-    - _CellDensity: 15.14
-    - _EspacioEntreCelulas: 2.67
+    - _CellDensity: 5.3
+    - _EspacioEntreCelulas: 1.69
     - _FresnelPower: 6
     - _GlitterOffset: 0.5
     - _NoiseRotationSpeed: 0.5
@@ -67,8 +67,8 @@ Material:
     m_Colors:
     - _BaseColor: {r: 0.14509805, g: 0.11764706, b: 0.18039216, a: 1}
     - _BaseColor2: {r: 1, g: 0, b: 0.94696325, a: 1}
-    - _ColorDeCelulas: {r: 0, g: 0, b: 0, a: 1}
-    - _ColorEntreCelulas: {r: 0.4716981, g: 0.27322888, b: 0.45271486, a: 1}
+    - _ColorDeCelulas: {r: 0.14509805, g: 0.11764706, b: 0.18039216, a: 1}
+    - _ColorEntreCelulas: {r: 0.24705882, g: 0.16862746, b: 0.3529412, a: 1}
     - _FresnelColor: {r: 0.3584906, g: 0.048024215, b: 0.33734843, a: 1}
     - _GlitterColor: {r: 0.61960787, g: 0.49803922, b: 0.75686276, a: 1}
     - _NoiseRotationSpeed: {r: 0.12, g: 0.05, b: 0, a: 0}
