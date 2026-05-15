@@ -27,22 +27,14 @@ public class Disolve : MonoBehaviour
     {
         _col = GetComponent<Collider>();
         wall.SetActive(true);
+
         _mats = GetComponent<Renderer>().materials;
     }
 
-    // Bola de fuego
     void OnTriggerEnter(Collider other)
     {
         if (_reacting) return;
         if (!other.CompareTag(reactionTag)) return;
-        StartCoroutine(BurntRoutine());
-    }
-
-    // Rayo láser
-    void OnLaserEnter(GameObject source)
-    {
-        if (_reacting) return;
-        if (!source.CompareTag(reactionTag)) return;
         StartCoroutine(BurntRoutine());
     }
 
@@ -79,6 +71,7 @@ public class Disolve : MonoBehaviour
         {
             wall.SetActive(false);
             Destroy(gameObject);
+           
         }
     }
 }

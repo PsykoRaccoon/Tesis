@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class Activator : MonoBehaviour
+public class ActivatorOnHit : MonoBehaviour
 {
     [Header("Tag que activa")]
     [SerializeField] private string reactionTag;
@@ -11,19 +11,10 @@ public class Activator : MonoBehaviour
 
     private bool _activated = false;
 
-    // Bola de fuego (y cualquier otro trigger normal)
     void OnTriggerEnter(Collider other)
     {
         if (_activated) return;
         if (!other.CompareTag(reactionTag)) return;
-        Activate();
-    }
-
-    // Rayo láser → llamado via SendMessage desde LaserAbility
-    void OnLaserEnter(GameObject source)
-    {
-        if (_activated) return;
-        if (!source.CompareTag(reactionTag)) return;
         Activate();
     }
 

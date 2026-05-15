@@ -7,7 +7,6 @@ public class LaserAbility : MonoBehaviour
     [SerializeField] private float maxDistance;
     [SerializeField] private LayerMask hitLayers;
     [SerializeField] private LayerMask effectOnlyLayers;
-    [SerializeField] private float laserWidth;
 
     [Header("Impact Effects")]
     [SerializeField] private List<LaserImpactEntry> impactEffects;
@@ -19,15 +18,13 @@ public class LaserAbility : MonoBehaviour
     private int currentHitLayer = -1;
     private float lastEffectSpawnTime = -999f;
 
-    private readonly HashSet<Collider> currentOverlapping = new();
-
     [System.Serializable]
     public class LaserImpactEntry
     {
         public string label;
         [Layer] public int layer;
         public GameObject prefab;
-        public float effectDuration = 1f;
+        public float effectDuration = 1f; 
     }
 
     private void Awake()
@@ -51,58 +48,27 @@ public class LaserAbility : MonoBehaviour
             currentLaserLength = maxDistance;
 
             if (Physics.Raycast(origin, direction, out RaycastHit effectHitInfo, maxDistance, effectOnlyLayers, QueryTriggerInteraction.Collide))
+            {
                 HandleImpactEffect(effectHitInfo);
+            }
             else
+            {
                 ClearImpactEffect();
+            }
         }
 
-        UpdateCollider(currentLaserLength);
-        CheckLaserOverlap();
-
         Debug.DrawRay(origin, direction * currentLaserLength, Color.red);
+    }
+
+    private void FixedUpdate()
+    {
+        UpdateCollider(currentLaserLength);
     }
 
     private void UpdateCollider(float length)
     {
         boxCollider.center = new Vector3(0, 0, length / 2f);
-        boxCollider.size = new Vector3(laserWidth, laserWidth, length);
-    }
-
-    private void CheckLaserOverlap()
-    {
-        Vector3 worldCenter = transform.TransformPoint(boxCollider.center);
-        Vector3 halfExtents = boxCollider.size / 2f;
-
-        Collider[] hits = Physics.OverlapBox(
-            worldCenter,
-            halfExtents,
-            transform.rotation,
-            ~0,
-            QueryTriggerInteraction.Collide
-        );
-
-        HashSet<Collider> newOverlapping = new();
-
-        foreach (Collider col in hits)
-        {
-            if (col.gameObject == gameObject) continue;
-
-            newOverlapping.Add(col);
-
-            if (!currentOverlapping.Contains(col))
-            {
-                col.SendMessage("OnLaserEnter", gameObject, SendMessageOptions.DontRequireReceiver);
-            }
-        }
-
-        foreach (Collider col in currentOverlapping)
-        {
-            if (!newOverlapping.Contains(col))
-                col.SendMessage("OnLaserExit", gameObject, SendMessageOptions.DontRequireReceiver);
-        }
-
-        currentOverlapping.Clear();
-        foreach (var c in newOverlapping) currentOverlapping.Add(c);
+        boxCollider.size = new Vector3(0.5f, 0.5f, length);
     }
 
     private void HandleImpactEffect(RaycastHit hitInfo)
@@ -148,6 +114,7 @@ public class LaserAbility : MonoBehaviour
     {
         if (currentEffect != null)
         {
+            Debug.Log($"[Laser] Efecto limpiado: {currentEffect.name}");
             Destroy(currentEffect);
             currentEffect = null;
         }
@@ -159,17 +126,14 @@ public class LaserAbility : MonoBehaviour
     {
         foreach (var entry in impactEffects)
         {
-            if (entry.layer == layer) return entry;
+            if (entry.layer == layer)
+                return entry;
         }
         return null;
     }
 
     private void OnDisable()
     {
-        foreach (Collider col in currentOverlapping)
-            col.SendMessage("OnLaserExit", gameObject, SendMessageOptions.DontRequireReceiver);
-
-        currentOverlapping.Clear();
         ClearImpactEffect();
     }
 }

@@ -2560,62 +2560,6 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: d28426de9b93db8488ca66590af944be, type: 2}
   m_BuildHeightMesh: 0
-<<<<<<< HEAD
-=======
---- !u!1 &616312799
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 616312800}
-  - component: {fileID: 616312801}
-  m_Layer: 14
-  m_Name: Pared (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &616312800
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 616312799}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.004853142, z: -0, w: -0.9999882}
-  m_LocalPosition: {x: 57.73, y: 56.7, z: 74.19}
-  m_LocalScale: {x: 22.217999, y: 95.52852, z: 11.697776}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1945262025}
-  m_LocalEulerAnglesHint: {x: 0, y: -0.556, z: 0}
---- !u!65 &616312801
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 616312799}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 12288
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.06, z: 0.24}
-  m_Center: {x: 0, y: 0, z: 0}
->>>>>>> c795c874e623f506f20dd81fcdb56d9f792a9f24
 --- !u!1 &621914146
 GameObject:
   m_ObjectHideFlags: 0
@@ -5879,62 +5823,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1241367650}
   m_CullTransparentMesh: 1
-<<<<<<< HEAD
-=======
---- !u!1 &1246718366
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1246718367}
-  - component: {fileID: 1246718368}
-  m_Layer: 14
-  m_Name: Pared (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1246718367
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1246718366}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.004853142, z: -0, w: -0.9999882}
-  m_LocalPosition: {x: 57.73, y: 72.8, z: 74.19}
-  m_LocalScale: {x: 6.3083997, y: 27.123598, z: 3.3213725}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1945262025}
-  m_LocalEulerAnglesHint: {x: 0, y: -0.556, z: 0}
---- !u!65 &1246718368
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1246718366}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 12288
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.06, z: 0.24}
-  m_Center: {x: 0, y: 0, z: 0}
->>>>>>> c795c874e623f506f20dd81fcdb56d9f792a9f24
 --- !u!1 &1294055382
 GameObject:
   m_ObjectHideFlags: 0
@@ -8014,13 +7902,6 @@ PrefabInstance:
       propertyPath: wall
       value: 
       objectReference: {fileID: 2008241111}
-<<<<<<< HEAD
-=======
-    - target: {fileID: -9016330475287223684, guid: 57b084f654cda8d4096e8fd9b2611990, type: 3}
-      propertyPath: destruirObjeto
-      value: 1
-      objectReference: {fileID: 0}
->>>>>>> c795c874e623f506f20dd81fcdb56d9f792a9f24
     - target: {fileID: -9016330475287223684, guid: 57b084f654cda8d4096e8fd9b2611990, type: 3}
       propertyPath: _cols.Array.size
       value: 1
