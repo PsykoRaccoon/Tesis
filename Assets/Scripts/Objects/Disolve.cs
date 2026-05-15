@@ -69,8 +69,9 @@ public class Disolve : MonoBehaviour
 
         if (destruirObjeto)
         {
-            Destroy(gameObject);
             wall.SetActive(false);
+            Destroy(gameObject);
+           
         }
     }
 }
