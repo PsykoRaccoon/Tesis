@@ -8,6 +8,9 @@ public class Disolve : MonoBehaviour
     [Header("Tag")]
     [SerializeField] private string reactionTag;
 
+    [Header("Comportamiento")]
+    [SerializeField] private bool esAgua = false;
+
     [Header("Shader")]
     [SerializeField] private string shaderProperty = "_BurntAmount";
     [SerializeField] private float burntFrom;
@@ -18,6 +21,9 @@ public class Disolve : MonoBehaviour
     [SerializeField] private bool desactivarCollider = true;
     [SerializeField] private bool destruirObjeto     = false;
 
+    [Header("Objetos a desactivar (solo si es agua)")]
+    [SerializeField] private GameObject[] objetosADesactivar;
+
     private Material[] _mats;
     private Collider   _col;
     private bool _reacting = false;
@@ -27,7 +33,6 @@ public class Disolve : MonoBehaviour
     {
         _col = GetComponent<Collider>();
         wall.SetActive(true);
-
         _mats = GetComponent<Renderer>().materials;
     }
 
@@ -35,6 +40,13 @@ public class Disolve : MonoBehaviour
     {
         if (_reacting) return;
         if (!other.CompareTag(reactionTag)) return;
+        StartCoroutine(BurntRoutine());
+    }
+
+    void OnLaserEnter(GameObject source)
+    {
+        if (_reacting) return;
+        if (!source.CompareTag(reactionTag)) return;
         StartCoroutine(BurntRoutine());
     }
 
@@ -71,7 +83,16 @@ public class Disolve : MonoBehaviour
         {
             wall.SetActive(false);
             Destroy(gameObject);
-           
+        }
+
+        // Si es agua, desactiva los objetos del array al terminar
+        if (esAgua && objetosADesactivar != null)
+        {
+            foreach (var obj in objetosADesactivar)
+            {
+                if (obj != null)
+                    obj.SetActive(false);
+            }
         }
     }
 }

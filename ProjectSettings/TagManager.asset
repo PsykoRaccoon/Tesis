@@ -8,6 +8,7 @@ TagManager:
   - Environment
   - Enemy
   - Fire
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Fireball
   - Laser
   - Pared
-  - 
+  - Tronco
   - 
   - 
   - 

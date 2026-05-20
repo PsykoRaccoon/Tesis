@@ -18,6 +18,13 @@ public class ActivatorOnHit : MonoBehaviour
         Activate();
     }
 
+    void OnLaserEnter(GameObject source)
+    {
+        if (_activated) return;
+        if (!source.CompareTag(reactionTag)) return;
+        Activate();
+    }
+
     private void Activate()
     {
         _activated = true;

@@ -1131,7 +1131,7 @@ MonoBehaviour:
   runSpeed: 6
   movementLocked: 0
   airControl: 0.98
-  jumpHeight: 7
+  jumpHeight: 5.5
   gravity: -8.5
   rotationSpeed: 5
   rotationSmoothTime: 0.5
