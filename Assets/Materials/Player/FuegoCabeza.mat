@@ -55,12 +55,12 @@ Material:
     - _CastShadows: 1
     - _Cull: 2
     - _DstBlend: 1
-    - _FireDetails: 10
-    - _FirePower: 0.5
-    - _FireThreshold: -0.5
-    - _FireVel: -0.3
-    - _MaskPower: 5.08
-    - _NoiseVoronoiVel: -0.5
+    - _FireDetails: 7.3
+    - _FirePower: 0.51
+    - _FireThreshold: -0.687
+    - _FireVel: -0.409
+    - _MaskPower: 5.57
+    - _NoiseVoronoiVel: -0.272
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 5
@@ -69,7 +69,7 @@ Material:
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _FireColor: {r: 0.5, g: 0.2230552, b: 0, a: 1}
+    - _FireColor: {r: 0.8592013, g: 0.38261303, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &6986220862006933985
