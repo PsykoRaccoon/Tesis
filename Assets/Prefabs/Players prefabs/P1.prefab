@@ -1585,7 +1585,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4863200768201220073}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1614119043b66c0439e8295f9dfea1d8, type: 3}
   m_Name: 
@@ -1659,8 +1659,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a43a074042f774aafe5f451db5b9a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptHabilidadesFuego: {fileID: 2899876793113829757}
-  scriptHabilidadesTierra: {fileID: 7117383140695707930}
+  abilityA: {fileID: 2899876793113829757}
+  abilityB: {fileID: 7117383140695707930}
 --- !u!114 &5710063312497194683
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 
-public class FireAbilities : MonoBehaviour
+public class FireAbilities : MonoBehaviour, IAbility
 {
     public bool IsActive { get; set; } = true;
 

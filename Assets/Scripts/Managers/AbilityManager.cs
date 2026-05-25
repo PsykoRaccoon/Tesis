@@ -1,44 +1,54 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerAbilityManager : MonoBehaviour
+public class AbilityManager : MonoBehaviour
 {
-    [Header("Scripts de habilidades")]
-    [SerializeField] private MonoBehaviour scriptHabilidadesFuego;
-    [SerializeField] private MonoBehaviour scriptHabilidadesTierra;
+    [Header("Habilidades")]
+    [SerializeField] private MonoBehaviour abilityA;
+    [SerializeField] private MonoBehaviour abilityB; 
 
-    private FireAbilities fuego;
-    private EarthAbilities tierra;
-    private bool abilityAIsActive = true;
+    private IAbility _a;
+    private IAbility _b;
+    private bool isAActive = true;
 
     private void Awake()
     {
-        fuego = scriptHabilidadesFuego as FireAbilities;
-        tierra = scriptHabilidadesTierra as EarthAbilities;
+        _a = abilityA as IAbility;
+        _b = abilityB as IAbility;
 
-        fuego.IsActive = true;
-        tierra.IsActive = false;
+        if (_a != null) _a.IsActive = true;
+        if (_b != null) _b.IsActive = false;
+    }
+
+    public void UnlockAbilityB()
+    {
+        Debug.Log("Habilidad B desbloqueada");
+    }
+
+    public void UnlockAndKeepCurrent()
+    {
+        if (_b != null) _b.IsActive = false; 
+        Debug.Log("Habilidad B desbloqueada");
     }
 
     public void SwitchAbility(InputAction.CallbackContext context)
     {
-        if (!context.performed)
-            return;
+        Debug.Log($"SwitchAbility llamado | enabled: {enabled} | performed: {context.performed}");
+        
+        if (!enabled || !context.performed) return;
 
-        if (abilityAIsActive && fuego != null && fuego.IsUsingAbility())
+        Debug.Log($"isAActive: {isAActive} | _a null: {_a == null} | _b null: {_b == null}");
+
+        if (isAActive && _a != null && _a.IsUsingAbility())
         {
-            Debug.Log("No se puede cambiar: habilidad de fuego en uso.");
+            Debug.Log($"Bloqueado por IsUsingAbility: {_a.IsUsingAbility()}");
             return;
         }
 
-        abilityAIsActive = !abilityAIsActive;
+        isAActive = !isAActive;
+        if (_a != null) _a.IsActive = isAActive;
+        if (_b != null) _b.IsActive = !isAActive;
 
-        fuego.IsActive = abilityAIsActive;
-        tierra.IsActive = !abilityAIsActive;
-
-        if (abilityAIsActive)
-            Debug.Log("Fire ON, Earth OFF");
-        else
-            Debug.Log("Fire OFF, Earth ON");
+        Debug.Log($"Después del switch → A.IsActive: {_a?.IsActive} | B.IsActive: {_b?.IsActive}");
     }
 }

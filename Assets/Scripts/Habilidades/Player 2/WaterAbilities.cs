@@ -2,9 +2,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class WaterAbilities : MonoBehaviour
+public class WaterAbilities : MonoBehaviour, IAbility
 {
-    public bool IsActive { get; set; } = true;
+    private bool isActive = true;
+    public bool IsActive
+    {
+        get => isActive;
+        set { isActive = value; enabled = isActive; }
+    }
 
     [Header("Laser Refs")]
     [SerializeField] private PlayerController playerController;
@@ -38,6 +43,8 @@ public class WaterAbilities : MonoBehaviour
 
     public bool IsUsingLaser() => isUsingLaser;
 
+    public bool IsUsingAbility() => isUsingLaser;
+    
     private void Start()
     {
         if (AbilityHUD.Instance != null)
@@ -64,7 +71,7 @@ public class WaterAbilities : MonoBehaviour
 
     public void Habilidad1(InputAction.CallbackContext context)
     {
-        if (!IsActive) return;
+        if (!enabled || !IsActive) return;
 
         if (context.performed && playerController.IsGrounded)
         {
@@ -155,7 +162,7 @@ public class WaterAbilities : MonoBehaviour
 
     public void AimVertical(InputAction.CallbackContext context)
     {
-        if (!IsActive) return;
+        if (!enabled || !IsActive) return;
         aimInput = context.ReadValue<Vector2>();
     }
 
@@ -163,7 +170,7 @@ public class WaterAbilities : MonoBehaviour
 
     public void Habilidad2(InputAction.CallbackContext context)
     {
-        if (!IsActive) return;
+        if (!enabled || !IsActive) return;
 
         if (context.performed && CanUseAbility2())
         {

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class AirAbilities : MonoBehaviour
+public class AirAbilities : MonoBehaviour, IAbility
 {
     [Header("Refs")]
     [SerializeField] private PlayerController playerController;
@@ -32,8 +32,13 @@ public class AirAbilities : MonoBehaviour
 
     private bool isRepulsionOnCooldown = false;
     private bool isAttractionOnCooldown = false;
-
-    public bool IsActive { get; set; } = false;
+    public bool IsUsingAbility() => isRepulsionOnCooldown || isAttractionOnCooldown;
+    private bool isActive = false;
+    public bool IsActive
+    {
+        get => isActive;
+        set { isActive = value; enabled = isActive; }
+    }
 
     private void Start()
     {
@@ -46,13 +51,13 @@ public class AirAbilities : MonoBehaviour
 
     public void Habilidad1(InputAction.CallbackContext context)
     {
-        if (!IsActive || !context.performed || isRepulsionOnCooldown) return;
+        if (!enabled ||!IsActive || !context.performed || isRepulsionOnCooldown) return;
         StartCoroutine(ForceWaveRoutine());
     }
 
     public void Habilidad2(InputAction.CallbackContext context)
     {
-        if (!IsActive || !context.performed || isAttractionOnCooldown) return;
+        if (!enabled || !IsActive || !context.performed || isAttractionOnCooldown) return;
         StartCoroutine(PullRoutine());
     }
 

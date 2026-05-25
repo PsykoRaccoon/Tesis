@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using System;
 
-public class EarthAbilities : MonoBehaviour
+public class EarthAbilities : MonoBehaviour, IAbility
 {
     [Header("Referencias")]
     [SerializeField] private PlayerController playerController;
@@ -121,7 +121,7 @@ public class EarthAbilities : MonoBehaviour
 
     public void Habilidad1(InputAction.CallbackContext context)
     {
-        if (!isActive || !context.performed || isBlockOnCooldown || !playerController.IsGrounded || isBlockCasting)
+        if (!enabled ||!isActive || !context.performed || isBlockOnCooldown || !playerController.IsGrounded || isBlockCasting)
             return;
 
         if (currentBlock != null) return;
@@ -211,7 +211,7 @@ public class EarthAbilities : MonoBehaviour
 
     public void Habilidad2(InputAction.CallbackContext context)
     {
-        if (!isActive || !context.performed || isRampOnCooldown || !playerController.IsGrounded || isRampCasting)
+        if (!enabled ||!isActive || !context.performed || isRampOnCooldown || !playerController.IsGrounded || isRampCasting)
             return;
 
         if (Physics.Raycast(SpawnOrigin, Vector3.down, out RaycastHit hit, 100f, groundMask))

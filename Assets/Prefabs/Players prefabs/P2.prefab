@@ -1005,8 +1005,8 @@ GameObject:
   - component: {fileID: 1121780571730051608}
   - component: {fileID: 4689879717893536515}
   - component: {fileID: 7288425952867191095}
+  - component: {fileID: -6959999717321687611}
   - component: {fileID: 4287326506370093745}
-  - component: {fileID: 4658138776441428763}
   - component: {fileID: 5359147739789565017}
   - component: {fileID: 6374611691962689753}
   - component: {fileID: 9094687271389402664}
@@ -1167,7 +1167,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4362687143241487701}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 186c785aff6aeff44bbd07a7737d4982, type: 3}
   m_Name: 
@@ -1188,6 +1188,20 @@ MonoBehaviour:
   animationTime: 0.3
   repulsionParticles: {fileID: 6232166314604954058}
   attractionParticles: {fileID: 1065367298191056052}
+--- !u!114 &-6959999717321687611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4362687143241487701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a43a074042f774aafe5f451db5b9a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityA: {fileID: 4689879717893536515}
+  abilityB: {fileID: 7288425952867191095}
 --- !u!114 &4287326506370093745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1201,20 +1215,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3100944251160473370}
---- !u!114 &4658138776441428763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4362687143241487701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 374731d8f736fc34e92a02e2c7d15c42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  water: {fileID: 4689879717893536515}
-  air: {fileID: 7288425952867191095}
 --- !u!114 &5359147739789565017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1421,8 +1421,8 @@ MonoBehaviour:
     m_ActionName: 'Gameplay/AimVertical[/XInputControllerWindows/rightStick]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4658138776441428763}
-        m_TargetAssemblyTypeName: AbilityManagerP1, Assembly-CSharp
+      - m_Target: {fileID: -6959999717321687611}
+        m_TargetAssemblyTypeName: AbilityManager, Assembly-CSharp
         m_MethodName: SwitchAbility
         m_Mode: 0
         m_Arguments:
