@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class MenuController : MonoBehaviour
 {
@@ -29,8 +30,15 @@ public class MenuController : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(SelectInitialButton());
+    }
+
+    private IEnumerator SelectInitialButton()
+    {
+        yield return null; // espera un frame
         if (EventSystem.current != null && botonNJ != null)
         {
+            EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(botonNJ);
         }
     }
@@ -51,27 +59,21 @@ public class MenuController : MonoBehaviour
     // --- NUEVO JUEGO ---
     public void AbrirDialogoNuevoJuego()
     {
-        // 1. ENCENDER EL NUEVO PRIMERO
         newGameDialogPanel.SetActive(true);
 
-        // 2. ROBAR EL FOCO (Ambos menús existen un milisegundo, así que no hay error)
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(botonSiDialogoNJ);
 
-        // 3. APAGAR EL VIEJO AL FINAL
         if (menuPrincipalContainer != null) menuPrincipalContainer.SetActive(false);
     }
 
     public void CerrarDialogoNuevoJuego()
     {
-        // 1. ENCENDER EL MENÚ PRINCIPAL PRIMERO
         if (menuPrincipalContainer != null) menuPrincipalContainer.SetActive(true);
 
-        // 2. DEVOLVER EL FOCO
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(botonNJ);
 
-        // 3. APAGAR EL DIÁLOGO AL FINAL
         newGameDialogPanel.SetActive(false);
     }
 
@@ -110,7 +112,6 @@ public class MenuController : MonoBehaviour
         }
         else
         {
-            // Ojo aquí también con el orden
             noSaveGameDialog.SetActive(true);
 
             EventSystem.current.SetSelectedGameObject(null);
