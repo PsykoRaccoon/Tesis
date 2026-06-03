@@ -14,7 +14,7 @@ public class MenuController : MonoBehaviour
     [Header("Contenedores Principales")]
     [SerializeField] private GameObject menuPrincipalContainer;
 
-    [Header("Paneles de Diálogo")]
+    [Header("Paneles de Dialogo")]
     [SerializeField] private GameObject newGameDialogPanel;
     [SerializeField] private GameObject loadGameDialogPanel;
     [SerializeField] private GameObject noSaveGameDialog;
@@ -23,7 +23,7 @@ public class MenuController : MonoBehaviour
     public GameObject botonNJ;
     public GameObject botonCJ;
 
-    [Header("Botones Primeros en Diálogos")]
+    [Header("Botones Primeros en Dialogos")]
     public GameObject botonSiDialogoNJ;
     public GameObject botonSiDialogoCJ;
     public GameObject botonOkDialogoError;

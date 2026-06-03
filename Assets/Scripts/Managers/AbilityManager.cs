@@ -5,11 +5,12 @@ public class AbilityManager : MonoBehaviour
 {
     [Header("Habilidades")]
     [SerializeField] private MonoBehaviour abilityA;
-    [SerializeField] private MonoBehaviour abilityB; 
+    [SerializeField] private MonoBehaviour abilityB;
 
     private IAbility _a;
     private IAbility _b;
     private bool isAActive = true;
+    private bool isBUnlocked = false; // <- la clave
 
     private void Awake()
     {
@@ -20,28 +21,26 @@ public class AbilityManager : MonoBehaviour
         if (_b != null) _b.IsActive = false;
     }
 
-    public void UnlockAbilityB()
-    {
-        Debug.Log("Habilidad B desbloqueada");
-    }
-
     public void UnlockAndKeepCurrent()
     {
-        if (_b != null) _b.IsActive = false; 
+        isBUnlocked = true;
+        if (_b != null) _b.IsActive = false;
         Debug.Log("Habilidad B desbloqueada");
     }
 
     public void SwitchAbility(InputAction.CallbackContext context)
     {
-        Debug.Log($"SwitchAbility llamado | enabled: {enabled} | performed: {context.performed}");
-        
         if (!enabled || !context.performed) return;
 
-        Debug.Log($"isAActive: {isAActive} | _a null: {_a == null} | _b null: {_b == null}");
+        if (!isBUnlocked)
+        {
+            Debug.Log("Habilidad B todavía no desbloqueada");
+            return;
+        }
 
         if (isAActive && _a != null && _a.IsUsingAbility())
         {
-            Debug.Log($"Bloqueado por IsUsingAbility: {_a.IsUsingAbility()}");
+            Debug.Log("Bloqueado: habilidad en uso");
             return;
         }
 
@@ -49,6 +48,6 @@ public class AbilityManager : MonoBehaviour
         if (_a != null) _a.IsActive = isAActive;
         if (_b != null) _b.IsActive = !isAActive;
 
-        Debug.Log($"Después del switch → A.IsActive: {_a?.IsActive} | B.IsActive: {_b?.IsActive}");
+        Debug.Log(isAActive ? "A ON | B OFF" : "B ON | A OFF");
     }
 }

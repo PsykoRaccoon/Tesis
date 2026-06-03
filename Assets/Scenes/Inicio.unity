@@ -1926,7 +1926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b3fcff81dc79eb45a3382748a19e380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newGameLevel: Tutorial
+  newGameLevel: Video
   menuPrincipalContainer: {fileID: 81799930}
   newGameDialogPanel: {fileID: 514702934}
   loadGameDialogPanel: {fileID: 1451182396}
