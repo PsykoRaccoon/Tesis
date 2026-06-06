@@ -11,7 +11,13 @@ public class DamageDealer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!IsValidTarget(other)) return;
+        Debug.Log($"TriggerEnter con: {other.gameObject.name} | Tag: {other.tag}");
+        
+        if (!IsValidTarget(other)) 
+        {
+            Debug.Log("No es target válido");
+            return;
+        }
 
         IDamageable damageable = other.GetComponentInParent<IDamageable>();
 

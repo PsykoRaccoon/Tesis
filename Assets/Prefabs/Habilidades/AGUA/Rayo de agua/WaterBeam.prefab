@@ -5095,7 +5095,7 @@ MonoBehaviour:
   effectOnlyLayers:
     serializedVersion: 2
     m_Bits: 1624
-  laserWidth: 0
+  laserWidth: 1
   impactEffects:
   - label: Piso
     layer: 3
@@ -5107,6 +5107,10 @@ MonoBehaviour:
     effectDuration: 0.3
   - label: Tronco
     layer: 15
+    prefab: {fileID: 8866987181904549775, guid: 8c8d8385f96bd054a88a3df780d77bcc, type: 3}
+    effectDuration: 0.3
+  - label: Enemy
+    layer: 9
     prefab: {fileID: 8866987181904549775, guid: 8c8d8385f96bd054a88a3df780d77bcc, type: 3}
     effectDuration: 0.3
 --- !u!65 &-539419630544108372
@@ -5142,7 +5146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba33a9c12b4aa134cb877fc90d7c7673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 1
+  damageAmount: 10
   damageType: 0
   targetTags:
   - Player

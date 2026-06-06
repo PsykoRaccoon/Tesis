@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class Health : MonoBehaviour, IDamageable
 {
-    [SerializeField] protected int maxHealth = 10;
+    [SerializeField] protected int maxHealth;
 
     protected int currentHealth;
     protected bool isDead = false;
+    public bool IsDead => isDead;
 
     protected virtual void Awake()
     {

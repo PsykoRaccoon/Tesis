@@ -4948,7 +4948,7 @@ MonoBehaviour:
   effectOnlyLayers:
     serializedVersion: 2
     m_Bits: 2048
-  laserWidth: 0.5
+  laserWidth: 1
   impactEffects:
   - label: Rayo
     layer: 11
@@ -4956,6 +4956,10 @@ MonoBehaviour:
     effectDuration: 1
   - label: Piso
     layer: 3
+    prefab: {fileID: 958800534318925429, guid: 6af594ec822b0d841896bd627ba57625, type: 3}
+    effectDuration: 1
+  - label: Enemy
+    layer: 9
     prefab: {fileID: 958800534318925429, guid: 6af594ec822b0d841896bd627ba57625, type: 3}
     effectDuration: 1
 --- !u!65 &9104773016270990166
@@ -4991,7 +4995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba33a9c12b4aa134cb877fc90d7c7673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 1
+  damageAmount: 10
   damageType: 0
   targetTags:
   - Player
