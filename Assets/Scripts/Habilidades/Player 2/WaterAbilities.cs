@@ -205,4 +205,16 @@ public class WaterAbilities : MonoBehaviour, IAbility
         yield return new WaitForSeconds(cooldown);
         ability2OnCooldown = false;
     }
+
+    public void LockVisuals()
+    {
+        waterLaserIconUI?.SetLocked();
+        waterClonIconUI?.SetLocked();
+    }
+
+    public void UnlockVisuals()
+    {
+        waterLaserIconUI?.SetUnlocked();
+        waterClonIconUI?.SetUnlocked();
+    }
 }

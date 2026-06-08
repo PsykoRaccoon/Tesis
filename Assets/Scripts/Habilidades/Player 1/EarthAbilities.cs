@@ -69,7 +69,7 @@ public class EarthAbilities : MonoBehaviour, IAbility
 
     private Vector3 SpawnOrigin => spawnPoint.position + spawnPoint.forward * spawnDistance;
 
-    private void Start()
+    private void Awake()
     {
         if (AbilityHUD.Instance != null)
         {
@@ -300,5 +300,17 @@ public class EarthAbilities : MonoBehaviour, IAbility
     public bool IsUsingAbility()
     {
         return isBlockOnCooldown || isRampOnCooldown || isBlockCasting || isRampCasting;
+    }
+
+    public void LockVisuals()
+    {
+        blockIconUI?.SetLocked();
+        rampIconUI?.SetLocked();
+    }
+
+    public void UnlockVisuals()
+    {
+        blockIconUI?.SetUnlocked();
+        rampIconUI?.SetUnlocked();
     }
 }

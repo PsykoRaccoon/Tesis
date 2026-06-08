@@ -1050,8 +1050,8 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 0.66176987, b: 0.34528297, a: 1}
-  m_Intensity: 7
-  m_Range: 8
+  m_Intensity: 4
+  m_Range: 4
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1630,7 +1630,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4863200768201220073}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5edcb2f73ff201c41ae3817c17d8a990, type: 3}
   m_Name: 
@@ -1687,6 +1687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
+  currentHealth: 0
   playerRenderer: {fileID: 8744742106036808742}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 2
@@ -1694,6 +1695,15 @@ MonoBehaviour:
   knockbackForce: 15
   animator: {fileID: 3054891715927718764}
   damageTriggerName: Damage
+  tiempoRespawn: 5
+  playerIndex: 1
+  renderersToDisable:
+  - {fileID: 8189131481535711794}
+  - {fileID: 3318250132725410895}
+  - {fileID: 597541054324868553}
+  - {fileID: 5418681889414797850}
+  - {fileID: 1701723135673826942}
+  - {fileID: 3541899952666623704}
 --- !u!114 &-4148460425764815635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1706,7 +1716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfc0510cc66a8184a94fd5705091a0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nombreDelObjetoUI: VidaPlayer2
+  imagenVidaUI: {fileID: 0}
   iconoNormal: {fileID: 21300000, guid: 7f07a70c58c2b6043a3ba2fec24415ed, type: 3}
   iconoContaminado: {fileID: 21300000, guid: a56561981aa6f974e96d911c33c1e8d6, type: 3}
   iconoSombrificado: {fileID: 21300000, guid: 6c53edd03bedd81479556110e03303f1, type: 3}
@@ -2864,9 +2874,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8189131481535711794}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: -76.50694, z: 2.538161}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 84594780747827360}

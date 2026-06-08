@@ -4,6 +4,7 @@ public class Health : MonoBehaviour, IDamageable
 {
     [SerializeField] protected int maxHealth;
 
+    [field: SerializeField, Range(0, 10)] 
     protected int currentHealth;
     protected bool isDead = false;
     public bool IsDead => isDead;

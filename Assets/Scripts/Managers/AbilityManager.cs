@@ -18,13 +18,21 @@ public class AbilityManager : MonoBehaviour
         _b = abilityB as IAbility;
 
         if (_a != null) _a.IsActive = true;
-        if (_b != null) _b.IsActive = false;
+        if (_b != null)
+        {
+            _b.IsActive = false;
+            _b.LockVisuals(); 
+        }
     }
 
     public void UnlockAndKeepCurrent()
     {
         isBUnlocked = true;
-        if (_b != null) _b.IsActive = false;
+        if (_b != null)
+        {
+            _b.IsActive = false;
+            _b.UnlockVisuals();
+        }
         Debug.Log("Habilidad B desbloqueada");
     }
 

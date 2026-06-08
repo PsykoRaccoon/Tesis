@@ -365,4 +365,16 @@ public class FireAbilities : MonoBehaviour, IAbility
         currentX = Mathf.Clamp(currentX - vertical * verticalAimSpeed * Time.deltaTime, -45f, 45f);
         aimPivot.localRotation = Quaternion.Euler(currentX, 0, 0);
     }
+
+    public void LockVisuals()
+    {
+        fireballIconUI?.SetLocked();
+        laserIconUI?.SetLocked();
+    }
+
+    public void UnlockVisuals()
+    {
+        fireballIconUI?.SetUnlocked();
+        laserIconUI?.SetUnlocked();
+    }
 }

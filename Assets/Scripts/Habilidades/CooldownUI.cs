@@ -10,6 +10,8 @@ public class CooldownUI : MonoBehaviour
     [Header("Colores")]
     [SerializeField] private Color availableColor = Color.white;
     [SerializeField] private Color cooldownColor = new Color(0.25f, 0.25f, 0.25f, 1f);
+    [SerializeField] private Color lockedColor = new Color(0.1f, 0.1f, 0.1f, 0.5f);
+    private bool isLocked = false;
 
     private Coroutine cooldownCoroutine;
 
@@ -60,5 +62,18 @@ public class CooldownUI : MonoBehaviour
 
         iconImage.color = availableColor;
         cooldownCoroutine = null;
+    }
+
+    public void SetLocked()
+    {
+        isLocked = true;
+        if (cooldownCoroutine != null) StopCoroutine(cooldownCoroutine);
+        iconImage.color = lockedColor;
+    }
+
+    public void SetUnlocked()
+    {
+        isLocked = false;
+        SetAvailable();
     }
 }

@@ -621,6 +621,7 @@ MonoBehaviour:
   detectionRadius: 8
   touchRadius: 1.7
   cooldownEntreToques: 3
+  "da\xF1oPorToque": 2
   wanderRadius: 20
   minWaitTime: 1
   maxWaitTime: 5
@@ -661,6 +662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
+  currentHealth: 0
   deathDelay: 1
 --- !u!54 &4995126404640683966
 Rigidbody:

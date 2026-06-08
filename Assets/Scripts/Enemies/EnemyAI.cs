@@ -5,7 +5,7 @@ public class EnemyAI : MonoBehaviour
 {
     private NavMeshAgent navAgent;
     private Animator animator;
-    private VidaJugadorUI scriptVidaJugador;
+    private PlayerHealth playerHealth; // Reemplaza VidaJugadorUI
 
     private Transform player;
     private GameObject[] allPlayers;
@@ -16,6 +16,7 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Daño")]
     public float cooldownEntreToques;
+    [SerializeField] private int dañoPorToque;
 
     [Header("Merodeo")]
     public float wanderRadius;
@@ -30,7 +31,6 @@ public class EnemyAI : MonoBehaviour
     private const int STATE_ATTACKING = 2;
     private const int STATE_DEAD      = 3;
 
-    private int cantidadDeToques;
     private float tiempoUltimoToque;
     private Vector3 spawnPosition;
     private EnemyHealth enemyHealth;
@@ -47,7 +47,7 @@ public class EnemyAI : MonoBehaviour
         animator      = GetComponent<Animator>();
         enemyHealth   = GetComponent<EnemyHealth>();
         spawnPosition = transform.position;
-        allPlayers    = new GameObject[0]; // array vacío, se llena en Update
+        allPlayers    = new GameObject[0];
 
         StartWaitTimer();
     }
@@ -56,9 +56,9 @@ public class EnemyAI : MonoBehaviour
     {
         if (enemyHealth != null && enemyHealth.IsDead) return;
 
-        UpdateNearestPlayer(); 
+        UpdateNearestPlayer();
 
-        if (player == null) 
+        if (player == null)
         {
             HandleWander();
             HandleAnimations(Mathf.Infinity);
@@ -86,7 +86,7 @@ public class EnemyAI : MonoBehaviour
         if (allPlayers == null || allPlayers.Length == 0)
         {
             allPlayers = GameObject.FindGameObjectsWithTag("Player");
-            if (allPlayers.Length == 0) return; 
+            if (allPlayers.Length == 0) return;
         }
 
         float closestDistance = Mathf.Infinity;
@@ -95,6 +95,9 @@ public class EnemyAI : MonoBehaviour
         foreach (GameObject p in allPlayers)
         {
             if (p == null || !p.activeInHierarchy) continue;
+
+            PlayerHealth ph = p.GetComponent<PlayerHealth>();
+            if (ph != null && ph.IsDead) continue;
 
             float dist = Vector3.Distance(transform.position, p.transform.position);
             if (dist < closestDistance)
@@ -107,11 +110,11 @@ public class EnemyAI : MonoBehaviour
         if (closestPlayer != null && closestPlayer != player)
         {
             player = closestPlayer;
-            scriptVidaJugador = player.GetComponent<VidaJugadorUI>();
+            playerHealth = player.GetComponent<PlayerHealth>(); // Reemplaza scriptVidaJugador
         }
     }
 
-    //  MOVIMIENTO (persecución)
+    //  MOVIMIENTO
     void HandleMovement(float distanceToPlayer)
     {
         if (!navAgent.isActiveAndEnabled) return;
@@ -141,7 +144,7 @@ public class EnemyAI : MonoBehaviour
             if (wanderWaitTimer <= 0f)
                 TrySetWanderDestination();
         }
-        else // Moving
+        else
         {
             CheckIfStuck();
 
@@ -210,11 +213,10 @@ public class EnemyAI : MonoBehaviour
 
     void AplicarEfectoSombra()
     {
-        cantidadDeToques++;
         tiempoUltimoToque = Time.time;
 
-        if (scriptVidaJugador != null)
-            scriptVidaJugador.RecibirToqueSombra();
+        if (playerHealth != null)
+            playerHealth.TakeDamage(dañoPorToque, DamageType.Enemy, transform.position);
     }
 
     //  ANIMACIONES
@@ -225,17 +227,11 @@ public class EnemyAI : MonoBehaviour
         int newState;
 
         if (distanceToPlayer <= touchRadius)
-        {
             newState = STATE_ATTACKING;
-        }
         else if (navAgent.isActiveAndEnabled && !navAgent.isStopped && navAgent.velocity.magnitude > 0.1f)
-        {
             newState = STATE_WALKING;
-        }
         else
-        {
             newState = STATE_IDLE;
-        }
 
         animator.SetInteger(StateParam, newState);
     }

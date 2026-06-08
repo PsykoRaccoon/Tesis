@@ -40,7 +40,7 @@ public class AirAbilities : MonoBehaviour, IAbility
         set { isActive = value; enabled = isActive; }
     }
 
-    private void Start()
+    private void Awake()
     {
         if (AbilityHUD.Instance != null)
         {
@@ -159,5 +159,17 @@ public class AirAbilities : MonoBehaviour, IAbility
                 rb.AddForce(Vector3.up * upwardModifier, ForceMode.Impulse);
             }
         }
+    }
+
+        public void LockVisuals()
+    {
+        repulsionIconUI?.SetLocked();
+        attractionIconUI?.SetLocked();
+    }
+
+    public void UnlockVisuals()
+    {
+        repulsionIconUI?.SetUnlocked();
+        attractionIconUI?.SetUnlocked();
     }
 }
