@@ -163,14 +163,31 @@ MonoBehaviour:
   spawnPoint: {fileID: 1322104429946265135}
   projectilePrefab: {fileID: 8235021441435618320, guid: 9ab3786fdfe89e344ab62ab752866e1a, type: 3}
   groundMarkerPrefab: {fileID: 9196375943270294652, guid: 4b344d3982ad4f948badc8e48892c7d7, type: 3}
+  trajectoryLine: {fileID: 0}
+  resolution: 0
+  timeStep: 0
+  trajectoryCollisionMask:
+    serializedVersion: 2
+    m_Bits: 0
   aimDistance: 10
+  minAimDistance: 0
+  maxAimDistance: 0
+  aimDistanceSpeed: 0
   groundMask:
     serializedVersion: 2
     m_Bits: 8
   cooldownDuration: 2
+  fireballRotationSpeed: 0
+  fireballRotationSmoothTime: 0.05
+  aimBoolName: 
+  throwTriggerName: 
+  animator: {fileID: 0}
+  laserBoolName: 
+  laserStartDelay: 0
   playerController: {fileID: 4526514092532145448}
   aimPivot: {fileID: 1322104429946265135}
   laserBeamPrefab: {fileID: 6881719634396037647, guid: 442888fa973251848bbd6a1b8d92ff14, type: 3}
+  laserSpawnPoint: {fileID: 0}
   verticalAimSpeed: 100
   rotationSpeed: 5
   rotationSmoothTime: 0.8
@@ -193,16 +210,32 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+  cameraTransform: {fileID: 0}
   spawnDistance: 2
-  cooldownDuration: 1
+  blockCooldownDuration: 0
   blockLifetime: 6
   blockRiseHeight: 2
   appearDuration: 2
   sinkDistance: 5
   sinkDuration: 1.5
   undergroundOffset: 4
+  floatDuration: 0
+  rampCooldownDuration: 0
   rampRiseHeight: 2.5
   rampAppearDuration: 1.5
+  rampSinkDistance: 0
+  rampSinkDuration: 0
+  rampUndergroundOffset: 0
+  blockRiseShakeIntensity: 0
+  blockRiseShakeDuration: 0
+  blockFallShakeIntensity: 0
+  blockFallShakeDuration: 0
+  blockSinkShakeIntensity: 0
+  blockSinkShakeDuration: 0
+  rampRiseShakeIntensity: 0
+  rampRiseShakeDuration: 0
+  rampSinkShakeIntensity: 0
+  rampSinkShakeDuration: 0
 --- !u!114 &692983678676738313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,8 +248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a43a074042f774aafe5f451db5b9a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptHabilidadesFuego: {fileID: 5903640367901128020}
-  scriptHabilidadesTierra: {fileID: 8594970689042345808}
+  abilityA: {fileID: 0}
+  abilityB: {fileID: 0}
 --- !u!114 &-8757419843244079018
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1258,6 +1258,9 @@ MonoBehaviour:
   knockbackForce: 20
   animator: {fileID: 6535498785095895457}
   damageTriggerName: Damage
+  nombrePanelMuerte: PanelMuerteP2
+  nombreTextoConteo: TextoConteoP2
+  tiempoRespawn: 5
 --- !u!114 &9094687271389402664
 MonoBehaviour:
   m_ObjectHideFlags: 0
