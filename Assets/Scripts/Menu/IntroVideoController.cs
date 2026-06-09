@@ -13,6 +13,12 @@ public class IntroVideoController : MonoBehaviour
     [Header("Escena")]
     [SerializeField] private string gameplayScene;
 
+    [Header("Music")]
+    [SerializeField] private MusicManager musicManager;
+
+    [Header("Fade Visual")]
+    [SerializeField] private CanvasGroup fadePanel;
+
     [Header("Boton Continuar")]
     [SerializeField] private CanvasGroup skipButtonCanvasGroup;
     [SerializeField] private GameObject skipButton;
@@ -74,7 +80,11 @@ public class IntroVideoController : MonoBehaviour
     {
         if (escenaCargada) return;
         escenaCargada = true;
-        SceneManager.LoadScene(gameplayScene);
+
+        if (musicManager != null)
+            musicManager.FadeOutAndLoad(gameplayScene, fadePanel);
+        else
+            SceneManager.LoadScene(gameplayScene);
     }
 
     void OnDestroy()

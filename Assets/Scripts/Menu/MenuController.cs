@@ -11,6 +11,12 @@ public class MenuController : MonoBehaviour
     public string newGameLevel;
     private string levelToLoad;
 
+    [Header("Music")]
+    [SerializeField] private MusicManager musicManager;
+
+    [Header("Fade Visual")]
+    [SerializeField] private CanvasGroup fadePanel;
+
     [Header("Contenedores Principales")]
     [SerializeField] private GameObject menuPrincipalContainer;
 
@@ -35,7 +41,7 @@ public class MenuController : MonoBehaviour
 
     private IEnumerator SelectInitialButton()
     {
-        yield return null; // espera un frame
+        yield return null;
         if (EventSystem.current != null && botonNJ != null)
         {
             EventSystem.current.SetSelectedGameObject(null);
@@ -79,7 +85,10 @@ public class MenuController : MonoBehaviour
 
     public void NewGameDialogYes()
     {
-        SceneManager.LoadScene(newGameLevel);
+        if (musicManager != null)
+            musicManager.FadeOutAndLoad(newGameLevel, fadePanel);
+        else
+            SceneManager.LoadScene(newGameLevel);
     }
 
     // --- CARGAR JUEGO ---
@@ -108,7 +117,11 @@ public class MenuController : MonoBehaviour
         if (PlayerPrefs.HasKey("SavedLevel"))
         {
             levelToLoad = PlayerPrefs.GetString("SavedLevel");
-            SceneManager.LoadScene(levelToLoad);
+
+            if (musicManager != null)
+                musicManager.FadeOutAndLoad(levelToLoad, fadePanel);
+            else
+                SceneManager.LoadScene(levelToLoad);
         }
         else
         {
