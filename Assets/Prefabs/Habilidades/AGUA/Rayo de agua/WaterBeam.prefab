@@ -5095,7 +5095,7 @@ MonoBehaviour:
   effectOnlyLayers:
     serializedVersion: 2
     m_Bits: 1624
-  laserWidth: 1
+  laserWidth: 0.5
   impactEffects:
   - label: Piso
     layer: 3
