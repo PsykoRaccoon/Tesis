@@ -1482,7 +1482,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4689879717893536515}
         m_TargetAssemblyTypeName: WaterAbilities, Assembly-CSharp
-        m_MethodName: Habilidad1
+        m_MethodName: Habilidad2
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1510,7 +1510,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4689879717893536515}
         m_TargetAssemblyTypeName: WaterAbilities, Assembly-CSharp
-        m_MethodName: Habilidad2
+        m_MethodName: Habilidad1
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
