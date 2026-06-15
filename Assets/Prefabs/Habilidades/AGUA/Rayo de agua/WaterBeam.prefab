@@ -5100,15 +5100,15 @@ MonoBehaviour:
   - label: Piso
     layer: 3
     prefab: {fileID: 8866987181904549775, guid: 8c8d8385f96bd054a88a3df780d77bcc, type: 3}
-    effectDuration: 0.3
+    effectDuration: 0.5
   - label: Agua
     layer: 4
     prefab: {fileID: 8866987181904549775, guid: 8c8d8385f96bd054a88a3df780d77bcc, type: 3}
-    effectDuration: 0.3
+    effectDuration: 0.5
   - label: Tronco
     layer: 15
     prefab: {fileID: 8866987181904549775, guid: 8c8d8385f96bd054a88a3df780d77bcc, type: 3}
-    effectDuration: 0.3
+    effectDuration: 0.5
   - label: Enemy
     layer: 9
     prefab: {fileID: 8866987181904549775, guid: 8c8d8385f96bd054a88a3df780d77bcc, type: 3}
