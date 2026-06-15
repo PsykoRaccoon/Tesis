@@ -8,7 +8,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Water_Stylized_1
-  m_Shader: {fileID: 4800000, guid: 286fdc62f561eab429e64c8e60e6f363, type: 3}
+  m_Shader: {fileID: 4800000, guid: 942089c970d2c8c47938d6123a58cd4e, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - ALPHA_FROM_GRAYSCALE
   - ENABLE_MASK
@@ -18,11 +20,11 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3003
+  m_CustomRenderQueue: -1
   stringTagMap:
     GradientData: '{"mode":0}'
-    RenderType: Transparent
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -174,6 +176,8 @@ Material:
     - _ShineWidth: 1
     - _ShineWorldSpace: 0
     - _SmoothnessTextureChannel: 0
+    - _SoftParticlesFarFadeDistance: 1
+    - _SoftParticlesNearFadeDistance: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVNoiseBias: 0

@@ -49,21 +49,23 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Smoke_Black
-  m_Shader: {fileID: 4800000, guid: 286fdc62f561eab429e64c8e60e6f363, type: 3}
+  m_Shader: {fileID: 4800000, guid: 942089c970d2c8c47938d6123a58cd4e, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - ALPHA_FROM_GRAYSCALE
-  - ENABLE_DISSLOVE
-  - ENABLE_DISSLOVE_VERTEX_COLOR
   - ENABLE_MASK_FLOW
   - ENABLE_SOFTPARTICLES
   - ENABLE_UV_NOISE
-  - SOFTPARTICLES_ON
   m_InvalidKeywords:
   - DISABLE_SORTING
   - ENABLE_DECAL
+  - ENABLE_DISSLOVE
+  - ENABLE_DISSLOVE_VERTEX_COLOR
   - ENABLE_FOG
   - ENABLE_MAIN_TEXTURE
   - ENABLE_SECOND_LAYER
+  - SOFTPARTICLES_ON
   - _ALPHASOURCE_DEFAULT
   - _ALPHASOURCE_MAIN
   - _ALPHA_BLEND
@@ -73,10 +75,10 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap:
-    RenderType: Transparent
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -105,6 +107,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DissolveTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DistortionTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -156,6 +162,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 809c3452cae9c5f439601d5f117342c8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ShineMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _UVNoise:
         m_Texture: {fileID: 2800000, guid: f0520e17105af433d81a8c1b7612b405, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -165,6 +175,7 @@ Material:
     - _Alpha: 1
     - _AlphaFactor: 1
     - _AlphaSource: 0
+    - _ApplicationMode: 0
     - _BumpScale: 1
     - _ColorMask: 15
     - _ColorSmoothness: 0.396
@@ -179,8 +190,12 @@ Material:
     - _DissloveSmoothness: 0.361
     - _DissloveVertexValue: 0
     - _DissolveAmount: 0.5
+    - _DissolveOutlineStep: 0.1
     - _DissolveOutlineWidth: 0.02
+    - _DissolveRemapMax: 1
+    - _DissolveRemapMin: 0
     - _DissolveSmoothness: 1
+    - _DistortionIntensity: 0.5
     - _DstBlend: 10
     - _DualColorsEnabled: 0
     - _DualColorsState: 0
@@ -188,6 +203,9 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _GlowBlinkMaxAlpha: 1
+    - _GlowBlinkMinAlpha: 0.2
+    - _GlowBlinkSpeed: 1
     - _GlowSpeedX: 0
     - _GlowSpeedY: 0
     - _GradientBlend: 1
@@ -224,7 +242,16 @@ Material:
     - _ScrollSpeedY: 0
     - _SecondAlphaChannel: 0
     - _SecondMultiplier: 2.01
+    - _ShineDelay: 0
+    - _ShineIntensity: 1
+    - _ShineSharpnessLeft: 5
+    - _ShineSharpnessRight: 3
+    - _ShineSpeed: 1
+    - _ShineWidth: 1
+    - _ShineWorldSpace: 0
     - _SmoothnessTextureChannel: 0
+    - _SoftParticlesFarFadeDistance: 1
+    - _SoftParticlesNearFadeDistance: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVNoiseBias: 0
@@ -239,6 +266,8 @@ Material:
     - _ColorA: {r: 0, g: 0, b: 0, a: 1}
     - _ColorB: {r: 0.2735849, g: 0.040769517, b: 0, a: 1}
     - _DissloveOutlineColor: {r: 2, g: 1.5048354, b: 0, a: 1}
+    - _DissolveOutlineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _DistortionSpeed: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlowColor: {r: 1, g: 0, b: 0, a: 1}
     - _GlowSpeed: {r: 0, g: 0, b: 0, a: 0}
@@ -249,6 +278,9 @@ Material:
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _SecondColor: {r: 0.18975344, g: 2.1886792, b: 0, a: 1}
+    - _ShineColor: {r: 3, g: 3, b: 3, a: 1}
+    - _ShineRotation: {r: 1, g: 0, b: 0, a: 0}
+    - _ShineWorldDirection: {r: 1, g: 0, b: 0, a: 0}
     - _TintColor: {r: 1, g: 1, b: 1, a: 1}
     - _UVNoiseSpeed: {r: 0, g: 0, b: 0.1, a: 0.3}
   m_BuildTextureStacks: []
@@ -274,7 +306,8 @@ Texture2D:
   m_MipCount: 1
   m_IsReadable: 1
   m_IsPreProcessed: 0
-  m_IgnoreMasterTextureLimit: 0
+  m_IgnoreMipmapLimit: 0
+  m_MipmapLimitGroupName: 
   m_StreamingMipmaps: 0
   m_StreamingMipmapsPriority: 0
   m_VTOnly: 0

@@ -8,7 +8,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Tornado
-  m_Shader: {fileID: 4800000, guid: 286fdc62f561eab429e64c8e60e6f363, type: 3}
+  m_Shader: {fileID: 4800000, guid: 942089c970d2c8c47938d6123a58cd4e, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - ALPHA_FROM_GRAYSCALE
   - ENABLE_DUAL_COLORS
@@ -21,10 +23,10 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap:
-    RenderType: Transparent
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -45,6 +47,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DissloveTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DissolveTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DistortionTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -92,6 +102,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ShineMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _ShineTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -116,7 +130,12 @@ Material:
     - _DissloveOutlineStep: 0.1
     - _DissloveRemapMax: 1
     - _DissloveRemapMin: 0
+    - _DissolveAmount: 0.1
+    - _DissolveOutlineStep: 0.1
+    - _DissolveRemapMax: 1
+    - _DissolveRemapMin: 0
     - _DissolveSmoothness: 0.1
+    - _DistortionIntensity: 0.5
     - _DstBlend: 1
     - _DualColorsEnabled: 1
     - _DualColorsState: 1
@@ -124,6 +143,9 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _GlowBlinkMaxAlpha: 1
+    - _GlowBlinkMinAlpha: 0.2
+    - _GlowBlinkSpeed: 1
     - _GlowSpeedX: 0
     - _GlowSpeedY: 0
     - _GradientBlend: 1
@@ -153,14 +175,20 @@ Material:
     - _RimLightIntensity: 0.19
     - _ScrollSpeedX: 0.5
     - _ScrollSpeedY: 0.5
+    - _ShineDelay: 0
     - _ShineEnabled: 0
     - _ShineGlobalTime: 0
     - _ShineIntensity: 1
     - _ShineOffset: 0
+    - _ShineSharpnessLeft: 5
+    - _ShineSharpnessRight: 3
     - _ShineSpeed: 1
     - _ShineSyncMode: 0
     - _ShineWidth: 0.2
+    - _ShineWorldSpace: 0
     - _SmoothnessTextureChannel: 0
+    - _SoftParticlesFarFadeDistance: 1
+    - _SoftParticlesNearFadeDistance: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 5
     - _UIMode: 0
@@ -175,6 +203,8 @@ Material:
     - _ColorA: {r: 2, g: 0.24378261, b: 0, a: 1}
     - _ColorB: {r: 2, g: 1.0901961, b: 0.47843137, a: 1}
     - _DissloveOutlineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _DissolveOutlineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _DistortionSpeed: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlowColor: {r: 0.7490196, g: 0.29411766, b: 0, a: 1}
     - _GlowSpeed: {r: 0, g: -0.7, b: 0, a: 0}
@@ -186,6 +216,8 @@ Material:
     - _RimLightColor: {r: 3.5648699, g: 0.5972557, b: 0, a: 1}
     - _ShineColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShineDirection: {r: 1, g: 0, b: 0, a: 0}
+    - _ShineRotation: {r: 1, g: 0, b: 0, a: 0}
+    - _ShineWorldDirection: {r: 1, g: 0, b: 0, a: 0}
     - _TintColor: {r: 4, g: 1.0502793, b: 0, a: 1}
     - _UVNoiseSpeed: {r: 0, g: 0, b: 0.1, a: -0.1}
   m_BuildTextureStacks: []
@@ -252,7 +284,8 @@ Texture2D:
   m_MipCount: 1
   m_IsReadable: 1
   m_IsPreProcessed: 0
-  m_IgnoreMasterTextureLimit: 0
+  m_IgnoreMipmapLimit: 0
+  m_MipmapLimitGroupName: 
   m_StreamingMipmaps: 0
   m_StreamingMipmapsPriority: 0
   m_VTOnly: 0
