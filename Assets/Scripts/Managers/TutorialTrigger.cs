@@ -70,5 +70,6 @@ public class TutorialTrigger : MonoBehaviour
         controlsUI.SetActive(false);
         Time.timeScale = 1f;
         onTutorialComplete?.Invoke();
+        Destroy(gameObject);
     }
 }

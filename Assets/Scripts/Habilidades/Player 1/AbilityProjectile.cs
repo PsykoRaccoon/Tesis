@@ -14,8 +14,8 @@ public class AbilityProjectile : MonoBehaviour
     private Rigidbody rb;
     private Action onComplete;
     private bool isLaunched = false;
-
     private float lifeTimer;
+    public event Action<Vector3> OnImpact;
 
     private void Awake()
     {
@@ -119,7 +119,7 @@ public class AbilityProjectile : MonoBehaviour
 
         onComplete?.Invoke();
         onComplete = null;
-
+        OnImpact?.Invoke(transform.position);
         Destroy(gameObject);
     }
 }

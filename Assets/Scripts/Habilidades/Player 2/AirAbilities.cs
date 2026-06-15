@@ -22,9 +22,13 @@ public class AirAbilities : MonoBehaviour, IAbility
     [SerializeField] private float cooldown;
     [SerializeField] private float animationTime;
 
-    [Header("Particles")]
-    [SerializeField] private GameObject repulsionParticles;
-    [SerializeField] private GameObject attractionParticles;
+    [Header("VFX")]
+    [SerializeField] private GameObject vfxObject;
+    [SerializeField] private Transform repulsionSpawnPoint;
+    [SerializeField] private Transform attractionSpawnPoint;
+    [SerializeField] private float vfxTravelDistance;
+    [SerializeField] private float vfxTravelDuration;
+    [SerializeField] private float vfxShrinkDuration;
 
     // --- UI ---
     private CooldownUI repulsionIconUI;
@@ -51,7 +55,7 @@ public class AirAbilities : MonoBehaviour, IAbility
 
     public void Habilidad1(InputAction.CallbackContext context)
     {
-        if (!enabled ||!IsActive || !context.performed || isRepulsionOnCooldown) return;
+        if (!enabled || !IsActive || !context.performed || isRepulsionOnCooldown) return;
         StartCoroutine(ForceWaveRoutine());
     }
 
@@ -59,6 +63,39 @@ public class AirAbilities : MonoBehaviour, IAbility
     {
         if (!enabled || !IsActive || !context.performed || isAttractionOnCooldown) return;
         StartCoroutine(PullRoutine());
+    }
+
+    //////////////////////////////////// VFX ////////////////////////////////////
+
+    private IEnumerator MoveVFX(Vector3 startPos, Vector3 endPos, Quaternion rotation)
+    {
+        vfxObject.transform.position = startPos;
+        vfxObject.transform.rotation = rotation;
+        vfxObject.transform.localScale = Vector3.one;
+        vfxObject.SetActive(true);
+
+        // Fase 1: viaje
+        float elapsed = 0f;
+        while (elapsed < vfxTravelDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / vfxTravelDuration;
+            vfxObject.transform.position = Vector3.Lerp(startPos, endPos, t);
+            yield return null;
+        }
+
+        // Fase 2: shrink
+        elapsed = 0f;
+        while (elapsed < vfxShrinkDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / vfxShrinkDuration;
+            vfxObject.transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, t);
+            yield return null;
+        }
+
+        vfxObject.transform.localScale = Vector3.one;
+        vfxObject.SetActive(false);
     }
 
     //////////////////////////////////// Logica de habilidad de empuje ////////////////////////////////////
@@ -72,13 +109,14 @@ public class AirAbilities : MonoBehaviour, IAbility
         if (animator != null) animator.SetTrigger(repulsionTrigger);
 
         yield return new WaitForSeconds(animationTime);
-        if (repulsionParticles != null) repulsionParticles.SetActive(true);
+
+        Vector3 startPos = repulsionSpawnPoint.position;
+        Vector3 endPos   = startPos + transform.forward * vfxTravelDistance;
+        StartCoroutine(MoveVFX(startPos, endPos, repulsionSpawnPoint.rotation));
 
         ApplyForceWave();
 
         yield return new WaitForSeconds(abilityDuration);
-
-        if (repulsionParticles != null) repulsionParticles.SetActive(false);
 
         if (playerController != null) playerController.movementLocked = false;
 
@@ -127,13 +165,14 @@ public class AirAbilities : MonoBehaviour, IAbility
 
         yield return new WaitForSeconds(animationTime);
 
-        if (attractionParticles != null) attractionParticles.SetActive(true);
+        Vector3 startPos = attractionSpawnPoint.position;
+        Vector3 endPos   = repulsionSpawnPoint.position;
+        Quaternion flippedRotation = attractionSpawnPoint.rotation * Quaternion.Euler(0f, 180f, 0f);
+        StartCoroutine(MoveVFX(startPos, endPos, flippedRotation));
 
         ApplyPullWave();
 
         yield return new WaitForSeconds(abilityDuration);
-
-        if (attractionParticles != null) attractionParticles.SetActive(false);
 
         if (playerController != null) playerController.movementLocked = false;
 
@@ -161,7 +200,7 @@ public class AirAbilities : MonoBehaviour, IAbility
         }
     }
 
-        public void LockVisuals()
+    public void LockVisuals()
     {
         repulsionIconUI?.SetLocked();
         attractionIconUI?.SetLocked();
