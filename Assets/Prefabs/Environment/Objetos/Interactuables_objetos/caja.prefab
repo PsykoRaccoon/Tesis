@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6924284316196331610}
   - component: {fileID: 1548315271834251738}
   - component: {fileID: 1065414450016849791}
+  - component: {fileID: 8789036276046499538}
   m_Layer: 8
   m_Name: caja
   m_TagString: Untagged
@@ -136,3 +137,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8789036276046499538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2203507144590777374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3bf72643c0f7ab40b357f1d837be635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reactionTag: Fire
+  esAgua: 0
+  shaderProperty: _BurntAmount
+  burntFrom: 0
+  burntTo: 1.2
+  duration: 1.5
+  desactivarCollider: 1
+  destruirObjeto: 1
+  objetosADesactivar: []
+  wall: {fileID: 2203507144590777374}
