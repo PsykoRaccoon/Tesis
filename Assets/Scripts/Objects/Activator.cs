@@ -1,37 +1,40 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
 public class ActivatorOnHit : MonoBehaviour
 {
-    [Header("Tag que activa")]
-    [SerializeField] private string reactionTag;
+    [Header("Tags")]
+    [SerializeField] private string fireTag;
+    [SerializeField] private string waterTag;
 
-    [Header("Objeto a activar")]
+    [Header("Objeto a controlar")]
     [SerializeField] private GameObject targetObject;
-
-    private bool _activated = false;
 
     void OnTriggerEnter(Collider other)
     {
-        if (_activated) return;
-        if (!other.CompareTag(reactionTag)) return;
-        Activate();
+        if (other.CompareTag(fireTag))       Activate();
+        else if (other.CompareTag(waterTag)) Deactivate();
     }
 
     void OnLaserEnter(GameObject source)
     {
-        if (_activated) return;
-        if (!source.CompareTag(reactionTag)) return;
-        Activate();
+        if (source.CompareTag(fireTag))       Activate();
+        else if (source.CompareTag(waterTag)) Deactivate();
     }
 
     private void Activate()
     {
-        _activated = true;
-
-        if (targetObject != null)
-            targetObject.SetActive(true);
-        else
-            Debug.LogWarning("ActivatorOnHit: No hay objeto asignado en Target Object!");
+        if (targetObject == null) { LogWarning(); return; }
+        if (targetObject.activeSelf) return;
+        targetObject.SetActive(true);
     }
+
+    private void Deactivate()
+    {
+        if (targetObject == null) { LogWarning(); return; }
+        if (!targetObject.activeSelf) return;
+        targetObject.SetActive(false);
+    }
+
+    private void LogWarning() =>
+        Debug.LogWarning($"ActivatorOnHit ({gameObject.name}): No hay objeto asignado en Target Object!");
 }

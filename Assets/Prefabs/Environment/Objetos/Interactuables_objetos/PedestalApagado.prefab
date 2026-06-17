@@ -9741,7 +9741,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8551b95ebd990a4ba2328ac60fd7a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reactionTag: Fire
+  fireTag: Fire
+  waterTag: Water
   targetObject: {fileID: 4310667784330045384}
 --- !u!1 &2647305400684903044
 GameObject:
@@ -9973,7 +9974,7 @@ GameObject:
   - component: {fileID: 233478928270071906}
   - component: {fileID: 1131223399674019394}
   - component: {fileID: 3109355442678852547}
-  - component: {fileID: 696790425005477802}
+  - component: {fileID: 2866360691887548433}
   m_Layer: 3
   m_Name: PedestalApagado
   m_TagString: Untagged
@@ -9991,7 +9992,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2285237793962910441}
@@ -10051,8 +10052,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &696790425005477802
-MeshCollider:
+--- !u!65 &2866360691887548433
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -10069,10 +10070,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -219530923010630001, guid: 3025403d97a820b42a8cf2f43351d45a, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1.013925, y: 1.4991705, z: 1.013925}
+  m_Center: {x: -0.00000032782552, y: 0.7495853, z: 0.00000032782552}
 --- !u!1 &4310667784330045384
 GameObject:
   m_ObjectHideFlags: 0
