@@ -3388,6 +3388,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1843995206}
     m_Modifications:
+    - target: {fileID: 4132680505555309282, guid: 4c0a0891d3f1cf7498111eadf1bc05dc, type: 3}
+      propertyPath: burnFrom
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6214412187358893375, guid: 4c0a0891d3f1cf7498111eadf1bc05dc, type: 3}
       propertyPath: m_Name
       value: TroncoQuemandose (2)

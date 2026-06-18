@@ -1061,7 +1061,7 @@
     "m_Title": "Get View Direction",
     "m_Position": {
         "x": -2184.000244140625,
-        "y": 776.8001098632813
+        "y": 776.800048828125
     }
 }
 
@@ -2502,7 +2502,7 @@
     "m_Title": "GET Glitter Facing Directions (Sample Noises)",
     "m_Position": {
         "x": -3226.400146484375,
-        "y": 325.5999755859375
+        "y": 325.59991455078127
     }
 }
 
