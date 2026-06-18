@@ -215,6 +215,7 @@ Material:
     - _ShineDirection: {r: 1, g: 0, b: 0, a: 0}
     - _ShineRotation: {r: 1, g: 0, b: 0, a: 0}
     - _ShineWorldDirection: {r: 1, g: 0, b: 0, a: 0}
-    - _TintColor: {r: 0.6901961, g: 1.1450981, b: 1.4980392, a: 1}
+    - _TintColor: {r: 0.3584906, g: 0.101725504, b: 0, a: 1}
     - _UVNoiseSpeed: {r: 0, g: 0, b: 0, a: 0.5}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
