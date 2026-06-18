@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 242146818398169902}
   - component: {fileID: 455521929819389863}
   - component: {fileID: 9208778143873574498}
+  - component: {fileID: -4906042875364138555}
   m_Layer: 0
   m_Name: Tierra
   m_TagString: Untagged
@@ -102,9 +103,26 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4906042875364138555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890084832031189186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba33a9c12b4aa134cb877fc90d7c7673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
+  damageType: 2
+  damageElement: 2
+  targetTags:
+  - Player

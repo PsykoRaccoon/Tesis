@@ -1193,6 +1193,7 @@ GameObject:
   - component: {fileID: 5359147739789565017}
   - component: {fileID: 6374611691962689753}
   - component: {fileID: 9094687271389402664}
+  - component: {fileID: 779025004004107714}
   - component: {fileID: 6567631141496551460}
   m_Layer: 6
   m_Name: P2
@@ -1472,6 +1473,19 @@ MonoBehaviour:
   iconoNormal: {fileID: 21300000, guid: 1390cdbf4c609f74caca28a3ace5cdbe, type: 3}
   iconoContaminado: {fileID: 21300000, guid: 8b015b34988f8b64ebf6fd5f7590b221, type: 3}
   iconoSombrificado: {fileID: 21300000, guid: 9ee91aaa70e445c448eac7b696ef58af, type: 3}
+--- !u!114 &779025004004107714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4362687143241487701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ae84ed4a7abe114982fffe0ba257e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vulnerableTo: 0000000002000000
 --- !u!114 &6567631141496551460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1649,6 +1663,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 46043fd0-5d9d-40c4-8ac7-9bb92db31056
     m_ActionName: 'Gameplay/Especial[/XInputControllerWindows/leftShoulder,/SwitchProControllerHID/leftShoulder,/XInputControllerWindows/rightShoulder,/SwitchProControllerHID/rightShoulder]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 389ce004-9e0c-4da0-a789-cd129834162e
+    m_ActionName: Gameplay/Interact
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

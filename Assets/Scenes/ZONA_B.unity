@@ -9169,6 +9169,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1086288046164901016, guid: d70e5aa44b96fa44e8dbd8e77b665a04, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 1086288046164901016, guid: d70e5aa44b96fa44e8dbd8e77b665a04, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4996173856464165462, guid: d70e5aa44b96fa44e8dbd8e77b665a04, type: 3}
       propertyPath: m_Name
       value: ElevadorGeneral
