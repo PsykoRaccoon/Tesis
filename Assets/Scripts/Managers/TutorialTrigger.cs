@@ -25,7 +25,6 @@ public class TutorialTrigger : MonoBehaviour
     private void Start()
     {
         tutorialCanvas.SetActive(false);
-
         videoPlayer.audioOutputMode = VideoAudioOutputMode.Direct;
         videoPlayer.loopPointReached += OnVideoFinished;
     }
@@ -52,12 +51,14 @@ public class TutorialTrigger : MonoBehaviour
 
     private void OnVideoFinished(VideoPlayer vp)
     {
+        Debug.Log($"{gameObject.name} recibió OnVideoFinished");
         StartCoroutine(CountdownAndClose());
     }
 
     private IEnumerator CountdownAndClose()
     {
         countdownText.gameObject.SetActive(true);
+        videoPlayer.loopPointReached -= OnVideoFinished;
 
         for (int i = countdownSeconds; i > 0; i--)
         {

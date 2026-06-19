@@ -64,7 +64,7 @@ Material:
     m_Floats:
     - _BurntAmount: 0.19
     - _ColorAmount: 2
-    - _DissolveAmount: 0.37
+    - _DissolveAmount: 0
     - _DistortionAmount: 0
     - _EdgeAmount: 0.01
     - _HeatWaveAmount: 0.2
