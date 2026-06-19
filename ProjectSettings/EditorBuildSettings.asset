@@ -8,15 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Inicio.unity
     guid: 3651643bb74e2234381e8e642bfc1b02
-  - enabled: 0
-    path: Assets/Scenes/Andre-Camara.unity
-    guid: fff09b0b0c7afe847a24ad12575f78b1
+  - enabled: 1
+    path: Assets/Scenes/Video.unity
+    guid: c1f87ac90e92649cb98e614a8aa9d7bd
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/Video.unity
-    guid: c1f87ac90e92649cb98e614a8aa9d7bd
+    path: Assets/Scenes/ZONA_B.unity
+    guid: 6a4c41b71cd102142adf7becd76fbace
+  - enabled: 0
+    path: Assets/Scenes/Andre-Camara.unity
+    guid: fff09b0b0c7afe847a24ad12575f78b1
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: fbf6bec7d50cd3e4da68298a195ff95a, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 7008a89bcc2e2f44d9a9e3f3ec8caa7d, type: 2}
