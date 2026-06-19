@@ -25,10 +25,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveInput;
     private Vector3 velocity;
     private Vector3 moveDirection;
-
     private Vector3 externalVelocity;
-
     private bool runToggle = false;
+    private bool _isInLiftZone = false;
+    private float _liftForce = 0f;
 
     public bool IsGrounded => controller != null && controller.isGrounded;
 
@@ -96,6 +96,10 @@ public class PlayerController : MonoBehaviour
         }
 
         velocity.y += gravity * Time.deltaTime;
+        if (_isInLiftZone)
+        {
+            velocity.y = Mathf.Lerp(velocity.y, _liftForce, 5f * Time.deltaTime);
+        }
         controller.Move(velocity * Time.deltaTime);
 
         externalVelocity = Vector3.Lerp(externalVelocity, Vector3.zero, 10f * Time.deltaTime);
@@ -132,5 +136,18 @@ public class PlayerController : MonoBehaviour
     public void ApplyKnockback(Vector3 force)
     {
         externalVelocity = force;
+    }
+
+    // ---------------- LIFT ---------------- //
+    public void SetLift(float force)
+    {
+        _liftForce = force;
+        _isInLiftZone = true;
+    }
+
+    public void ClearLift()
+    {
+        _isInLiftZone = false;
+        _liftForce = 0f;
     }
 }

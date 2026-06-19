@@ -6,7 +6,7 @@ public enum ReactElement { Fire, Water }
 [RequireComponent(typeof(Renderer))]
 public class Dissolve : MonoBehaviour
 {
-    [Header("Elemento que activa la reacción")]
+    [Header("Elemento que activa la reaccion")]
     [SerializeField] private ReactElement reactTo;
 
     [Header("Shader")]

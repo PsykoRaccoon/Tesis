@@ -9858,13 +9858,14 @@ GameObject:
   - component: {fileID: 1781826781907833781}
   - component: {fileID: 1596265228827874955}
   - component: {fileID: 7059281980569585023}
+  - component: {fileID: 9144963492296933861}
   m_Layer: 0
   m_Name: WaterBeam_Elevator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6649819668627805808
 Transform:
   m_ObjectHideFlags: 0
@@ -9874,7 +9875,7 @@ Transform:
   m_GameObject: {fileID: 6246100356447207886}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.57554, y: -0.00002193451, z: 10.397997}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14808,8 +14809,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.5, y: 7, z: 2.5}
-  m_Center: {x: 0, y: 3.5, z: 0}
+  m_Size: {x: 1, y: 3, z: 1}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!114 &7059281980569585023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14827,6 +14828,19 @@ MonoBehaviour:
   damageElement: 1
   targetTags:
   - Player
+--- !u!114 &9144963492296933861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6246100356447207886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fdc910093f56374aa5730fe5b151429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  liftForce: 5
 --- !u!1 &7267654645489338607
 GameObject:
   m_ObjectHideFlags: 0
