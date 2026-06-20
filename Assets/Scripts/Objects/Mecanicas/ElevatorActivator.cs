@@ -18,12 +18,14 @@ public class ElevatorActivator : MonoBehaviour
     public void Unlock()
     {
         isUnlocked = true;
+        elevator.Activate();
         CheckForPlayersAlreadyInside();
     }
 
     public void Lock()
     {
         isUnlocked = false;
+        elevator.Deactivate();
         UnsubscribeCurrentPlayer();
     }
 

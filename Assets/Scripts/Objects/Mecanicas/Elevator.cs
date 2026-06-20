@@ -15,8 +15,18 @@ public class Elevator : MonoBehaviour
         for (int i = 0; i < elementPrefabs.Length; i++)
         {
             elementInstances[i] = Instantiate(elementPrefabs[i], spawnPoint.position, spawnPoint.rotation, spawnPoint);
-            elementInstances[i].SetActive(i == 0);
+            elementInstances[i].SetActive(false);
         }
+    }
+
+    public void Activate()
+    {
+        elementInstances[currentIndex].SetActive(true);
+    }
+
+    public void Deactivate()
+    {
+        elementInstances[currentIndex].SetActive(false);
     }
 
     public void CycleElement()

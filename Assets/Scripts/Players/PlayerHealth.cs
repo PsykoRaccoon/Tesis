@@ -22,18 +22,19 @@ public class PlayerHealth : Health
     [SerializeField] private int playerIndex;
     [SerializeField] private GameObject[] renderersToDisable;
 
-    private Vector3 puntoDeRespawn;
     private Color originalColor;
     private bool isStunned = false;
 
     private PlayerController playerController;
     private Collider[] colisionadores;
+    private SpawnManager spawnManager;
 
     protected override void Awake()
     {
         base.Awake();
         playerController = GetComponent<PlayerController>();
         colisionadores = GetComponentsInChildren<Collider>();
+        spawnManager = FindObjectOfType<SpawnManager>();
 
         if (playerRenderer != null)
             originalColor = playerRenderer.material.color;
@@ -41,13 +42,7 @@ public class PlayerHealth : Health
 
     private void Start()
     {
-        Invoke("GuardarPuntoRespawn", 0.1f);
         PlayerUIManager.Instance.ActualizarEstadoVida(playerIndex, currentHealth);
-    }
-
-    private void GuardarPuntoRespawn()
-    {
-        puntoDeRespawn = transform.position;
     }
 
     public override void TakeDamage(int amount, DamageType type)
@@ -85,8 +80,6 @@ public class PlayerHealth : Health
         PlayerUIManager.Instance.ActualizarEstadoVida(playerIndex, currentHealth);
     }
 
-    // ---------------- FEEDBACK Y STUN ---------------- //
-
     private System.Collections.IEnumerator DamageFlash()
     {
         if (playerRenderer == null) yield break;
@@ -116,8 +109,6 @@ public class PlayerHealth : Health
         isStunned = false;
     }
 
-    // ---------------- MUERTE Y RESPAWN ---------------- //
-
     protected override void Die(DamageType type)
     {
         isDead = true;
@@ -144,7 +135,7 @@ public class PlayerHealth : Health
 
         PlayerUIManager.Instance.HideDeathPanel(playerIndex);
 
-        transform.position = puntoDeRespawn;
+        transform.position = spawnManager.GetRespawnPosition(playerIndex);
         currentHealth = maxHealth;
         isDead = false;
 

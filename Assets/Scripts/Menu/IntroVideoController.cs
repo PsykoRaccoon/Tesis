@@ -47,6 +47,7 @@ public class IntroVideoController : MonoBehaviour
 
     private IEnumerator FadeInBoton()
     {
+        EventSystem.current.SetSelectedGameObject(skipButton);
         skipButton.SetActive(true);
 
         yield return null;

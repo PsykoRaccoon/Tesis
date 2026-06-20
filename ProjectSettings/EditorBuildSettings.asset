@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ZONA_B.unity
     guid: 6a4c41b71cd102142adf7becd76fbace
+  - enabled: 1
+    path: Assets/Scenes/Fin.unity
+    guid: 020565d5a0b3f154f922a0d1471f3368
   - enabled: 0
     path: Assets/Scenes/Andre-Camara.unity
     guid: fff09b0b0c7afe847a24ad12575f78b1

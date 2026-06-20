@@ -1,7 +1,7 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; // Necesario para cambiar de escena
-using UnityEngine.InputSystem; // Necesario para identificar a los jugadores
-using TMPro; // Necesario para el texto del Canvas
+using UnityEngine.SceneManagement; 
+using UnityEngine.InputSystem; 
+using TMPro; 
 
 public class Portal : MonoBehaviour
 {
@@ -13,21 +13,19 @@ public class Portal : MonoBehaviour
     public GameObject panelAviso;
     public TextMeshProUGUI textoAviso;
 
-    // Variables internas para saber quién está pisando el portal
     private bool jugador1Adentro = false;
     private bool jugador2Adentro = false;
 
     void Start()
     {
-        // Nos aseguramos de que el mensaje esté apagado al iniciar
         if (panelAviso != null)
+        {
             panelAviso.SetActive(false);
+        }
     }
 
-    // Se activa cuando ALGUIEN entra al portal
     void OnTriggerEnter(Collider other)
     {
-        // Verificamos si el que entró tiene la etiqueta de jugador
         if (other.CompareTag("Player"))
         {
             PlayerInput inputJugador = other.GetComponent<PlayerInput>();
@@ -43,7 +41,6 @@ public class Portal : MonoBehaviour
         }
     }
 
-    // Se activa cuando ALGUIEN sale del portal (por si se arrepienten y se salen)
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -62,24 +59,20 @@ public class Portal : MonoBehaviour
 
     void RevisarEstadoPortal()
     {
-        // CASO 1: ¡Los dos están adentro! Viajamos.
         if (jugador1Adentro && jugador2Adentro)
         {
             if (panelAviso != null) panelAviso.SetActive(false);
             Debug.Log("¡Viajando a la siguiente escena!");
             SceneManager.LoadScene(nombreSiguienteEscena);
         }
-        // CASO 2: Solo está el Jugador 1
         else if (jugador1Adentro && !jugador2Adentro)
         {
             MostrarMensaje("¡Falta el Jugador 2 en el portal!");
         }
-        // CASO 3: Solo está el Jugador 2
         else if (!jugador1Adentro && jugador2Adentro)
         {
             MostrarMensaje("¡Falta el Jugador 1 en el portal!");
         }
-        // CASO 4: El portal está vacío
         else
         {
             if (panelAviso != null) panelAviso.SetActive(false);

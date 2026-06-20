@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4554777777354387791}
   - component: {fileID: 6236270823346571513}
   - component: {fileID: 6738208528151226690}
-  - component: {fileID: 8132766635545877822}
+  - component: {fileID: 6668584155034274151}
   m_Layer: 0
   m_Name: Estandarte
   m_TagString: Untagged
@@ -110,7 +110,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2973567543644804212, guid: 98eda67284464e047a912794d9e32601, type: 3}
---- !u!114 &8132766635545877822
+--- !u!114 &6668584155034274151
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,16 +119,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 478160170058379665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3bf72643c0f7ab40b357f1d837be635, type: 3}
+  m_Script: {fileID: 11500000, guid: c9c7cde93d42a1541a92975ebbdf6c1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reactionTag: Fire
-  esAgua: 0
+  reactTo: 0
   shaderProperty: _BurntAmount
-  burntFrom: 0
-  burntTo: 1.2
-  duration: 1.5
-  desactivarCollider: 1
-  destruirObjeto: 1
-  objetosADesactivar: []
-  wall: {fileID: 0}
+  burnFrom: 0
+  burnTo: 1
+  duration: 1
+  solidCollider: {fileID: 6738208528151226690}
+  vfxToDisable: []
+  destroyOnFinish: 1

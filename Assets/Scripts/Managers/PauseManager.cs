@@ -8,6 +8,8 @@ public class PauseManager : MonoBehaviour
     [Header("Paneles de Interfaz")]
     [SerializeField] private GameObject menuPausaP1;
     [SerializeField] private GameObject menuPausaP2;
+    [SerializeField] private GameObject panelControles;
+    [SerializeField] private GameObject atrasBtn;
 
     [Header("Botones Iniciales (Para el Control)")]
     [SerializeField] private GameObject primerBotonP1;
@@ -17,6 +19,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private UIInputActions inputActions;
 
     private bool estaPausado = false;
+    private int jugadorQuePauso = 1;
 
     private void Awake()
     {
@@ -66,6 +69,7 @@ public class PauseManager : MonoBehaviour
 
     private void Pausar(int jugador)
     {
+        jugadorQuePauso = jugador;
         estaPausado = true;
         Time.timeScale = 0f;
 
@@ -85,7 +89,9 @@ public class PauseManager : MonoBehaviour
         {
             menuPausaP2.SetActive(true);
             if (primerBotonP2 != null)
+            {
                 EventSystem.current.SetSelectedGameObject(primerBotonP2);
+            }
         }
     }
 
@@ -108,5 +114,30 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(nombreEscena);
+    }
+
+    public void Controles()
+    {
+        if (panelControles != null)
+        {
+            panelControles.SetActive(true);
+            if (EventSystem.current != null)
+            {
+                EventSystem.current.SetSelectedGameObject(atrasBtn);
+            }
+        }
+    }
+
+    public void VolverAlMenuPausa()
+    {
+        if (panelControles != null)
+        {
+            panelControles.SetActive(false);
+            if (EventSystem.current != null)
+            {
+                var botonDestino = jugadorQuePauso == 1 ? primerBotonP1 : primerBotonP2;
+                EventSystem.current.SetSelectedGameObject(botonDestino);
+            }
+        }
     }
 }
