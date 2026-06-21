@@ -4960,23 +4960,23 @@ MonoBehaviour:
     effectDuration: 30
   - label: Enemy
     layer: 9
-    prefab: {fileID: 3077343761403282166, guid: f78aaaec3b393e24ca74cd6de8194347, type: 3}
+    prefab: {fileID: 4503612902121041701, guid: 5a936c83b1746f14f9100db745e94f04, type: 3}
     effectDuration: 1
   - label: Player
     layer: 6
-    prefab: {fileID: 3077343761403282166, guid: f78aaaec3b393e24ca74cd6de8194347, type: 3}
+    prefab: {fileID: 4503612902121041701, guid: 5a936c83b1746f14f9100db745e94f04, type: 3}
     effectDuration: 30
   - label: Interactuable
     layer: 8
-    prefab: {fileID: 3077343761403282166, guid: f78aaaec3b393e24ca74cd6de8194347, type: 3}
+    prefab: {fileID: 4503612902121041701, guid: 5a936c83b1746f14f9100db745e94f04, type: 3}
     effectDuration: 30
   - label: Pared
     layer: 14
-    prefab: {fileID: 3077343761403282166, guid: f78aaaec3b393e24ca74cd6de8194347, type: 3}
+    prefab: {fileID: 4503612902121041701, guid: 5a936c83b1746f14f9100db745e94f04, type: 3}
     effectDuration: 30
   - label: Tronco
     layer: 15
-    prefab: {fileID: 3077343761403282166, guid: f78aaaec3b393e24ca74cd6de8194347, type: 3}
+    prefab: {fileID: 4503612902121041701, guid: 5a936c83b1746f14f9100db745e94f04, type: 3}
     effectDuration: 30
 --- !u!65 &9104773016270990166
 BoxCollider:
