@@ -143,4 +143,9 @@ public class MenuController : MonoBehaviour
 
         noSaveGameDialog.SetActive(false);
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

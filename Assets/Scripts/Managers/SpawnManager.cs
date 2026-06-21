@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -44,9 +45,9 @@ public class SpawnManager : MonoBehaviour
             controlScheme: "Gamepad",
             pairWithDevice: Gamepad.all.Count > 0 ? Gamepad.all[0] : null
         );
-        p1Input.transform.position = player1Spawn.position;
         player1Transform = p1Input.transform;
         player1Health = p1Input.GetComponent<PlayerHealth>();
+        StartCoroutine(SafeSetPosition(player1Transform, player1Spawn.position));
 
         if (Gamepad.all.Count > 1)
         {
@@ -55,13 +56,27 @@ public class SpawnManager : MonoBehaviour
                 controlScheme: "Gamepad",
                 pairWithDevice: Gamepad.all[1]
             );
-            p2Input.transform.position = player2Spawn.position;
             player2Transform = p2Input.transform;
             player2Health = p2Input.GetComponent<PlayerHealth>();
+            StartCoroutine(SafeSetPosition(player2Transform, player2Spawn.position));
         }
 
         if (splitScreenManager != null)
             splitScreenManager.AssignPlayers(player1Transform, player2Transform);
+    }
+
+    private IEnumerator SafeSetPosition(Transform target, Vector3 position)
+    {
+        var cc = target.GetComponent<CharacterController>();
+
+        if (cc != null) cc.enabled = false;
+
+        yield return null; // espera un frame
+
+        target.position = position;
+        Physics.SyncTransforms();
+
+        if (cc != null) cc.enabled = true;
     }
 
     public void TryUpdateZone(int newIndex, Vector3 spawn1, Vector3 spawn2, bool permiteCompanero)

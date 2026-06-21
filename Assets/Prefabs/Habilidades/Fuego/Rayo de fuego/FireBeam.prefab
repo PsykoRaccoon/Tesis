@@ -4962,6 +4962,22 @@ MonoBehaviour:
     layer: 9
     prefab: {fileID: 3077343761403282166, guid: f78aaaec3b393e24ca74cd6de8194347, type: 3}
     effectDuration: 1
+  - label: Player
+    layer: 6
+    prefab: {fileID: 3077343761403282166, guid: f78aaaec3b393e24ca74cd6de8194347, type: 3}
+    effectDuration: 30
+  - label: Interactuable
+    layer: 8
+    prefab: {fileID: 3077343761403282166, guid: f78aaaec3b393e24ca74cd6de8194347, type: 3}
+    effectDuration: 30
+  - label: Pared
+    layer: 14
+    prefab: {fileID: 3077343761403282166, guid: f78aaaec3b393e24ca74cd6de8194347, type: 3}
+    effectDuration: 30
+  - label: Tronco
+    layer: 15
+    prefab: {fileID: 3077343761403282166, guid: f78aaaec3b393e24ca74cd6de8194347, type: 3}
+    effectDuration: 30
 --- !u!65 &9104773016270990166
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4997,6 +5013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 10
   damageType: 0
+  damageElement: 4
   targetTags:
   - Player
   - Clon

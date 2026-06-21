@@ -5113,6 +5113,22 @@ MonoBehaviour:
     layer: 9
     prefab: {fileID: 8866987181904549775, guid: 2c51de328b5bb354a82324ea9282bc95, type: 3}
     effectDuration: 0.3
+  - label: Interactuable
+    layer: 8
+    prefab: {fileID: 8866987181904549775, guid: 2c51de328b5bb354a82324ea9282bc95, type: 3}
+    effectDuration: 0.3
+  - label: Puddle
+    layer: 10
+    prefab: {fileID: 8866987181904549775, guid: 2c51de328b5bb354a82324ea9282bc95, type: 3}
+    effectDuration: 0.3
+  - label: Pared
+    layer: 14
+    prefab: {fileID: 8866987181904549775, guid: 2c51de328b5bb354a82324ea9282bc95, type: 3}
+    effectDuration: 0.3
+  - label: Tronco
+    layer: 15
+    prefab: {fileID: 8866987181904549775, guid: 2c51de328b5bb354a82324ea9282bc95, type: 3}
+    effectDuration: 0.3
 --- !u!65 &-539419630544108372
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5148,6 +5164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 10
   damageType: 0
+  damageElement: 4
   targetTags:
   - Player
   - Enemy
